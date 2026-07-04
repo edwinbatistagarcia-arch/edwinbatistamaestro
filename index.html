@@ -449,7 +449,16 @@ function renderTodo() {
 ═══════════════════════════════════════════════════ */
 
 /* Tabs principales */
+var _CLAVE = 'MaestroFACS';
+var _PROTEGIDAS = ['maestro', 'calificaciones'];
+
 function tab(id, b) {
+  if (_PROTEGIDAS.indexOf(id) !== -1 && sessionStorage.getItem('acceso-'+id) !== '1') {
+    var clave = prompt('Esta sección está protegida. Ingresa la clave de acceso:');
+    if (clave === null) return;
+    if (clave !== _CLAVE) { alert('Clave incorrecta.'); return; }
+    sessionStorage.setItem('acceso-'+id, '1');
+  }
   document.querySelectorAll('.tp').forEach(function(p){ p.classList.remove('on'); });
   document.querySelectorAll('.tb').forEach(function(x){ x.classList.remove('on'); });
   document.getElementById('tab-'+id).classList.add('on');
