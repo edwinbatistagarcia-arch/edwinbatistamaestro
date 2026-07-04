@@ -315,9 +315,9 @@ function tarjetas(items, tipo, seccion) {
     var delay = d[i % 4];
     var meta  = item.meta || (tipo === '6to' ? '6.° Grado · Lengua Española' : tipo === '5to' ? '5.° Grado · Lengua Española' : 'Lengua Española');
     var acciones = seccion === 'secuencia'
-      ? '<a href="'+item.pdf+'" target="_blank" class="bv">Abrir</a>'
-      : '<a href="'+item.url+'" target="_blank" class="bv">Abrir</a>' +
-        (item.pdf ? '<a href="'+item.pdf+'" target="_blank" class="be">PDF</a>' : '');
+      ? '<a href="'+item.pdf+'" class="bv">Abrir</a>'
+      : '<a href="'+item.url+'" class="bv">Abrir</a>' +
+        (item.pdf ? '<a href="'+item.pdf+'" class="be">PDF</a>' : '');
     return '<div class="card rv '+delay+'">' +
       '<div class="ct">'+etq+'</div>' +
       '<div class="cn">'+esc(item.t)+'</div>' +
