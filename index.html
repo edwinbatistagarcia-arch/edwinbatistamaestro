@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<meta name="theme-color" content="#303848"/>
+<title>Edwin Batista García — Docente</title>
+<style>
+:root{--d:#BF9268;--m:#303848;--gc:#F2F2F2;--gm:#D9D9D9;--t:#404040;--tc:#595959;--b:#fff;--r:8px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;color:var(--t);background:var(--b);font-size:19px;line-height:1.8;padding-bottom:env(safe-area-inset-bottom,0px)}
+
+/* ── Topbar ── */
+.topbar{background:var(--m);padding:1.1rem 1.8rem;padding-top:calc(1.1rem + env(safe-area-inset-top,0px))}
+.topbar-n{color:var(--d);font-size:1.2rem;font-weight:bold}
+.topbar-s{color:rgba(255,255,255,.6);font-size:.9rem;margin-top:.1rem}
+
+/* ── Tabs ── */
+.tabs{position:sticky;top:0;z-index:100;background:var(--b);border-bottom:2px solid var(--gm);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tb{flex-shrink:0;padding:1rem 1.5rem;font-size:1rem;font-weight:600;color:var(--tc);border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:color .2s,border-color .2s;white-space:nowrap;min-height:52px;-webkit-tap-highlight-color:transparent}
+.tb:hover{color:var(--m)}
+.tb.on{color:var(--m);border-bottom-color:var(--d)}
+.tp{display:none}.tp.on{display:block}
+
+/* ── Scroll reveal ── */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .5s ease,transform .5s ease}
+.rv.vis{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ── Secciones ── */
+.hero{background:var(--m);padding:2.8rem 1.8rem;color:#fff}
+.hero h1{font-size:2rem;font-weight:bold;margin-bottom:.3rem}
+.hero p{font-size:.98rem;color:rgba(255,255,255,.65)}
+.sb{max-width:1000px;margin:0 auto;padding:2.5rem 1.8rem}
+
+/* ── Bloques de grado ── */
+.gb{border:1px solid var(--gm);border-radius:var(--r);overflow:hidden;margin-bottom:2.2rem}
+.gbh{background:var(--m);padding:1.1rem 1.6rem;display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap}
+.gbt{font-size:1.05rem;font-weight:bold;color:#fff}
+.gbs{font-size:.85rem;color:rgba(255,255,255,.55)}
+.gbb{padding:1.6rem}
+
+/* ── Grid de tarjetas ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.card{background:var(--gc);border-radius:var(--r);padding:1.2rem 1.4rem;border-left:4px solid var(--d);display:flex;flex-direction:column;gap:.5rem;transition:box-shadow .25s,transform .25s}
+.card:hover{box-shadow:0 6px 22px rgba(0,0,0,.1);transform:translateY(-3px)}
+.ct{font-size:.74rem;font-weight:bold;text-transform:uppercase;letter-spacing:1px;color:var(--d)}
+.cn{font-size:1.02rem;font-weight:bold;color:var(--m);line-height:1.35}
+.cm{font-size:.88rem;color:var(--tc)}
+.ca{margin-top:.35rem;display:flex;gap:.5rem;flex-wrap:wrap}
+
+/* ── Botones ── */
+.bv{padding:.5rem 1.2rem;background:var(--m);color:#fff;border:none;border-radius:5px;font-size:.9rem;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;min-height:44px;transition:background .2s,color .2s;-webkit-tap-highlight-color:transparent}
+.bv:hover{background:var(--d);color:var(--m)}
+.be{padding:.5rem 1.2rem;background:transparent;color:var(--m);border:1.5px solid var(--gm);border-radius:5px;font-size:.9rem;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;min-height:44px;transition:border-color .2s,color .2s;-webkit-tap-highlight-color:transparent}
+.be:hover{border-color:var(--d);color:var(--d)}
+
+
+/* ── Próximamente ── */
+.prox{text-align:center;padding:2.8rem 1rem}
+.prox-t{font-size:1.05rem;font-weight:bold;color:var(--m);margin-bottom:.35rem}
+.prox-tx{font-size:.93rem;color:var(--tc)}
+.prox-b{display:inline-block;margin-top:1rem;padding:.32rem 1rem;background:var(--gc);border:1.5px solid var(--d);border-radius:20px;font-size:.78rem;font-weight:bold;color:var(--d);letter-spacing:.5px;text-transform:uppercase}
+
+/* ── Instrucciones de entrega ── */
+.ib{margin-top:2rem;border:1.5px solid var(--d);border-radius:var(--r);overflow:hidden}
+.ibh{background:var(--d);padding:1rem 1.6rem}
+.ibh h3{font-size:1rem;font-weight:bold;color:var(--m)}
+.ibh p{font-size:.85rem;color:rgba(48,56,72,.75);margin-top:.1rem}
+.ibb{padding:1.6rem 1.8rem;background:#fffaf5}
+.itabs{display:flex;border-bottom:2px solid var(--gm);margin-bottom:1.4rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.itabs::-webkit-scrollbar{display:none}
+.itb{flex-shrink:0;padding:.65rem 1.2rem;font-size:.9rem;font-weight:600;color:var(--tc);border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;min-height:44px;transition:color .2s,border-color .2s;-webkit-tap-highlight-color:transparent}
+.itb.on{color:var(--m);border-bottom-color:var(--d)}
+.itp{display:none}.itp.on{display:block}
+.pasos{list-style:none;display:flex;flex-direction:column;gap:.95rem;margin-bottom:1.6rem}
+.pasos li{display:flex;align-items:flex-start;gap:1rem;font-size:.96rem;color:var(--t);line-height:1.6}
+.pn{min-width:32px;height:32px;background:var(--m);color:#fff;border-radius:50%;font-size:.8rem;font-weight:bold;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+.pt strong{color:var(--m)}
+.pt code{background:var(--gc);border-radius:3px;padding:.05rem .4rem;font-size:.86rem;font-family:'Courier New',monospace;color:var(--m)}
+
+/* ── Formulario de envío ── */
+.ef-titulo{font-size:.82rem;font-weight:bold;text-transform:uppercase;letter-spacing:.8px;color:var(--m);margin-bottom:1rem;display:block;padding-bottom:.5rem;border-bottom:2px solid var(--gm)}
+.ef-campo{margin-bottom:.9rem}
+.ef-campo label{display:block;font-size:.8rem;font-weight:bold;color:var(--m);text-transform:uppercase;letter-spacing:.6px;margin-bottom:.35rem}
+.ef-campo input[type=text]{width:100%;padding:.65rem .9rem;border:1.5px solid var(--gm);border-radius:5px;font-size:1rem;font-family:Arial,sans-serif;color:var(--t);background:var(--b);transition:border-color .2s}
+.ef-campo input[type=text]:focus{outline:none;border-color:var(--d)}
+.ef-file-wrap{display:flex;align-items:center;border:1.5px solid var(--gm);border-radius:5px;overflow:hidden;background:var(--b);cursor:pointer;transition:border-color .2s}
+.ef-file-wrap:focus-within{border-color:var(--d)}
+.ef-file-icono{padding:0 .9rem;background:var(--gc);border-right:1.5px solid var(--gm);height:50px;display:flex;align-items:center;flex-shrink:0}
+.ef-file-icono svg{width:20px;height:20px;stroke:var(--m);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ef-file-nombre{flex:1;padding:0 .9rem;font-size:.92rem;color:var(--tc);height:50px;display:flex;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ef-file-nombre.sel{color:var(--m);font-weight:600}
+.ef-file-input{display:none}
+.ef-enviar{width:100%;padding:.8rem;background:var(--m);color:#fff;border:none;border-radius:5px;font-size:1rem;font-weight:bold;cursor:pointer;min-height:50px;display:flex;align-items:center;justify-content:center;gap:.6rem;margin-top:.4rem;transition:background .2s,color .2s}
+.ef-enviar:hover{background:var(--d);color:var(--m)}
+.ef-enviar:disabled{opacity:.6;cursor:not-allowed}
+.ef-enviar svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ef-msg{margin-top:.8rem;padding:.8rem 1rem;border-radius:5px;font-size:.92rem;display:none;line-height:1.6}
+.ef-msg.ok{display:block;background:#def7ec;color:#057a55;border:1px solid #a7f3d0}
+.ef-msg.err{display:block;background:#fde8e8;color:#c81e1e;border:1px solid #f8b4b4}
+.ef-msg.cargando{display:block;background:#e8f0fe;color:#1a56db;border:1px solid #a4cafe}
+.ef-destino{font-size:.8rem;color:var(--tc);margin-top:.6rem;text-align:center}
+
+/* ── Currículum ── */
+.cvh{background:linear-gradient(135deg,var(--m) 0%,#1e2533 100%);padding:3.5rem 1.8rem;text-align:center;color:#fff}
+.cvn{font-size:clamp(1.8rem,5vw,2.7rem);font-weight:bold;letter-spacing:1.5px;margin-bottom:.4rem}
+.cvt{color:var(--d);font-size:clamp(.85rem,2vw,1rem);letter-spacing:3px;text-transform:uppercase;margin-bottom:1.8rem}
+.cvc{display:flex;justify-content:center;flex-wrap:wrap;gap:2rem}
+.cvc strong{display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:1px;color:var(--d);margin-bottom:.1rem}
+.cvc span{font-size:.98rem;color:rgba(255,255,255,.85)}
+.cv2{display:grid;grid-template-columns:1fr 1fr;max-width:1150px;margin:0 auto}
+.cvc2{padding:2.3rem 2.2rem}
+.cvc2:first-child{border-right:1px solid var(--gm)}
+.cvc2-alt{background:var(--gc)}
+.sel{font-size:.76rem;font-weight:bold;text-transform:uppercase;letter-spacing:1.5px;color:var(--d);margin-bottom:.3rem}
+.sh2{font-size:1.3rem;color:var(--m);margin-bottom:1.5rem;padding-bottom:.4rem;border-bottom:2px solid var(--gm)}
+.tl{position:relative;padding-left:1.5rem}
+.tl::before{content:'';position:absolute;left:0;top:6px;bottom:0;width:2px;background:var(--gm)}
+.tli{position:relative;padding:.95rem 0 .95rem 1.3rem;border-bottom:1px dashed var(--gm)}
+.tli:last-child{border-bottom:none}
+.tli::before{content:'';position:absolute;left:-5px;top:1.35rem;width:12px;height:12px;border-radius:50%;background:var(--d);border:2px solid var(--b);box-shadow:0 0 0 2px var(--d)}
+.tf{font-size:.78rem;font-weight:bold;color:var(--d);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.1rem}
+.tc2{font-size:.98rem;font-weight:bold;color:var(--m);line-height:1.35}
+.tl2{font-size:.88rem;color:var(--tc);margin-top:.1rem}
+.el{list-style:none}
+.ei{padding:.88rem 0;border-bottom:1px dashed var(--gm);display:flex;gap:1rem;align-items:flex-start}
+.ei:last-child{border-bottom:none}
+.eb{min-width:44px;text-align:center;background:var(--m);color:#fff;font-size:.72rem;font-weight:bold;padding:.22rem .38rem;border-radius:3px;margin-top:.18rem;flex-shrink:0}
+.et{font-size:.98rem;font-weight:bold;color:var(--m);line-height:1.3}
+.ei2{font-size:.86rem;color:var(--tc);margin-top:.1rem;line-height:1.35}
+.ed{display:inline-block;margin-top:.3rem;padding:.13rem .52rem;background:#fef3e2;color:#a0693a;border-radius:3px;font-size:.73rem;font-weight:bold}
+
+/* ── Footer ── */
+footer{background:var(--m);color:rgba(255,255,255,.5);text-align:center;padding:1.8rem 1.5rem;font-size:.88rem}
+footer span{color:var(--d)}
+
+/* ── Responsive ── */
+@media(max-width:680px){
+  body{font-size:16px}
+  .topbar{padding:1rem 1.2rem;padding-top:calc(1rem + env(safe-area-inset-top,0px))}
+  .tb{padding:.85rem 1rem;font-size:.9rem}
+  .hero{padding:2rem 1.2rem}.hero h1{font-size:1.6rem}
+  .sb{padding:1.6rem 1.1rem}
+  .cvh{padding:2.2rem 1.2rem}
+  .cv2{grid-template-columns:1fr}
+  .cvc2{padding:1.8rem 1.2rem}
+  .cvc2:first-child{border-right:none;border-bottom:1px solid var(--gm)}
+  .gbb{padding:1.2rem}.gbh{padding:1rem 1.2rem}
+  .grid{grid-template-columns:1fr}
+  .ibb{padding:1.2rem}
+  .itabs{overflow-x:auto}
+  .itb{padding:.6rem .9rem;font-size:.85rem}
+  .pasos li{font-size:.9rem}
+  .pn{min-width:28px;height:28px;font-size:.75rem}
+  .ca{flex-direction:column}
+  .bv,.be{width:100%;justify-content:center}
+}
+@media(max-width:400px){.cvn{font-size:1.5rem;letter-spacing:.5px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-n">Edwin Batista García</div>
+  <div class="topbar-s">Magíster en Lengua Española y Literatura</div>
+</div>
+
+<div class="tabs">
+  <button class="tb on"  onclick="tab('curriculo', this)">Currículum</button>
+  <button class="tb"     onclick="tab('secuencia', this)">Secuencia Didáctica</button>
+  <button class="tb"     onclick="tab('maestro',   this)">Cuaderno del Maestro</button>
+  <button class="tb"     onclick="tab('cuadernillos',this)">Cuadernillo</button>
+  <button class="tb"     onclick="tab('evaluacion',this)">Evaluación</button>
+  <button class="tb"     onclick="tab('recursos',  this)">Recursos</button>
+  <button class="tb"     onclick="tab('calificaciones',this)">Calificaciones</button>
+</div>
+
+
+<!-- ═══════════ CURRÍCULUM ═══════════ -->
+<div id="tab-curriculo" class="tp on">
+  <div class="cvh">
+    <div class="cvn rv">EDWIN BATISTA GARCÍA</div>
+    <div class="cvt rv d1">Magíster en Lengua Española y Literatura</div>
+    <div class="cvc rv d2">
+      <div><strong>Teléfono</strong><span>(809) 828-4382</span></div>
+      <div><strong>Correo electrónico</strong><span>edwinbatistagarcia@gmail.com</span></div>
+    </div>
+  </div>
+  <div class="cv2">
+    <div class="cvc2">
+      <div class="sel rv">Trayectoria</div>
+      <h2 class="sh2 rv">Experiencia Docente</h2>
+      <div class="tl">
+        <div class="tli rv d1"><div class="tf">2023 — Actualidad</div><div class="tc2">Docente Titular — Lengua Española</div><div class="tl2">Liceo Francisco Antonio Castillo Salcedo · Secundario, 2.° Ciclo</div></div>
+        <div class="tli rv d2"><div class="tf">2022 — 2023</div><div class="tc2">Docente Titular</div><div class="tl2">Escuela Básica Valentín Michel · Primario, 2.° Ciclo</div></div>
+        <div class="tli rv d3"><div class="tf">2020 — 2022</div><div class="tc2">Docente Titular — Lengua Española</div><div class="tl2">Colegio Educare · Secundario, 2.° Ciclo</div></div>
+        <div class="tli rv d4"><div class="tf">2019 — 2020</div><div class="tc2">Docente Titular — C. Sociales y Ed. Artística</div><div class="tl2">Colegio Educare · Secundario, 1.° Ciclo</div></div>
+        <div class="tli rv d4"><div class="tf">2017 — 2019</div><div class="tc2">Docente Sustituto</div><div class="tl2">Escuela Luis Napoleón Núñez Molina-Anexa</div></div>
+        <div class="tli rv d4"><div class="tf">2017 — 2018</div><div class="tc2">Colaborador en Investigación Científica</div><div class="tl2">Lab. de Neurocognición y Psicofisiología · UNIBE</div></div>
+      </div>
+    </div>
+    <div class="cvc2 cvc2-alt">
+      <div class="sel rv">Formación</div>
+      <h2 class="sh2 rv">Educación Académica</h2>
+      <ul class="el">
+        <li class="ei rv d1"><span class="eb">2024</span><div><div class="et">Magíster en Lengua Española y Literatura</div><div class="ei2">ISFODOSU — Recinto Luis Napoleón Núñez Molina</div></div></li>
+        <li class="ei rv d2"><span class="eb">2019</span><div><div class="et">Licenciatura en Educación Básica 2.° Ciclo</div><div class="ei2">ISFODOSU · Mención: Lengua Española y Ciencias Sociales</div><span class="ed">CUM LAUDE</span></div></li>
+        <li class="ei rv d3"><span class="eb">2019</span><div><div class="et">Diplomado en Tecnología Educativa</div><div class="ei2">ISFODOSU</div></div></li>
+        <li class="ei rv d4"><span class="eb">2019</span><div><div class="et">Neuroética Aplicada a la Educación</div><div class="ei2">ISFODOSU</div></div></li>
+        <li class="ei rv d4"><span class="eb">2019</span><div><div class="et">Diplomado Educando en Salud</div><div class="ei2">Centro de Educación para la Salud Integral e ISFODOSU</div></div></li>
+        <li class="ei rv d4"><span class="eb">2018</span><div><div class="et">Política Educativa para la Garantía de la Calidad</div><div class="ei2">ISFODOSU</div></div></li>
+        <li class="ei rv d4"><span class="eb">2017</span><div><div class="et">Cambios Neurocognitivos Asociados a la Alfabetización</div><div class="ei2">Universidad Iberoamericana &amp; UAPA</div></div></li>
+        <li class="ei rv d4"><span class="eb">2017</span><div><div class="et">Teatro como Estrategia de Enseñanza</div><div class="ei2">ISFODOSU</div></div></li>
+        <li class="ei rv d4"><span class="eb">2016</span><div><div class="et">Certified Microsoft Innovative Educator</div><div class="ei2">Microsoft Educator Centre</div></div></li>
+        <li class="ei rv d4"><span class="eb">2016</span><div><div class="et">Transformando la Práctica Docente</div><div class="ei2">Microsoft Educator Centre</div></div></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SECCIONES DATA-DRIVEN ═══════════ -->
+<div id="tab-secuencia"    class="tp"><div class="hero"><h1 class="rv">Secuencia Didáctica</h1><p class="rv d1">Planificaciones por grado</p></div><div class="sb" id="sb-secuencia"></div></div>
+<div id="tab-maestro"      class="tp"><div class="hero"><h1 class="rv">Cuaderno del Maestro</h1><p class="rv d1">Material de referencia del docente</p></div><div class="sb" id="sb-maestro"></div></div>
+<div id="tab-cuadernillos" class="tp"><div class="hero"><h1 class="rv">Cuadernillos</h1><p class="rv d1">Cuadernillos del estudiante por grado</p></div><div class="sb" id="sb-cuadernillos"></div></div>
+<div id="tab-evaluacion"   class="tp"><div class="hero"><h1 class="rv">Instrumentos de Evaluación</h1><p class="rv d1">Evaluaciones por grado y asignatura</p></div><div class="sb" id="sb-evaluacion"></div></div>
+<div id="tab-recursos"     class="tp"><div class="hero"><h1 class="rv">Recursos</h1><p class="rv d1">Libros de texto y material de apoyo</p></div><div class="sb" id="sb-recursos"></div></div>
+<div id="tab-calificaciones" class="tp"><iframe src="boletin-app.html" style="width:100%;height:calc(100vh - 105px);border:none;display:block"></iframe></div>
+
+
+<footer><p>Edwin <span>Batista García</span> &nbsp;·&nbsp; Magíster en Lengua Española y Literatura &nbsp;·&nbsp; Moca, Espaillat, Rep. Dominicana</p></footer>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   BASE DE DATOS DE DOCUMENTOS
+   Para agregar un documento: añadir un objeto al array
+   correspondiente. Eso es todo.
+═══════════════════════════════════════════════════ */
+var DATOS = {
+
+  secuencia: {
+    '6to': [
+      {t:'Informe de Investigación', url:'6to.%20Informe%20de%20investigaci%C3%B3n.html', pdf:'02_SecuenciasDidcaticas_Originales/6to.%20Informe%20de%20investigaci%C3%B3n.pdf'},
+      {t:'Taller de Monólogo',       url:'6to%20Taller%20de%20monologo%20VF.html', pdf:'02_SecuenciasDidcaticas_Originales/6to%20Taller%20de%20monologo%20VF.pdf'},
+      {t:'Poesía Social',            url:'6to.%20Poes%C3%ADa%20social.html', pdf:'02_SecuenciasDidcaticas_Originales/6to.%20Poes%C3%ADa%20social.pdf'},
+      {t:'El Reportaje',             url:'6to%20El%20reportaje.html', pdf:'02_SecuenciasDidcaticas_Originales/6to%20El%20reportaje.pdf'}
+    ],
+    '5to': [
+      {t:'Carta de Solicitud de Empleo', url:'5to%20Carta%20solicitando%20empleo%20VF.html', pdf:'02_SecuenciasDidcaticas_Originales/5to%20Carta%20solicitando%20empleo%20VF.pdf'},
+      {t:'Poesía Satírica',              url:'5to%20Poes%C3%ADa%20sat%C3%ADrica.html', pdf:'02_SecuenciasDidcaticas_Originales/5to%20Poes%C3%ADa%20sat%C3%ADrica.pdf'},
+      {t:'Ensayo Argumentativo',         url:'5to.%20Ensayo%20argumentativo.html', pdf:'02_SecuenciasDidcaticas_Originales/5to.%20Ensayo%20argumentativo.pdf'},
+      {t:'Reseña de una Obra',           url:'5to.%20Rese%C3%B1a%20de%20una%20obra.html', pdf:'02_SecuenciasDidcaticas_Originales/5to.%20Rese%C3%B1a%20de%20una%20obra.pdf'}
+    ]
+  },
+
+  maestro: {
+    '6to': [
+      {t:'Informe de Investigación', url:'HTML_Planificaciones/Informe_de_Investigacion_6to.html'},
+      {t:'Taller de Monólogo',       url:'HTML_Planificaciones/Taller_de_Monologo_de_Humor_6to.html'},
+      {t:'Poesía Social',            url:'HTML_Planificaciones/Poesia_Social_6to.html'},
+      {t:'El Reportaje',             url:'HTML_Planificaciones/El_Reportaje_6to.html'},
+      {t:'Registro de Instrumentos', url:'HTML_Planificaciones/Registro_Instrumentos_6to.html'}
+    ],
+    '5to': [
+      {t:'Carta de Solicitud de Empleo', url:'HTML_Planificaciones/Carta_de_Solicitud_de_Empleo_5to.html'},
+      {t:'Poesía Satírica',              url:'HTML_Planificaciones/Poesia_Satirica_5to.html'},
+      {t:'Ensayo Argumentativo',         url:'HTML_Planificaciones/El_Ensayo_Argumentativo_5to.html'},
+      {t:'Reseña de una Obra',           url:'HTML_Planificaciones/Resena_de_una_obra_5to.html'},
+      {t:'Registro de Instrumentos', url:'HTML_Planificaciones/Registro_Instrumentos_5to.html'}
+    ]
+  },
+
+  cuadernillos: {
+    '6to': [
+      {t:'Informe de Investigación', url:'Cuadernillo_6to_Informe_Investigacion.html'},
+      {t:'Taller de Monólogo',       url:'Cuadernillo_6to_Monologo_de_Humor.html'},
+      {t:'Poesía Social',            url:'Cuadernillo_6to_Poesia_Social.html'},
+      {t:'El Reportaje',             url:'Cuadernillo_6to_El_Reportaje.html'}
+    ],
+    '5to': [
+      {t:'Carta de Solicitud de Empleo', url:'Carta_Solicitud_Empleo_5to.html'},
+      {t:'Poesía Satírica',              url:'Cuadernillo_Estudiante_5to_Poesia_Satirica.html'},
+      {t:'Ensayo Argumentativo',         url:'Ensayo_Argumentativo_5to.html'},
+      {t:'Reseña de una Obra',           url:'Resena_de_una_Obra_5to.html'}
+    ]
+  },
+
+  recursos: [
+    {t:'Lengua Española — 5.° Secundaria', meta:'Libro Abierto · Nivel Secundario', url:'04_Libros_Abiertos/Libro%20Abierto%205to%20Lengua%20Espa%C3%B1ola%205%C2%B0%20Secundaria%20(Libro%20Abierto).pdf'},
+    {t:'Lengua Española — 6.° Secundaria', meta:'Libro Abierto · Nivel Secundario', url:'04_Libros_Abiertos/Libro%20Abierto%206to%20Lengua%20Espa%C3%B1ola%206%C2%B0%20Secundaria%20(Libro%20Abierto).pdf'}
+  ]
+};
+
+/* ═══════════════════════════════════════════════════
+   MOTOR DE RENDERIZADO — no modificar
+═══════════════════════════════════════════════════ */
+
+/* Etiquetas de tipo por sección */
+var ETIQUETAS_SECCION = {
+  secuencia:    'Secuencia Didáctica',
+  maestro:      'Cuaderno del Maestro',
+  cuadernillos: 'Cuadernillo',
+  evaluacion:   'Instrumento de Evaluación',
+  recursos:     'Libro de Texto',
+  general:      'Documento'
+};
+
+/* Genera tarjetas para un array de items */
+function tarjetas(items, tipo, seccion) {
+  var d = ['d1','d2','d3','d4'];
+  var etq = ETIQUETAS_SECCION[seccion] || etiqueta(items[0] ? items[0].url : '');
+  return items.map(function(item, i) {
+    var delay = d[i % 4];
+    var meta  = item.meta || (tipo === '6to' ? '6.° Grado · Lengua Española' : tipo === '5to' ? '5.° Grado · Lengua Española' : 'Lengua Española');
+    var acciones = seccion === 'secuencia'
+      ? '<a href="'+item.pdf+'" target="_blank" class="bv">Abrir</a>'
+      : '<a href="'+item.url+'" target="_blank" class="bv">Abrir</a>' +
+        (item.pdf ? '<a href="'+item.pdf+'" target="_blank" class="be">PDF</a>' : '');
+    return '<div class="card rv '+delay+'">' +
+      '<div class="ct">'+etq+'</div>' +
+      '<div class="cn">'+esc(item.t)+'</div>' +
+      '<div class="cm">'+esc(meta)+'</div>' +
+      '<div class="ca">' + acciones + '</div></div>';
+  }).join('');
+}
+
+/* Determina la etiqueta de tipo según la extensión (respaldo) */
+function etiqueta(url) {
+  return (url.endsWith('.pdf') || url.match(/^[56]to/)) ? 'Secuencia Didáctica' : 'Cuadernillo';
+}
+
+/* Genera un bloque de grado completo */
+function bloque(tituloGrado, subGrado, items, tipo, seccion) {
+  return '<div class="gb rv">' +
+    '<div class="gbh"><span class="gbt">'+tituloGrado+'</span><span class="gbs">'+subGrado+'</span></div>' +
+    '<div class="gbb"><div class="grid">' + tarjetas(items, tipo, seccion) + '</div></div>' +
+    '</div>';
+}
+
+/* Bloque próximamente */
+function prox(titulo, sub, texto) {
+  return '<div class="gb rv"><div class="gbh"><span class="gbt">'+titulo+'</span><span class="gbs">'+sub+'</span></div>' +
+    '<div class="gbb"><div class="prox"><div class="prox-t">Próximamente</div><p class="prox-tx">'+texto+'</p><span class="prox-b">En preparación</span></div></div></div>';
+}
+
+/* Formulario de entrega por correo */
+function formularioEntrega(grado, tituloEval) {
+  var g = grado === '6to' ? '6' : '5';
+  return '<div class="ib rv d2">' +
+    '<div class="ibh"><h3>Cómo completar y entregar tu evaluación</h3><p>Sigue los pasos según tu dispositivo, luego envía el archivo</p></div>' +
+    '<div class="ibb">' +
+    '<div class="itabs">' +
+      '<button class="itb on" onclick="itab(\'pc'+g+'\',this)">PC / Mac</button>' +
+      '<button class="itb"    onclick="itab(\'and'+g+'\',this)">Android</button>' +
+      '<button class="itb"    onclick="itab(\'ios'+g+'\',this)">iPhone / iPad</button>' +
+    '</div>' +
+    '<div id="it-pc'+g+'" class="itp on"><ol class="pasos">' +
+      '<li><span class="pn">1</span><span class="pt"><strong>Abre la evaluación</strong> en "Nueva pestaña" y completa todos los campos.</span></li>' +
+      '<li><span class="pn">2</span><span class="pt"><strong>Guarda el archivo:</strong> presiona <code>Ctrl+S</code> (Windows) o <code>Cmd+S</code> (Mac) → selecciona <em>"Página web, solo HTML"</em> → escribe tu nombre.</span></li>' +
+      '<li><span class="pn">3</span><span class="pt"><strong>Selecciona tu archivo</strong> abajo y pulsa <em>"Enviar al Docente"</em>.</span></li>' +
+    '</ol></div>' +
+    '<div id="it-and'+g+'" class="itp"><ol class="pasos">' +
+      '<li><span class="pn">1</span><span class="pt"><strong>Abre la evaluación</strong> en Chrome (Nueva pestaña) y completa todos los campos.</span></li>' +
+      '<li><span class="pn">2</span><span class="pt"><strong>Guarda el archivo:</strong> toca <code>⋮</code> → <em>"Compartir"</em> → <em>"Guardar en Archivos"</em> o <em>"Descargar"</em> → ponle tu nombre.</span></li>' +
+      '<li><span class="pn">3</span><span class="pt"><strong>Selecciona tu archivo</strong> abajo y pulsa <em>"Enviar al Docente"</em>.</span></li>' +
+    '</ol></div>' +
+    '<div id="it-ios'+g+'" class="itp"><ol class="pasos">' +
+      '<li><span class="pn">1</span><span class="pt"><strong>Abre la evaluación</strong> en Safari (Nueva pestaña) y completa todos los campos.</span></li>' +
+      '<li><span class="pn">2</span><span class="pt"><strong>Guarda el archivo:</strong> toca el botón <em>Compartir</em> (cuadro con flecha ↑, en la barra de abajo) → desliza las opciones → toca <em>"Guardar en Archivos"</em> → elige <em>"En mi iPhone"</em> → escribe tu nombre → <em>"Guardar"</em>.</span></li>' +
+      '<li><span class="pn">3</span><span class="pt"><strong>Selecciona tu archivo</strong> abajo y pulsa <em>"Enviar al Docente"</em>.</span></li>' +
+    '</ol></div>' +
+    '<span class="ef-titulo">Formulario de entrega — '+grado.replace('to','°')+' Grado</span>' +
+    '<div class="ef-campo"><label for="ef-n'+g+'">Nombre completo del estudiante</label>' +
+    '<input type="text" id="ef-n'+g+'" placeholder="Escribe tu nombre completo..."></div>' +
+    '<div class="ef-campo"><label>Archivo HTML de la evaluación</label>' +
+    '<div class="ef-file-wrap" onclick="document.getElementById(\'ef-a'+g+'\').click()">' +
+      '<div class="ef-file-icono"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>' +
+      '<span class="ef-file-nombre" id="ef-fn'+g+'">Toca aquí para seleccionar tu archivo HTML...</span>' +
+      '<input type="file" id="ef-a'+g+'" class="ef-file-input" accept=".html,.htm">' +
+    '</div></div>' +
+    '<button class="ef-enviar" id="ef-btn'+g+'" onclick="enviarEval(\''+grado+'\',\''+tituloEval+'\')">' +
+      '<svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>' +
+      'Enviar al Docente' +
+    '</button>' +
+    '<div class="ef-msg" id="ef-msg'+g+'"></div>' +
+    '<p class="ef-destino">Tu evaluación será recibida por el docente</p>' +
+    '</div></div>';
+}
+
+/* Renderiza todas las secciones */
+function renderTodo() {
+  /* Secuencia */
+  document.getElementById('sb-secuencia').innerHTML =
+    bloque('Sexto Grado',  'Lengua Española · Secuencias', DATOS.secuencia['6to'], '6to', 'secuencia') +
+    bloque('Quinto Grado', 'Lengua Española · Secuencias', DATOS.secuencia['5to'], '5to', 'secuencia');
+
+  /* Cuaderno del Maestro */
+  document.getElementById('sb-maestro').innerHTML =
+    bloque('Sexto Grado',  'Cuaderno del Maestro', DATOS.maestro['6to'], '6to', 'maestro') +
+    bloque('Quinto Grado', 'Cuaderno del Maestro', DATOS.maestro['5to'], '5to', 'maestro') +
+    bloque('General', 'Documentos Comunes · 5.° y 6.°', [
+      {t:'Competencias — Todas las Unidades', url:'HTML_Planificaciones/competencias_todas_unidades.html', meta:'Lengua Española'},
+      {t:'Índice de Planificaciones',         url:'HTML_Planificaciones/indexPlanificaciones.html', meta:'Lengua Española'}
+    ], 'general', 'general');
+
+  /* Cuadernillos */
+  document.getElementById('sb-cuadernillos').innerHTML =
+    bloque('Sexto Grado',  'Lengua Española · Planificaciones', DATOS.cuadernillos['6to'], '6to', 'cuadernillos') +
+    bloque('Quinto Grado', 'Lengua Española · Planificaciones', DATOS.cuadernillos['5to'], '5to', 'cuadernillos');
+
+  /* Evaluación — sin instrumentos publicados por el momento */
+  document.getElementById('sb-evaluacion').innerHTML =
+    prox('Sexto Grado', 'Evaluaciones', 'Los instrumentos de evaluación de 6.° estarán disponibles en breve.') +
+    prox('Quinto Grado', 'Evaluaciones', 'Los instrumentos de evaluación de 5.° estarán disponibles en breve.');
+
+  /* Recursos */
+  var libroCards = DATOS.recursos.map(function(item, i) {
+    var d = ['d1','d2','d3','d4'];
+    return '<div class="card rv '+d[i]+'">' +
+      '<div class="ct">Libro de Texto</div>' +
+      '<div class="cn">'+esc(item.t)+'</div>' +
+      '<div class="cm">'+esc(item.meta)+'</div>' +
+      '<div class="ca">' +
+        '<a href="'+item.url+'" target="_blank" class="bv">Abrir</a>' +
+      '</div></div>';
+  }).join('');
+  document.getElementById('sb-recursos').innerHTML =
+    '<div class="gb rv"><div class="gbh"><span class="gbt">Libros Abiertos</span><span class="gbs">Lengua Española · Libros de texto</span></div>' +
+    '<div class="gbb"><div class="grid">'+libroCards+'</div></div></div>' +
+    prox('Material adicional','Recursos complementarios','Más recursos estarán disponibles en breve.');
+
+  /* Registrar listeners de archivo para evaluaciones */
+  ['6','5'].forEach(function(g) {
+    var inp = document.getElementById('ef-a'+g);
+    if (!inp) return;
+    inp.addEventListener('change', function() {
+      if (inp.files && inp.files[0]) {
+        document.getElementById('ef-fn'+g).textContent = inp.files[0].name;
+        document.getElementById('ef-fn'+g).classList.add('sel');
+      }
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════════
+   FUNCIONES DE INTERACCIÓN
+═══════════════════════════════════════════════════ */
+
+/* Tabs principales */
+function tab(id, b) {
+  document.querySelectorAll('.tp').forEach(function(p){ p.classList.remove('on'); });
+  document.querySelectorAll('.tb').forEach(function(x){ x.classList.remove('on'); });
+  document.getElementById('tab-'+id).classList.add('on');
+  b.classList.add('on');
+  window.scrollTo({top:0, behavior:'smooth'});
+  setTimeout(rev, 80);
+}
+
+/* Sub-tabs instrucciones */
+function itab(id, b) {
+  var c = b.closest('.ibb');
+  if (c) c.querySelectorAll('.itp').forEach(function(p){ p.classList.remove('on'); });
+  b.parentElement.querySelectorAll('.itb').forEach(function(x){ x.classList.remove('on'); });
+  var p = document.getElementById('it-'+id);
+  if (p) p.classList.add('on');
+  b.classList.add('on');
+}
+
+
+/* Envío de evaluación */
+var _ed = atob('ZWR3aW5iYXRpc3RhbWFlc3Ryb0BnbWFpbC5jb20=');
+
+function enviarEval(grado, tituloEval) {
+  var g       = grado === '6to' ? '6' : '5';
+  var nombre  = document.getElementById('ef-n'+g);
+  var archivo = document.getElementById('ef-a'+g);
+  var btn     = document.getElementById('ef-btn'+g);
+  var msg     = document.getElementById('ef-msg'+g);
+
+  if (!nombre.value.trim()) {
+    msg.className = 'ef-msg err'; msg.textContent = 'Por favor escribe tu nombre completo.';
+    nombre.focus(); return;
+  }
+  if (!archivo.files || !archivo.files[0]) {
+    msg.className = 'ef-msg err'; msg.textContent = 'Por favor selecciona tu archivo HTML.';
+    return;
+  }
+  btn.disabled = true;
+  msg.className = 'ef-msg cargando'; msg.textContent = 'Enviando tu evaluación...';
+
+  var fd = new FormData();
+  fd.append('Estudiante', nombre.value.trim());
+  fd.append('Evaluación', tituloEval);
+  fd.append('Grado',      grado);
+  fd.append('archivo',    archivo.files[0], archivo.files[0].name);
+  fd.append('_subject',   'Evaluación: ' + tituloEval + ' · ' + nombre.value.trim());
+  fd.append('_captcha',   'false');
+  fd.append('_template',  'table');
+
+  fetch('https://formsubmit.co/ajax/' + _ed, {
+    method: 'POST', headers: {'Accept':'application/json'}, body: fd
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d) {
+    btn.disabled = false;
+    if (d.success === 'true' || d.success === true) {
+      msg.className = 'ef-msg ok';
+      msg.innerHTML = '<strong>¡Evaluación enviada!</strong> ' + esc(nombre.value.trim()) + ', tu archivo fue recibido por el docente.';
+      nombre.value = ''; archivo.value = '';
+      document.getElementById('ef-fn'+g).textContent = 'Toca aquí para seleccionar tu archivo HTML...';
+      document.getElementById('ef-fn'+g).classList.remove('sel');
+    } else {
+      msg.className = 'ef-msg err'; msg.textContent = 'Hubo un problema al enviar. Intenta de nuevo.';
+    }
+  })
+  .catch(function() {
+    btn.disabled = false;
+    msg.className = 'ef-msg err'; msg.textContent = 'Error de red. Verifica tu conexión e intenta de nuevo.';
+  });
+}
+
+/* Scroll reveal */
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
+  });
+}, {threshold: 0.1});
+
+function rev() {
+  document.querySelectorAll('.tp.on .rv:not(.vis)').forEach(function(el){ obs.observe(el); });
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+/* Inicio */
+document.addEventListener('DOMContentLoaded', function() {
+  renderTodo();
+  document.querySelectorAll('.cvh .rv').forEach(function(el){ el.classList.add('vis'); });
+  rev();
+});
+</script>
+</body>
+</html>

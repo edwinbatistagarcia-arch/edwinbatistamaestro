@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapeo de Competencias — Lengua Española 5to y 6to</title>
+<style>
+  :root {
+    --ce1: #1a6fae; --ce1-bg: #e8f2fb;
+    --ce2: #7b3fa0; --ce2-bg: #f3eafa;
+    --ce3: #b5560a; --ce3-bg: #fdf0e6;
+    --ce4: #1a7a4a; --ce4-bg: #e6f6ee;
+    --ce5: #0e7a7a; --ce5-bg: #e6f6f6;
+    --ce6: #6b7a0a; --ce6-bg: #f5f7e0;
+    --ce7: #a03060; --ce7-bg: #faeaef;
+    --gray: #F2F2F2; --border: #D9D9D9;
+    --text: #404040; --muted: #595959;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #F2F2F2; color: var(--text); }
+
+  header { background: #303848; color: #fff; padding: 28px 32px 22px; }
+  header h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.3px; }
+  header p { font-size: 0.85rem; color: #a8aac0; margin-top: 4px; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 32px; background: #fff; border-bottom: 1px solid var(--border); }
+  .badge { display: inline-flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 700;
+           padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+  .b1 { background: var(--ce1-bg); color: var(--ce1); }
+  .b2 { background: var(--ce2-bg); color: var(--ce2); }
+  .b3 { background: var(--ce3-bg); color: var(--ce3); }
+  .b4 { background: var(--ce4-bg); color: var(--ce4); }
+  .b5 { background: var(--ce5-bg); color: var(--ce5); }
+  .b6 { background: var(--ce6-bg); color: var(--ce6); }
+  .b7 { background: var(--ce7-bg); color: var(--ce7); }
+
+  nav { display: flex; flex-wrap: wrap; gap: 6px; padding: 14px 32px; background: #fff;
+        border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 50; }
+  nav a { font-size: 0.78rem; font-weight: 600; color: var(--muted); text-decoration: none;
+          padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border);
+          transition: all .15s; white-space: nowrap; }
+  nav a:hover, nav a.active { background: #303848; color: #fff; border-color: #303848; }
+  nav a.diff-link { background: #fff3e0; color: #b55e0a; border-color: #f0c080; }
+  nav a.diff-link:hover, nav a.diff-link.active { background: #b55e0a; color: #fff; border-color: #b55e0a; }
+  .grado-label { font-size: 0.72rem; font-weight: 800; color: var(--muted); align-self: center;
+                 padding: 0 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 60px; }
+
+  .secuencia { background: #fff; border: 1px solid var(--border); border-radius: 12px;
+               margin-bottom: 36px; overflow: hidden; scroll-margin-top: 70px; }
+  .sec-header { padding: 18px 24px; border-bottom: 1px solid var(--border); display: flex;
+                align-items: center; gap: 14px; }
+  .sec-grade { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px;
+               padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+  .grade-5 { background: #e8f2fb; color: #1a6fae; }
+  .grade-6 { background: #f3eafa; color: #7b3fa0; }
+  .sec-title { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+  .sec-competencias { font-size: 0.75rem; color: var(--muted); margin-top: 3px; }
+
+  .semana { border-bottom: 1px solid var(--border); }
+  .semana:last-child { border-bottom: none; }
+  .semana-title { padding: 10px 24px; background: var(--gray); font-size: 0.8rem;
+                  font-weight: 700; color: var(--muted); text-transform: uppercase;
+                  letter-spacing: 0.5px; }
+
+  table { width: 100%; border-collapse: collapse; }
+  tr { border-bottom: 1px solid var(--border); }
+  tr:last-child { border-bottom: none; }
+  td { padding: 11px 16px; vertical-align: top; font-size: 0.83rem; }
+  td:first-child { width: 130px; font-weight: 700; color: var(--muted); white-space: nowrap;
+                   padding-left: 24px; font-size: 0.78rem; }
+  td:nth-child(2) { color: var(--text); line-height: 1.5; }
+  td:last-child { width: 340px; padding-right: 20px; }
+
+  .comp-row { display: flex; flex-direction: column; gap: 6px; }
+  .comp-entry { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+  .comp-name { font-size: 0.75rem; font-weight: 700; }
+  .il-codes { display: flex; gap: 4px; flex-wrap: wrap; }
+  .il { font-size: 0.68rem; font-weight: 700; padding: 2px 7px; border-radius: 10px;
+        background: rgba(0,0,0,0.06); color: inherit; }
+
+  @media (max-width: 700px) {
+    td:first-child { width: 90px; }
+    td:last-child { width: 100%; display: block; padding: 0 24px 12px; }
+  }
+
+  /* ── Sección Diferencias por Grado ── */
+  .diff-section { background: #fff; border: 1px solid var(--border); border-radius: 12px;
+                  margin-bottom: 36px; overflow: hidden; scroll-margin-top: 70px; }
+  .diff-header { padding: 18px 24px 16px; border-bottom: 1px solid var(--border);
+                 background: linear-gradient(135deg, #fff8f0, #fff); }
+  .diff-header h2 { font-size: 1.15rem; font-weight: 800; color: #b55e0a; }
+  .diff-header p { font-size: 0.8rem; color: var(--muted); margin-top: 3px; }
+
+  .diff-ce-block { border-bottom: 1px solid var(--border); }
+  .diff-ce-block:last-child { border-bottom: none; }
+
+  .diff-ce-label { display: flex; align-items: center; gap: 10px; padding: 12px 24px 10px;
+                   background: var(--gray); cursor: default; }
+  .diff-ce-label .badge { font-size: 0.75rem; padding: 4px 12px; }
+  .diff-ce-label strong { font-size: 0.9rem; color: var(--text); }
+
+  .diff-grid { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #eee; }
+  .diff-col { padding: 14px 20px 14px 24px; }
+  .diff-col + .diff-col { border-left: 1px solid var(--border); padding-left: 20px; }
+  .diff-grade-tag { display: inline-block; font-size: 0.68rem; font-weight: 800; text-transform: uppercase;
+                    letter-spacing: 0.6px; padding: 2px 8px; border-radius: 10px; margin-bottom: 7px; }
+  .tag-5 { background: #e8f2fb; color: #1a6fae; }
+  .tag-6 { background: #f3eafa; color: #7b3fa0; }
+  .diff-ce-text { font-size: 0.82rem; color: var(--text); line-height: 1.55; font-style: italic;
+                  border-left: 3px solid var(--border); padding-left: 10px; }
+
+  .diff-il-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+  .diff-il-table th { text-align: left; padding: 7px 10px; font-size: 0.7rem; font-weight: 800;
+                      text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted);
+                      background: #fafafa; border-bottom: 1px solid var(--border); border-top: 1px solid var(--border); }
+  .diff-il-table th:first-child { width: 55px; padding-left: 24px; }
+  .diff-il-table td { padding: 9px 10px; vertical-align: top; line-height: 1.5;
+                      border-bottom: 1px solid #f0f0f0; color: var(--text); width: auto; white-space: normal; }
+  .diff-il-table td:first-child { width: 55px; padding-left: 24px; padding-right: 4px;
+                                  font-weight: 800; white-space: nowrap; font-size: 0.78rem; }
+  .diff-il-table td:nth-child(2) { color: #1a6fae; background: #f9fcff; }
+  .diff-il-table td:nth-child(3) { color: #7b3fa0; background: #fcf9ff; }
+  .diff-il-table tr:last-child td { border-bottom: none; }
+
+  .diff-note { padding: 10px 24px 12px; background: #fffbf5; border-top: 1px solid #f5e8d0;
+               font-size: 0.8rem; color: #7a4e0a; line-height: 1.5; }
+  .diff-note strong { color: #b55e0a; }
+
+  @media (max-width: 700px) {
+    .diff-grid { grid-template-columns: 1fr; }
+    .diff-col + .diff-col { border-left: none; border-top: 1px solid var(--border); padding-left: 24px; }
+    .diff-il-table th:first-child, .diff-il-table td:first-child { width: 44px; padding-left: 14px; }
+  }
+@media print{
+  .secuencia{break-before:page;page-break-before:always}
+}
+</style>
+
+<style id="print-override">
+/* ── CONFIGURACIÓN DE IMPRESIÓN ── */
+@page {
+  size: letter;
+  margin: 0.45cm 0.5cm;
+}
+@media print {
+  /* Fuente base 10pt */
+  body {
+    font-size: 10pt !important;
+    background: #fff !important;
+  }
+  .page {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  /* Ocultar navegación */
+  .toc-bar,
+  .nav-bar,
+  .clase-nav {
+    display: none !important;
+  }
+  /* Cada clase en página nueva */
+  .clase-section {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+  /* Tablas completas — sin cortar en medio */
+  table,
+  .id-table,
+  .comp-table,
+  .tri-table,
+  .ev-small,
+  .rubric-table,
+  .students-table {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  /* Secciones de la clase también agrupadas */
+  .section-title + .section-body,
+  .section-body {
+    page-break-before: avoid !important;
+    break-before: avoid !important;
+  }
+  /* Mantener colores al imprimir */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  /* Cabecera del plan no se corta */
+  .plan-header {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  /* Instrumento de evaluación agrupado */
+  .rubric-table,
+  .rubric-score,
+  .ce-le-score {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  /* Tabla de estudiantes puede dividirse si es muy larga, pero su encabezado acompaña */
+  .students-table {
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+  .students-table thead {
+    display: table-header-group !important;
+  }
+  /* Evitar huérfanos en encabezados de sección */
+  .section-title {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+  .class-header {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+  .anx-hdr,
+  .anx-cls {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Mapeo de Competencias — Lengua Española 5.° y 6.° Grado</h1>
+  <p>CE-LE# · IL-# por semana y actividad · Fuente: Registro Escolar 5to Grado Sec. Académica</p>
+</header>
+
+<div class="legend">
+  <span class="badge b1">CE-LE1 Comunicativa</span>
+  <span class="badge b2">CE-LE2 Pensamiento Lóg./Creat./Crítico</span>
+  <span class="badge b3">CE-LE3 Resolución de Problemas</span>
+  <span class="badge b4">CE-LE4 Ética y Ciudadana</span>
+  <span class="badge b5">CE-LE5 Científica y Tecnológica</span>
+  <span class="badge b6">CE-LE6 Ambiental y de la Salud</span>
+  <span class="badge b7">CE-LE7 Desarrollo Personal y Espiritual</span>
+</div>
+
+<nav>
+  <span class="grado-label">5to</span>
+  <a href="#carta">Carta Empleo</a>
+  <a href="#poetica">Poesía Satírica</a>
+  <a href="#ensayo">Ensayo Argumentativo</a>
+  <a href="#resena">Reseña de Obra</a>
+  <span class="grado-label">6to</span>
+  <a href="#reportaje">El Reportaje</a>
+  <a href="#monologo">Monólogo de Humor</a>
+  <a href="#informe">Informe de Investigación</a>
+  <a href="#poesocial">Poesía Social</a>
+  <span class="grado-label">·</span>
+  <a href="#diferencias" class="diff-link">Diferencias 5to vs 6to</a>
+</nav>
+
+<main>
+
+<!-- ═══════════════════════════════════════════════════
+     1. CARTA SOLICITANDO EMPLEO — 5to
+════════════════════════════════════════════════════ -->
+<section class="secuencia" id="carta">
+  <div class="sec-header">
+    <span class="sec-grade grade-5">5.° Grado</span>
+    <div>
+      <div class="sec-title">Carta solicitando empleo</div>
+      <div class="sec-competencias">CE-LE1 · CE-LE3 · CE-LE5 · CE-LE6 · CE-LE7</div>
+    </div>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 1</div>
+    <table>
+      <tr>
+        <td>Actividad 1</td>
+        <td>Análisis de aviso de convocatoria para mediadores de lectura; discusión sobre intereses personales; escritura del aviso "ideal" propio.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-19</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 2</td>
+        <td>Lectura y análisis detallado de carta de autopresentación formal (tema ambiental); estructura, fórmulas de cortesía, tiempos verbales (presente, pretérito, condicional).</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-19</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b6">CE-LE6 Ambiental y Salud</span>
+              <div class="il-codes"><span class="badge b6 il">IL-16</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 2</div>
+    <table>
+      <tr>
+        <td>Actividad 3</td>
+        <td>Lectura oral de carta-respuesta institucional; investigación en pares sobre cambio climático; construcción de campos semánticos; planificación del texto con estructura bipartita (descripción y soluciones).</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-14</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b3">CE-LE3 Resolución Problemas</span>
+              <div class="il-codes"><span class="badge b3 il">IL-8</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 4</td>
+        <td>Escritura del borrador de ampliación (visión de país en 2050); corrección entre pares con guía de criterios; inversión de roles: cada estudiante redacta su propio pedido de ampliación.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b6">CE-LE6 Ambiental y Salud</span>
+              <div class="il-codes"><span class="badge b6 il">IL-16</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 3</div>
+    <table>
+      <tr>
+        <td>Actividad 5</td>
+        <td>Lectura de transcripción de charla TEDxDominicana (Xiomara Fortuna); análisis de estructura del discurso oral, tiempos verbales y metáforas de identidad; cuadro de consejos personales.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 6</td>
+        <td>Autopresentación oral de 3–5 min (quién soy + pasión desconocida); uso de metáforas; mapa de pasiones del grupo; intercambio de cartas entre pares; grabación en video.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-19</span><span class="badge b7 il">IL-20</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 4</div>
+    <table>
+      <tr>
+        <td>Actividad 7</td>
+        <td>Lectura comparada de dos cartas de lectores (arte dominicano / periódico nuevo); análisis de propósito doble, construcción del lector-escritor, registro formal vs. emocional.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 8</td>
+        <td>Escritura de la carta de presentación para empleo (producto final); lectura en clase de cartas de compañeros; simulación de entrevista laboral oral; revisión final del borrador.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-19</span><span class="badge b7 il">IL-20</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     2. POESÍA SATÍRICA — 5to
+════════════════════════════════════════════════════ -->
+<section class="secuencia" id="poetica">
+  <div class="sec-header">
+    <span class="sec-grade grade-5">5.° Grado</span>
+    <div>
+      <div class="sec-title">Poesía Satírica</div>
+      <div class="sec-competencias">CE-LE1 · CE-LE2 · CE-LE4 · CE-LE7</div>
+    </div>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 1</div>
+    <table>
+      <tr>
+        <td>Actividad 1</td>
+        <td>Presentación del concepto de sátira desde los memes; creación colectiva de memes; búsqueda de definición en diccionario; reconocimiento de sátira en consumos culturales cotidianos.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 2</td>
+        <td>Lectura de fragmentos biográficos sobre Juan Antonio Alix; completar ficha de autor; anticipación de temas a partir de títulos de poemas; inferencias sobre el estilo poético.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-4</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 2</div>
+    <table>
+      <tr>
+        <td>Actividad 3</td>
+        <td>Lectura declamada de "Los habladores"; conversación literaria; identificación de metáforas e hipérboles; escritura de versos actualizando la crítica social con referencia a redes sociales.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-10</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 4</td>
+        <td>Lectura de "La jambre"; análisis de personificación, habla criolla y vigencia de la denuncia; escritura de carta breve (≤15 líneas) al poeta sobre la situación actual del tema.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 3</div>
+    <table>
+      <tr>
+        <td>Actividad 5</td>
+        <td>Escucha de "Los mangos bajitos" (versión de Juan Luis Guerra); análisis de metáforas sostenidas e ironía; cuadro comparativo de los tres poemas leídos (tema, tono, recursos, vigencia).</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-10</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 6</td>
+        <td>Escritura de poema satírico propio a partir de banco de rimas; revisión ortográfica (s/c); corrección entre pares con guía específica; primera exploración de lectura en voz alta.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 4</div>
+    <table>
+      <tr>
+        <td>Actividad 7</td>
+        <td>Declamación de fragmentos de Alix con distintos tonos asignados (triste, irónico, político…); registro de estrategias expresivas observadas; marcas de lectura en el poema propio.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 8</td>
+        <td>Slam de poesía escolar: presentación oral de los poemas satíricos propios ante un público más amplio (familias, otros grados); posibilidad de entrega de diplomas y registro en cartel.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     3. ENSAYO ARGUMENTATIVO — 5to
+════════════════════════════════════════════════════ -->
+<section class="secuencia" id="ensayo">
+  <div class="sec-header">
+    <span class="sec-grade grade-5">5.° Grado</span>
+    <div>
+      <div class="sec-title">Ensayo Argumentativo</div>
+      <div class="sec-competencias">CE-LE1 · CE-LE2 · CE-LE3 · CE-LE4 · CE-LE5 · CE-LE7</div>
+    </div>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 1</div>
+    <table>
+      <tr>
+        <td>Actividad 1</td>
+        <td>Lectura de artículo sobre "la cultura del olvido"; clasificación de ideas a favor/en contra; comparación de tres definiciones de "argumentar"; construcción de ficha de eficacia argumentativa.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-10</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-19</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 2</td>
+        <td>Escucha de charla TED sobre uso problemático del celular; debate guiado: posturas a favor y en contra de restringir el uso; síntesis oral colectiva sobre qué significa argumentar.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-4</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-13</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-19</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 2</div>
+    <table>
+      <tr>
+        <td>Actividad 3</td>
+        <td>Lectura guiada de artículo sobre consumismo juvenil; reconstrucción del esquema tesis–argumentos–conclusión; identificación de destinatario y propósito comunicativo; reflexión sobre quién podría usarlo.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b3">CE-LE3 Resolución Problemas</span>
+              <div class="il-codes"><span class="badge b3 il">IL-8</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-10</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-14</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 4</td>
+        <td>Lectura de texto polémico sobre relaciones a distancia; cuadro afirmación–razón–evidencia del autor; escritura de dos argumentos propios con postura elegida (a favor / en contra).</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-10</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-19</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 3</div>
+    <table>
+      <tr>
+        <td>Actividad 5</td>
+        <td>Producción oral de argumentos a partir de ficha-esquema; rondas de contraargumentación en grupos de cuatro; lista de cotejo de oralidad (coherencia, tono, economía expresiva).</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-4</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 6</td>
+        <td>Lectura de artículo sobre redes sociales; análisis sistemático de conectores lógicos (contraste, comparación, cita, causa, consecuencia, conclusión); completar cuadro de tipos de conectores.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-5</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-13</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 4</div>
+    <table>
+      <tr>
+        <td>Actividad 7</td>
+        <td>Planificación y redacción del primer borrador del ensayo argumentativo sobre uso del celular; aplicación de esquema introducción–desarrollo–conclusión y conectores trabajados.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-14</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 8</td>
+        <td>Búsqueda y selección de evidencias confiables; incorporación de citas y datos al ensayo; coevaluación entre pares; lectura parcial de producciones y reflexión colectiva final.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b3">CE-LE3 Resolución Problemas</span>
+              <div class="il-codes"><span class="badge b3 il">IL-9</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-14</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     4. RESEÑA DE UNA OBRA — 5to
+════════════════════════════════════════════════════ -->
+<section class="secuencia" id="resena">
+  <div class="sec-header">
+    <span class="sec-grade grade-5">5.° Grado</span>
+    <div>
+      <div class="sec-title">Reseña de una Obra</div>
+      <div class="sec-competencias">CE-LE1 · CE-LE2 · CE-LE4 · CE-LE6 · CE-LE7</div>
+    </div>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 1</div>
+    <table>
+      <tr>
+        <td>Actividad 1</td>
+        <td>Cartelera de festival de cine documental; lectura de reseña de "Los pasos del tiempo"; identificación de tipo de información en una reseña; uso de tiempos verbales; escritura de recomendación breve.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-4</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b6">CE-LE6 Ambiental y Salud</span>
+              <div class="il-codes"><span class="badge b6 il">IL-16</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 2</td>
+        <td>Lectura de reseña teatral de "La casa de Bernarda Alba"; comparación de fichas técnicas (documental vs. teatro); análisis de formas de expresar valoración (adjetivos, sustantivos, verbos).</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-10</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 2</div>
+    <table>
+      <tr>
+        <td>Actividad 3</td>
+        <td>Descripción de vestuario para adaptación teatral; lectura de nota periodística sobre "Sueños dorados"; diferencias entre noticia y reseña; escritura de primera reseña según dos esquemas de destinatario.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-20</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 4</td>
+        <td>Lectura/visionado de recomendaciones de booktoker y bookstagramer dominicanos; comparación (tema, lenguaje, destinatarios) con reseñas escritas; vocabulario literario contemporáneo; propuesta de perfil en redes.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-4</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 3</div>
+    <table>
+      <tr>
+        <td>Actividad 5</td>
+        <td>Lectura de reseña de obra musical; profundización en identificación del punto de vista del reseñador y sus argumentos; refuerzo de comprensión analítica del género.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 6</td>
+        <td>Lectura de reseña de muestra de arte visual contemporáneo; vocabulario artístico específico; interpretación de la postura del reseñador; primeras decisiones sobre obra a reseñar en el producto final.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-5</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-10</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 4</div>
+    <table>
+      <tr>
+        <td>Actividad 7</td>
+        <td>Planificación del esquema de la reseña final (elección de obra, destinatario, organización); puesta en texto con apoyo docente; completar notas acumuladas sobre el género reseña.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 8</td>
+        <td>Revisión entre pares de borradores de reseñas con instrumento específico; devolución sobre efectividad comunicativa; versión final de la reseña de una obra artística.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-10</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     5. EL REPORTAJE — 6to
+════════════════════════════════════════════════════ -->
+<section class="secuencia" id="reportaje">
+  <div class="sec-header">
+    <span class="sec-grade grade-6">6.° Grado</span>
+    <div>
+      <div class="sec-title">El Reportaje</div>
+      <div class="sec-competencias">CE-LE1 · CE-LE3 · CE-LE4 · CE-LE5 · CE-LE6</div>
+    </div>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 1</div>
+    <table>
+      <tr>
+        <td>Actividad 1</td>
+        <td>Intercambio oral sobre consumo de información; comparación de titulares y bajadas de noticias vs. reportajes; construcción colectiva del cuadro diferencial de ambos géneros.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 2</td>
+        <td>Lectura del reportaje "Cibercrimen, una industria que crece…"; análisis de función, estructura (intro–cuerpo–cierre) y subtítulos; identificación de núcleos informativos temáticos.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-13</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-10</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 2</div>
+    <table>
+      <tr>
+        <td>Actividad 3</td>
+        <td>Análisis de la secuencia expositiva del reportaje leído; ficha de fuentes (tipo, aporte); reflexión sobre formas verbales impersonales ("se estima", "es posible…"); propuesta de paratexto visual con epígrafe.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-14</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b3">CE-LE3 Resolución Problemas</span>
+              <div class="il-codes"><span class="badge b3 il">IL-8</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 4</td>
+        <td>Lectura del reportaje ambiental "Pombeba: la isla que está sumergida en la basura"; contraste de enfoques (objetivo vs. testimonial); ficha de fuentes; reflexión sobre relevancia local de problemáticas globales.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b6">CE-LE6 Ambiental y Salud</span>
+              <div class="il-codes"><span class="badge b6 il">IL-17</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 3</div>
+    <table>
+      <tr>
+        <td>Actividad 5</td>
+        <td>Identificación de secuencias narrativa/descriptiva/expositiva en fragmentos del reportaje ambiental; análisis de adjetivos objetivos vs. valorativos; oraciones subordinadas especificativas y explicativas; escritura de fragmento propio.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-14</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 6</td>
+        <td>Elaboración colectiva de la lista de cotejo que guiará escritura y evaluación del reportaje propio; acuerdo sobre criterios (contenido, organización, recursos, presentación).</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b3">CE-LE3 Resolución Problemas</span>
+              <div class="il-codes"><span class="badge b3 il">IL-7</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 4</div>
+    <table>
+      <tr>
+        <td>Actividad 7</td>
+        <td>Elección de tema relevante; investigación grupal de fuentes diversas (testimonios, datos, expertos); planificación individual del reportaje con ficha de recorte, inicio, cierre y organización en subtítulos.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b3">CE-LE3 Resolución Problemas</span>
+              <div class="il-codes"><span class="badge b3 il">IL-9</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-15</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 8</td>
+        <td>Puesta en texto individual del reportaje; selección de título, subtítulo y paratextos visuales con epígrafes; revisión entre pares con lista de cotejo; edición y publicación en periódico escolar.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b3">CE-LE3 Resolución Problemas</span>
+              <div class="il-codes"><span class="badge b3 il">IL-9</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-15</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b6">CE-LE6 Ambiental y Salud</span>
+              <div class="il-codes"><span class="badge b6 il">IL-18</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     6. TALLER DE MONÓLOGO DE HUMOR — 6to
+════════════════════════════════════════════════════ -->
+<section class="secuencia" id="monologo">
+  <div class="sec-header">
+    <span class="sec-grade grade-6">6.° Grado</span>
+    <div>
+      <div class="sec-title">Taller de Monólogo de Humor</div>
+      <div class="sec-competencias">CE-LE1 · CE-LE2 · CE-LE4 · CE-LE7</div>
+    </div>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 1</div>
+    <table>
+      <tr>
+        <td>Actividad 1</td>
+        <td>Reflexión oral sobre situaciones que provocan risa; escritura breve sobre qué y con quién reímos; exploración de características del humor (incongruencia, exageración, ironía, humor físico, etc.).</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-4</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 2</td>
+        <td>Lectura comparativa stand-up vs. soliloquio; escucha y/o lectura de "Miedos" de Franco Escamilla; cuadros de situaciones cotidianas cómicas; sistematización de rasgos del género.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 2</div>
+    <table>
+      <tr>
+        <td>Actividad 3</td>
+        <td>Lectura de cuatro consejos de comediantes profesionales; decisiones creativas ante situaciones del guionista; autoevaluación inicial de comprensión del género; reflexión sobre humor respetuoso.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 4</td>
+        <td>Construcción en grupos de guía práctica sobre el stand-up (temas, palabras, actitudes, evitar…); elaboración de tres afiches de aula: "Recordamos", "Decimos", "Actuamos".</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-4</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-10</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-19</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 3</div>
+    <table>
+      <tr>
+        <td>Actividad 5</td>
+        <td>Planificación del monólogo: elección de tema cotidiano, definición del punto de vista (personal, irónico, exagerado, observador…), esquema de inicio–desarrollo–cierre.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-5</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-19</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 6</td>
+        <td>Trabajo grupal con cuatro recursos del stand-up: exageración, comparación graciosa, diálogo con el yo interior, repetición con variación; análisis de lenguaje corporal en fotos de comediantes.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 4</div>
+    <table>
+      <tr>
+        <td>Actividad 7</td>
+        <td>Escritura del primer borrador completo del monólogo de stand-up (título, inicio que engancha, desarrollo con recursos, cierre con remate o reflexión); lista de verificación propia.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 8</td>
+        <td>Ensayo oral en grupos reducidos (3–4); lectura en voz alta del monólogo; devoluciones respetuosas entre pares; notas personales de mejora; revisión de grabación (evaluación final).</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-4</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-19</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     7. INFORME DE INVESTIGACIÓN — 6to
+════════════════════════════════════════════════════ -->
+<section class="secuencia" id="informe">
+  <div class="sec-header">
+    <span class="sec-grade grade-6">6.° Grado</span>
+    <div>
+      <div class="sec-title">Informe de Investigación</div>
+      <div class="sec-competencias">CE-LE1 · CE-LE2 · CE-LE3 · CE-LE4 · CE-LE5 · CE-LE6 · CE-LE7</div>
+    </div>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 1</div>
+    <table>
+      <tr>
+        <td>Actividad 1</td>
+        <td>Comparación de pinturas (Rembrandt original vs. "The Next Rembrandt" por IA); formulación de hipótesis sobre autoría y derechos; lectura de dos notas periodísticas sobre controversias de IA en el arte; inicio del Cuaderno del Investigador.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-4</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-10</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-13</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-19</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 2</td>
+        <td>Lectura de artículo científico sobre IA y expresiones artísticas; vocabulario especializado; rasgos del texto académico (resumen, subtítulos, citas, referencias); delimitación del arte para investigar.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-5</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-10</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-14</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-19</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 2</div>
+    <table>
+      <tr>
+        <td>Actividad 3</td>
+        <td>Lectura de artículo de opinión sobre IA y derechos de autor; identificación de tesis, argumentos opuestos ("uso justo" vs. plagio); reconocimiento de expresiones modalizadoras; construcción impersonal; banco de argumentos.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b3">CE-LE3 Resolución Problemas</span>
+              <div class="il-codes"><span class="badge b3 il">IL-7</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 4</td>
+        <td>Lectura de texto académico jurídico (Ley 65-00 y casos internacionales, e.g. Thaler v. Perlmutter); vocabulario técnico del derecho de autor; legislación comparada; análisis de posibles soluciones regulatorias.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-14</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 3</div>
+    <table>
+      <tr>
+        <td>Actividad 5</td>
+        <td>Lectura de la primera parte de un informe de investigación sobre IA e industria musical; reconocimiento de estructura (introducción, objetivos, metodología); función de la encuesta como instrumento; diseño metodológico propio.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-5</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b3">CE-LE3 Resolución Problemas</span>
+              <div class="il-codes"><span class="badge b3 il">IL-8</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-14</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 6</td>
+        <td>Lectura de la segunda parte del informe (resultados y conclusiones); análisis de cómo se interpretan y presentan datos; reflexión sobre preguntas de encuesta y su relación con los resultados.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b3">CE-LE3 Resolución Problemas</span>
+              <div class="il-codes"><span class="badge b3 il">IL-8</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 4</div>
+    <table>
+      <tr>
+        <td>Actividad 7</td>
+        <td>Análisis de tipos de preguntas de encuesta y gráficos adecuados para cada tipo; diseño de encuesta propia en el Cuaderno del Investigador; definición de preguntas y forma de presentar resultados.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b3">CE-LE3 Resolución Problemas</span>
+              <div class="il-codes"><span class="badge b3 il">IL-8</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-13</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 8</td>
+        <td>Escritura completa del informe de investigación (reorganización del Cuaderno del Investigador, borrador, revisión con guía, versión final); integración de citas, referencias y gráficos.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b3">CE-LE3 Resolución Problemas</span>
+              <div class="il-codes"><span class="badge b3 il">IL-9</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b5">CE-LE5 Científica y Tecnológica</span>
+              <div class="il-codes"><span class="badge b5 il">IL-14</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-19</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     8. POESÍA SOCIAL — 6to
+════════════════════════════════════════════════════ -->
+<section class="secuencia" id="poesocial">
+  <div class="sec-header">
+    <span class="sec-grade grade-6">6.° Grado</span>
+    <div>
+      <div class="sec-title">Poesía Social</div>
+      <div class="sec-competencias">CE-LE1 · CE-LE2 · CE-LE3 · CE-LE4 · CE-LE6 · CE-LE7</div>
+    </div>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 1</div>
+    <table>
+      <tr>
+        <td>Actividad 1</td>
+        <td>Escucha y lectura de "Ni un paso atrás" (Pedro Mir); anticipación desde el título; análisis de metáforas políticas ("murciélago que oprima", "trincheras para los reptiles"); paráfrasis escrita; campo semántico de la poesía social.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-1</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-4</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 2</td>
+        <td>Lectura de "Poema de la madre Tierra" (Carmen Natalia Martínez Bonilla); análisis de exclamaciones, metáforas y repeticiones; denuncia de explotación de la naturaleza y pobreza; contextualización del exilio político.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b6">CE-LE6 Ambiental y Salud</span>
+              <div class="il-codes"><span class="badge b6 il">IL-18</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 2</div>
+    <table>
+      <tr>
+        <td>Actividad 3</td>
+        <td>Lectura de "Mi lengua" (Jeannette Miller); musicalidad del verso libre; tabla de emociones y versos; declamación expresiva; análisis de la lengua como historia, identidad y arma; escritura de versos propios ("Esta lengua…").</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-19</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 4</td>
+        <td>Lectura de "Vamos juntos" (Mario Benedetti); análisis de rima consonante y estribillo como fuerza coral; declamación por grupos con variaciones de entonación; escritura de estribillo colectivo sobre tema social elegido.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 3</div>
+    <table>
+      <tr>
+        <td>Actividad 5</td>
+        <td>Lectura de "Pedro el albañil" (Juan Gelman); análisis de metáforas, personificaciones y repeticiones; contraste entre cotidianidad del trabajo y violencia política; escritura de versos breves sobre manos/cuerpo de un trabajador.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b3">CE-LE3 Resolución Problemas</span>
+              <div class="il-codes"><span class="badge b3 il">IL-7</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 6</td>
+        <td>Lectura estrofa por estrofa de "Manos de obreros" (Gabriela Mistral); vocabulario (sollamadas, metonimia, símbolos cósmicos); comparación con Gelman (denuncia vs. trascendencia); escritura de metáfora de manos y párrafo comparativo.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-2</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-10</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="semana">
+    <div class="semana-title">Semana 4</div>
+    <table>
+      <tr>
+        <td>Actividad 7</td>
+        <td>Lectura de fragmentos de Eduardo Galeano ("El mundo", "El mar"); transformación de prosa poética en poemas breves; exploración de condensación expresiva, ritmo y musicalidad; ensayo de declamación oral.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-5</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Actividad 8</td>
+        <td>Creación de poema social original (producto final); revisión entre pares aplicando criterios de intención, recursos expresivos y función social; socialización en recital comunitario escolar.</td>
+        <td>
+          <div class="comp-row">
+            <div class="comp-entry">
+              <span class="comp-name b1">CE-LE1 Comunicativa</span>
+              <div class="il-codes"><span class="badge b1 il">IL-3</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b2">CE-LE2 Pens. Lóg./Creat./Crítico</span>
+              <div class="il-codes"><span class="badge b2 il">IL-6</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b4">CE-LE4 Ética y Ciudadana</span>
+              <div class="il-codes"><span class="badge b4 il">IL-11</span></div>
+            </div>
+            <div class="comp-entry">
+              <span class="comp-name b7">CE-LE7 Des. Personal y Espiritual</span>
+              <div class="il-codes"><span class="badge b7 il">IL-21</span></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     SECCIÓN: Diferencias CE-LE# por Grado (5to vs 6to)
+     ══════════════════════════════════════════════════════ -->
+<section id="diferencias" class="diff-section">
+  <div class="diff-header">
+    <h2>Diferencias CE-LE# e IL-# por Grado</h2>
+    <p>Comparación directa entre las Competencias Específicas del 5.° y 6.° Grado · Segundo Ciclo Secundario (Modalidad Académica)</p>
+  </div>
+
+  <!-- ── CE-LE1 Comunicativa ── -->
+  <div class="diff-ce-block">
+    <div class="diff-ce-label">
+      <span class="badge b1">CE-LE1</span>
+      <strong>Comunicativa</strong>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-col">
+        <span class="diff-grade-tag tag-5">5.° Grado</span>
+        <div class="diff-ce-text">Muestra destrezas lingüísticas al exponer ideas y experiencias en diferentes situaciones de comunicación social, mediante un tipo de texto (funcional o literario) conveniente desde la comprensión y producción oral y escrita, usando medios y recursos diversos.</div>
+      </div>
+      <div class="diff-col">
+        <span class="diff-grade-tag tag-6">6.° Grado</span>
+        <div class="diff-ce-text">Exhibe desenvolvimiento y creatividad al comunicarse eficazmente de manera personal y colectiva, utilizando un modelo textual, a partir de la comprensión y producción, con uso ético y responsable de plataformas tecnológicas y diferentes medios y recursos.</div>
+      </div>
+    </div>
+    <table class="diff-il-table">
+      <thead><tr><th>IL</th><th>5.° Grado</th><th>6.° Grado</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>IL-1</td>
+          <td>Evidencia conocimientos, dominio y habilidades al comunicarse, utilizando un tipo de texto conveniente para relacionarse en diferentes contextos comunicativos, mediante medios y recursos tecnológicos.</td>
+          <td>Identifica textos para comunicarse en variadas situaciones y contextos diversos, para el fortalecimiento de las relaciones sociales mediante recursos tecnológicos.</td>
+        </tr>
+        <tr>
+          <td>IL-2</td>
+          <td>Emplea diversidad de textos en situaciones de comunicación para una mayor relación con los demás, usando diferentes medios y recursos tecnológicos.</td>
+          <td>Utiliza textos funcionales y literarios en sus relaciones comunicativas, fortaleciendo sus conocimientos lingüísticos en el uso de tecnologías y otros recursos.</td>
+        </tr>
+        <tr>
+          <td>IL-3</td>
+          <td>Se comunica de manera eficaz, usando diferentes textos, en contextos del ámbito local, nacional y mundial, demostrando criticidad y creatividad de sus ideas.</td>
+          <td>Se comunica de manera efectiva mediante un tipo de texto, atendiendo a temas sociales del ámbito local, nacional y del mundo, de manera crítica y creativa.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="diff-note"><strong>Diferencia clave:</strong> En 5to el énfasis está en <em>mostrar destrezas</em> y exponer ideas; en 6to se eleva a <em>desenvolvimiento y creatividad</em>, se añade la dimensión colectiva de la comunicación y se exige el <em>uso ético y responsable de plataformas tecnológicas</em>. Los IL pasan de "evidenciar habilidades" (5to) a "identificar textos" con foco en fortalecer relaciones sociales (6to).</div>
+  </div>
+
+  <!-- ── CE-LE2 Pensamiento Lógico, Creativo y Crítico ── -->
+  <div class="diff-ce-block">
+    <div class="diff-ce-label">
+      <span class="badge b2">CE-LE2</span>
+      <strong>Pensamiento Lógico, Creativo y Crítico</strong>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-col">
+        <span class="diff-grade-tag tag-5">5.° Grado</span>
+        <div class="diff-ce-text">Analiza textos variados a partir de inferencias, demostrando un pensamiento estructurado que le lleva a conclusiones razonables y lógicas en diferentes contextos.</div>
+      </div>
+      <div class="diff-col">
+        <span class="diff-grade-tag tag-6">6.° Grado</span>
+        <div class="diff-ce-text">Expone la validez de informaciones diversas sostenidas en juicios, puntos de vista, conclusiones y acciones, usando un género textual conveniente, respetando las demás opiniones.</div>
+      </div>
+    </div>
+    <table class="diff-il-table">
+      <thead><tr><th>IL</th><th>5.° Grado</th><th>6.° Grado</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>IL-4</td>
+          <td>Demuestra conocimiento y dominio de secuencias argumentativas en discursos diversos, abordando temas sociales y partiendo de sus habilidades de comprensión y producción.</td>
+          <td>Evidencia habilidades de producción y comprensión en el uso de secuencias argumentativas, para el abordaje de temas sociales diversos en ámbitos determinados.</td>
+        </tr>
+        <tr>
+          <td>IL-5</td>
+          <td>Pone en práctica sus conocimientos de comprensión y producción a partir de explicaciones de temas del entorno familiar, escolar, comunitario, nacional y del mundo, promocionando conocimientos innovadores.</td>
+          <td>Produce conocimientos innovadores a partir de la comprensión y producción de textos variados, explicando temáticas sociales de diferentes ámbitos.</td>
+        </tr>
+        <tr>
+          <td>IL-6</td>
+          <td>Presenta informaciones en las que sostiene juicios y puntos de vista para la construcción de un pensamiento estructurado, derivando conclusiones y guardando el respeto de las opiniones de los demás.</td>
+          <td>Presenta informaciones analíticas de juicios y puntos de vista, en la construcción de un pensamiento estructurado, tomando en cuenta el respeto de las opiniones ajenas.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="diff-note"><strong>Diferencia clave:</strong> En 5to el foco es <em>analizar e inferir</em>; en 6to se exige <em>exponer y defender la validez</em> de argumentos propios, lo que supone un nivel superior de pensamiento. En IL-5, el salto es evidente: de "poner en práctica conocimientos" (5to) a "producir conocimientos innovadores" (6to), indicando mayor autonomía intelectual.</div>
+  </div>
+
+  <!-- ── CE-LE3 Resolución de Problemas ── -->
+  <div class="diff-ce-block">
+    <div class="diff-ce-label">
+      <span class="badge b3">CE-LE3</span>
+      <strong>Resolución de Problemas</strong>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-col">
+        <span class="diff-grade-tag tag-5">5.° Grado</span>
+        <div class="diff-ce-text">Selecciona textos específicos que apoyan el desarrollo de una investigación científica, siguiendo criterios de relevancia, pertinencia, validez y confiabilidad para la solución de problemas.</div>
+      </div>
+      <div class="diff-col">
+        <span class="diff-grade-tag tag-6">6.° Grado</span>
+        <div class="diff-ce-text">Presenta resultados de investigaciones a través de textos convenientes que evidencian soluciones de problemas, tomando en cuenta la audiencia y manifestando postura crítica, valórica y de respeto frente a lo que se lee, escucha y escribe.</div>
+      </div>
+    </div>
+    <table class="diff-il-table">
+      <thead><tr><th>IL</th><th>5.° Grado</th><th>6.° Grado</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>IL-7</td>
+          <td>Utiliza sus conocimientos sobre problemas sociales para búsqueda de posibles soluciones, explicándolas en medios y textos apropiados.</td>
+          <td>Hace uso de sus conocimientos sobre problemas sociales, a fin de encontrar soluciones posibles y explicarlas mediante el empleo de textos convenientes.</td>
+        </tr>
+        <tr>
+          <td>IL-8</td>
+          <td>Emplea textos diversos con mayor grado de complejidad y con informaciones confiables, que aportan propuestas para la solución de problemas locales, nacionales e internacionales.</td>
+          <td>Usa tipologías textuales para tratar temas o problemas de la comunidad, con informaciones relevantes que ofrecen propuestas de solución.</td>
+        </tr>
+        <tr>
+          <td>IL-9</td>
+          <td>Produce ensayos, informes u otros tipos de textos para presentar conclusiones y recomendaciones de investigaciones realizadas, que plantean soluciones de problemas de diferentes ámbitos.</td>
+          <td>Elabora textos variados que presentan conclusiones y recomendaciones producto de investigaciones que tratan sobre problemas de diferentes ámbitos sociales, aportando soluciones.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="diff-note"><strong>Diferencia clave:</strong> En 5to se <em>seleccionan textos</em> para investigar; en 6to se <em>presentan resultados</em> considerando la audiencia y adoptando postura crítica y valórica, lo que representa un nivel superior de investigación. En IL-8, 5to contempla problemas de alcance local, nacional e internacional; 6to concentra el foco en la comunidad inmediata.</div>
+  </div>
+
+  <!-- ── CE-LE4 Ética y Ciudadana ── -->
+  <div class="diff-ce-block">
+    <div class="diff-ce-label">
+      <span class="badge b4">CE-LE4</span>
+      <strong>Ética y Ciudadana</strong>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-col">
+        <span class="diff-grade-tag tag-5">5.° Grado</span>
+        <div class="diff-ce-text">Emplea diversidad de textos de secuencia argumentativa, con los que conoce y cuestiona las prácticas sociales de ciudadanía en el entorno local y nacional, confrontándolas con valores universales.</div>
+      </div>
+      <div class="diff-col">
+        <span class="diff-grade-tag tag-6">6.° Grado</span>
+        <div class="diff-ce-text">Usa textos de secuencia argumentativa en la elaboración de proyectos como elemento clave, hacia la construcción de una ciudadanía responsable y dinámica que busca solución de problemas colectivos.</div>
+      </div>
+    </div>
+    <table class="diff-il-table">
+      <thead><tr><th>IL</th><th>5.° Grado</th><th>6.° Grado</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>IL-10</td>
+          <td>Especifica nuevas relaciones socioculturales en las diferentes situaciones de comunicación que participa, caracterizándolas mediante un género textual.</td>
+          <td>Utiliza textos apropiados para identificar nuevas relaciones socioculturales en las situaciones de comunicación de la comunidad que tiene incidencia participativa.</td>
+        </tr>
+        <tr>
+          <td>IL-11</td>
+          <td>Produce textos diversos para la promoción de prácticas sociales de ciudadanía y valores universales, en variados contextos, como aporte al fortalecimiento de las relaciones de los seres humanos.</td>
+          <td>Fortalece la promoción de prácticas sociales de ciudadanía y los valores universales, en ámbitos variados y a través de la producción de textos convenientes.</td>
+        </tr>
+        <tr>
+          <td>IL-12</td>
+          <td>Elabora proyectos que valoran las prácticas ciudadanas de la comunidad, así como la solución a los problemas, haciendo uso de textos adecuados.</td>
+          <td>Demuestra sus conocimientos sobre el uso de variedades textuales en la elaboración de proyectos sobre prácticas ciudadanas y explica sus conclusiones y recomendaciones como aportes a la solución de los problemas.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="diff-note"><strong>Diferencia clave:</strong> En 5to el estudiante <em>conoce y cuestiona</em> las prácticas ciudadanas; en 6to <em>elabora proyectos</em> orientados a la construcción activa de ciudadanía y la solución de problemas colectivos, pasando de la crítica a la acción propositiva. IL-12 de 6to exige además <em>explicar conclusiones y recomendaciones</em>, demandando mayor articulación argumentativa.</div>
+  </div>
+
+  <!-- ── CE-LE5 Científica y Tecnológica ── -->
+  <div class="diff-ce-block">
+    <div class="diff-ce-label">
+      <span class="badge b5">CE-LE5</span>
+      <strong>Científica y Tecnológica</strong>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-col">
+        <span class="diff-grade-tag tag-5">5.° Grado</span>
+        <div class="diff-ce-text">Divulga a través de textos de secuencia expositivo-explicativa hallazgos científicos, sociales y tecnológicos a lo largo del tiempo, para aportar soluciones a problemas de diferentes contextos.</div>
+      </div>
+      <div class="diff-col">
+        <span class="diff-grade-tag tag-6">6.° Grado</span>
+        <div class="diff-ce-text">Explica resultados de investigaciones que realiza, apoyándose en el uso de textos de secuencia expositivo-explicativa, en actos de intercomunicación que se desarrollan en la escuela y otro contexto, utilizando herramientas tecnológicas y otros recursos.</div>
+      </div>
+    </div>
+    <table class="diff-il-table">
+      <thead><tr><th>IL</th><th>5.° Grado</th><th>6.° Grado</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>IL-13</td>
+          <td>Realiza investigaciones de acuerdo con su capacidad sobre situaciones que inciden en la comunidad que lo rodea, apoyándose en el uso de una tipología textual conveniente y recursos variados.</td>
+          <td>Desarrolla procesos investigativos con mayor nivel de profundidad sobre temas y problemas de la comunidad y fuera de esta, presentándolos a través de textos apropiados y haciendo uso de recursos tecnológicos.</td>
+        </tr>
+        <tr>
+          <td>IL-14</td>
+          <td>Produce textos variados, especialmente de secuencia expositivo-explicativa, para presentar resultados de investigaciones sobre temas sociales de diferentes ámbitos, evidenciando uso adecuado de la lengua.</td>
+          <td>Emplea diversidad de textos priorizando los de secuencia expositivo-explicativa, en la puesta en conocimiento de los hallazgos, las conclusiones y recomendaciones de investigaciones sobre temas sociales variados.</td>
+        </tr>
+        <tr>
+          <td>IL-15</td>
+          <td>Publica resultados de investigaciones realizadas, de incidencia escolar, comunitaria y nacional, apoyándose en medios y recursos tecnológicos y haciendo uso de un género textual conveniente.</td>
+          <td>Promueve y valora, mediante textos diversos, los procesos de investigación científica y tecnológica, sobre temas y problemas que inciden en la escuela, comunidad, a nivel nacional e internacional, como forma de conocer la realidad social.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="diff-note"><strong>Diferencia clave:</strong> En 5to se <em>divulgan hallazgos</em> (históricos o ajenos); en 6to se <em>explican resultados de investigaciones propias</em>, con énfasis en la intercomunicación. En IL-13, la exigencia sube de "investigaciones según su capacidad" (5to) a "mayor nivel de profundidad" y alcance fuera de la comunidad (6to). En IL-15, el acento pasa de publicar a <em>promover y valorar</em> el proceso investigativo, y se añade el nivel internacional.</div>
+  </div>
+
+  <!-- ── CE-LE6 Ambiental y de la Salud ── -->
+  <div class="diff-ce-block">
+    <div class="diff-ce-label">
+      <span class="badge b6">CE-LE6</span>
+      <strong>Ambiental y de la Salud</strong>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-col">
+        <span class="diff-grade-tag tag-5">5.° Grado</span>
+        <div class="diff-ce-text">Publica informaciones sobre temas relacionados con salud y medioambiente, a través de textos como catálogo, receta, artículos de opinión e instructivos, en el ámbito escolar y comunitario, haciendo uso de herramientas tecnológicas.</div>
+      </div>
+      <div class="diff-col">
+        <span class="diff-grade-tag tag-6">6.° Grado</span>
+        <div class="diff-ce-text">Utiliza sus conocimientos en la promoción y divulgación de comportamientos y valores sobre la conservación de la salud, la naturaleza y sus ecosistemas, mediante el uso de textos y a través de actividades de intercomunicación en diferentes contextos de la comunidad.</div>
+      </div>
+    </div>
+    <table class="diff-il-table">
+      <thead><tr><th>IL</th><th>5.° Grado</th><th>6.° Grado</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>IL-16</td>
+          <td>Identifica, con mayor nivel de criticidad, temas diversos sobre salud, ambiente, alimentación, entre otros que inciden positiva o negativamente en la comunidad, derivando en propuestas de solución.</td>
+          <td>Analiza con profundidad problemas y temas relacionados con salud, ambiente, alimentación, fauna, flora, a través de textos convenientes, presentando conclusiones y recomendaciones de solución.</td>
+        </tr>
+        <tr>
+          <td>IL-17</td>
+          <td>Elabora diversidad de textos como catálogos, recetas, artículos de opinión, instructivos, con la finalidad de dar a conocer y promover temáticas relacionadas con la salubridad, el medioambiente, la alimentación, proponiendo alternativas de solución o mejora.</td>
+          <td>Utiliza textos como el catálogo, artículo de opinión, instructivo, la receta, para poner en conocimiento y buscar solución a problemas comunitarios sobre salud, ambiente, alimentación, ecosistema, entre otros.</td>
+        </tr>
+        <tr>
+          <td>IL-18</td>
+          <td>Utiliza variedad de textos (funcionales y literarios) en actividades de intercomunicación, para sensibilizar los seres humanos sobre la exhibición de un buen comportamiento y acciones positivas frente a la salud y el medioambiente.</td>
+          <td>Desarrolla actividades de intercomunicación en los que usa textos funcionales y literarios, para la concienciación de las personas a manifestar comportamientos positivos y realizar acciones en beneficio de la salud ciudadana y cuidado de la naturaleza.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="diff-note"><strong>Diferencia clave:</strong> En 5to el foco es <em>publicar informaciones</em> (informar); en 6to se amplía a <em>promover comportamientos y valores</em> sobre conservación, incluyendo fauna, flora y ecosistemas (mayor alcance temático). En IL-18, se pasa de "sensibilizar" (5to) a "concienciar y llevar a la acción" (6to), exigiendo mayor impacto sobre la conducta social.</div>
+  </div>
+
+  <!-- ── CE-LE7 Desarrollo Personal y Espiritual ── -->
+  <div class="diff-ce-block">
+    <div class="diff-ce-label">
+      <span class="badge b7">CE-LE7</span>
+      <strong>Desarrollo Personal y Espiritual</strong>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-col">
+        <span class="diff-grade-tag tag-5">5.° Grado</span>
+        <div class="diff-ce-text">Utiliza textos literarios y de otros tipos, para manifestar sus sentimientos, emociones, inquietudes en la promoción de valores universales y fortalecer la dimensión humanista.</div>
+      </div>
+      <div class="diff-col">
+        <span class="diff-grade-tag tag-6">6.° Grado</span>
+        <div class="diff-ce-text">Canaliza emociones y sentimientos en lecturas y escrituras reflexivas, a través de un tipo de texto conveniente, fortaleciendo las relaciones humanas y el respeto a la dignidad propia y de otras personas.</div>
+      </div>
+    </div>
+    <table class="diff-il-table">
+      <thead><tr><th>IL</th><th>5.° Grado</th><th>6.° Grado</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>IL-19</td>
+          <td>Evidencia compromisos más profundos consigo mismo, así como con los demás, a través de textos convenientes, fortaleciendo los niveles de confianza y comprensión ante el comportamiento de la humanidad.</td>
+          <td>Usa variados tipos de textos para poner de relieve la comprensión de sí mismo, de manera más consciente, y sobre las demás personas con quienes convive, en procura de buenos comportamientos sociales.</td>
+        </tr>
+        <tr>
+          <td>IL-20</td>
+          <td>Cultiva valores universales y refuerza la dimensión humanista mediante textos relacionados que produce, para el fortalecimiento de su persona y apoyo a los demás.</td>
+          <td>Produce diversos textos funcionales y literarios sobre temas relacionados con valores universales y la dimensión humanista, a fin de fortalecer el buen comportamiento de sí mismo y de los demás que comparten su hábitat.</td>
+        </tr>
+        <tr>
+          <td>IL-21</td>
+          <td>Reflexiona, mediante textos diversos (orales y escritos), en procura de canalizar emociones y sentimientos, así como fortalecer valores espirituales, como claves para el respeto a la dignidad y las buenas relaciones de las personas.</td>
+          <td>Valora y promueve informaciones de textos diversos (orales y escritos), relacionadas con temáticas de la sociedad referidas a las emociones, los sentimientos, valores espirituales, con miras a apoyar el respeto a la dignidad de las personas en contextos local, nacional e internacional.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="diff-note"><strong>Diferencia clave:</strong> En 5to el estudiante <em>manifiesta</em> emociones a través de textos literarios; en 6to las <em>canaliza</em> de forma reflexiva, con mayor énfasis en la dignidad humana y las relaciones interpersonales, evidenciando un nivel mayor de madurez emocional. En IL-21, el salto es claro: de "reflexionar para canalizar" (5to) a "valorar y promover" en contextos que incluyen el nivel nacional e internacional (6to).</div>
+  </div>
+
+</section>
+
+</main>
+
+<script>
+  const sections = document.querySelectorAll('.secuencia, .diff-section');
+  const links = document.querySelectorAll('nav a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector('nav a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

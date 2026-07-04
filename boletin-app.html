@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Calificaciones</title>
+<style>
+  :root {
+    --bg: #0f0f11;
+    --surface: #18181b;
+    --surface2: #1f1f23;
+    --border: #2e2e33;
+    --accent: #6366f1;
+    --accent2: #818cf8;
+    --accent-soft: rgba(99,102,241,0.12);
+    --text: #f4f4f5;
+    --text2: #a1a1aa;
+    --text3: #71717a;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --radius: 10px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); display: flex; height: 100vh; overflow: hidden; font-size: 13px; }
+
+  /* SIDEBAR */
+  #sidebar {
+    width: 260px; min-width: 260px; background: var(--surface); border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .sidebar-header {
+    padding: 20px 16px 12px; border-bottom: 1px solid var(--border);
+  }
+  .logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .logo-icon {
+    width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), #a78bfa);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px;
+  }
+  .logo-text { font-size: 14px; font-weight: 700; letter-spacing: -.3px; }
+  .logo-sub { font-size: 11px; color: var(--text3); margin-top: 1px; }
+  .btn-add-grade {
+    width: 100%; padding: 8px 12px; background: var(--accent-soft); border: 1px dashed var(--accent);
+    color: var(--accent2); border-radius: var(--radius); cursor: pointer; font-size: 12px; font-weight: 500;
+    display: flex; align-items: center; gap: 6px; transition: all .2s;
+  }
+  .btn-add-grade:hover { background: rgba(99,102,241,.2); }
+  #grades-list { flex: 1; overflow-y: auto; padding: 8px; }
+  #grades-list::-webkit-scrollbar { width: 4px; }
+  #grades-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  .grade-item {
+    border-radius: var(--radius); margin-bottom: 4px; overflow: hidden;
+  }
+  .grade-header {
+    display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+    cursor: pointer; border-radius: var(--radius); transition: background .15s; user-select: none;
+  }
+  .grade-header:hover { background: var(--surface2); }
+  .grade-header.active { background: var(--accent-soft); }
+  .grade-chevron { color: var(--text3); font-size: 10px; transition: transform .2s; }
+  .grade-chevron.open { transform: rotate(90deg); }
+  .grade-label { flex: 1; font-weight: 600; font-size: 12px; }
+  .grade-count { font-size: 10px; color: var(--text3); background: var(--surface2); padding: 2px 6px; border-radius: 20px; }
+  .grade-delete { color: var(--text3); opacity: 0; cursor: pointer; font-size: 14px; transition: opacity .15s, color .15s; }
+  .grade-header:hover .grade-delete { opacity: 1; }
+  .grade-delete:hover { color: var(--red); }
+
+  .students-list { padding: 2px 0 2px 18px; }
+  .student-item {
+    display: flex; align-items: center; gap: 6px; padding: 6px 10px;
+    cursor: pointer; border-radius: 8px; transition: background .15s; color: var(--text2);
+  }
+  .student-item:hover { background: var(--surface2); color: var(--text); }
+  .student-item.active { background: var(--accent-soft); color: var(--accent2); }
+  .student-num { font-size: 10px; color: var(--text3); width: 16px; text-align: right; }
+  .student-name-label { flex: 1; font-size: 12px; }
+  .student-status { width: 6px; height: 6px; border-radius: 50%; }
+  .status-a { background: var(--green); }
+  .status-r { background: var(--red); }
+  .status-p { background: var(--text3); }
+  .btn-add-student {
+    display: flex; align-items: center; gap: 6px; padding: 5px 10px;
+    color: var(--text3); cursor: pointer; border-radius: 8px; font-size: 11px;
+    transition: background .15s, color .15s; margin-top: 2px;
+  }
+  .btn-add-student:hover { background: var(--surface2); color: var(--accent2); }
+
+  /* MAIN */
+  #main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+  .topbar {
+    padding: 14px 24px; border-bottom: 1px solid var(--border); background: var(--surface);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .topbar-title { font-size: 15px; font-weight: 700; }
+  .topbar-sub { font-size: 12px; color: var(--text3); }
+  .topbar-spacer { flex: 1; }
+  .chip {
+    padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 500;
+    background: var(--surface2); color: var(--text2); border: 1px solid var(--border);
+  }
+
+  /* WELCOME */
+  #welcome {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; color: var(--text3); text-align: center; padding: 40px;
+  }
+  .welcome-icon { font-size: 48px; opacity: .3; }
+  .welcome-title { font-size: 20px; font-weight: 700; color: var(--text2); }
+  .welcome-desc { font-size: 13px; max-width: 360px; line-height: 1.6; }
+
+  /* BOLETIN */
+  #boletin-view { flex: 1; overflow-y: auto; padding: 28px; display: none; }
+  #boletin-view::-webkit-scrollbar { width: 6px; }
+  #boletin-view::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  .boletin-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    overflow: hidden; max-width: 1100px; margin: 0 auto;
+  }
+
+  /* Header del boletín */
+  .boletin-top {
+    background: linear-gradient(135deg, #1e1b4b 0%, #1e1e2e 100%);
+    padding: 24px 28px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; gap: 20px;
+  }
+  .school-badge {
+    width: 52px; height: 52px; background: linear-gradient(135deg, var(--accent), #a78bfa);
+    border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px;
+    flex-shrink: 0;
+  }
+  .school-info { flex: 1; }
+  .school-name { font-size: 16px; font-weight: 800; letter-spacing: -.3px; }
+  .school-sub { font-size: 11px; color: var(--text3); margin-top: 3px; }
+  .boletin-title-badge {
+    padding: 6px 14px; background: var(--accent-soft); border: 1px solid rgba(99,102,241,.3);
+    border-radius: 20px; font-size: 11px; font-weight: 600; color: var(--accent2);
+  }
+
+  /* Info del estudiante */
+  .student-info-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
+    background: var(--border); border-bottom: 1px solid var(--border);
+  }
+  .info-field {
+    background: var(--surface); padding: 12px 16px;
+  }
+  .info-field label { display: block; font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px; }
+  .info-field input, .info-field select {
+    background: transparent; border: none; outline: none; color: var(--text);
+    font-size: 13px; font-weight: 600; width: 100%; font-family: inherit;
+  }
+  .info-field input:focus { border-bottom: 1px solid var(--accent); }
+
+  /* Sección de materias */
+  .section-title {
+    padding: 12px 20px; background: var(--surface2); border-bottom: 1px solid var(--border);
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent2);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  /* Tabla de calificaciones */
+  .grades-table-wrap { overflow-x: auto; }
+  .grades-table {
+    width: 100%; border-collapse: collapse; font-size: 11px;
+  }
+  .grades-table th {
+    padding: 8px 6px; text-align: center; background: var(--surface2); color: var(--text3);
+    font-weight: 600; border: 1px solid var(--border); font-size: 10px;
+    white-space: nowrap; position: sticky; top: 0; z-index: 2;
+  }
+  .grades-table th.subject-header { text-align: left; padding-left: 14px; min-width: 160px; }
+  .grades-table td { border: 1px solid var(--border); padding: 0; }
+  .grades-table tr:nth-child(even) td { background: rgba(255,255,255,.01); }
+  .grades-table tr:hover td { background: rgba(99,102,241,.05); }
+
+  .subject-name { padding: 9px 14px; font-weight: 500; color: var(--text); font-size: 12px; }
+
+  .grade-input {
+    width: 100%; border: none; background: transparent; text-align: center;
+    color: var(--text); font-size: 12px; padding: 9px 4px;
+    font-family: inherit; outline: none; cursor: pointer;
+  }
+  .grade-input:focus { background: rgba(99,102,241,.15); color: var(--accent2); }
+  .grade-input.highlight { color: var(--green); font-weight: 700; }
+  .grade-input.low { color: var(--red); font-weight: 700; }
+  .grade-input.avg { color: var(--yellow); font-weight: 700; }
+
+  .th-group { background: rgba(99,102,241,.08) !important; color: var(--accent2) !important; }
+  .th-final { background: rgba(34,197,94,.08) !important; color: var(--green) !important; }
+  .th-situation { background: rgba(239,68,68,.08) !important; }
+
+  /* Situación final */
+  .situacion-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border);
+  }
+  .situacion-block { background: var(--surface); padding: 16px 20px; }
+  .situacion-block h4 { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
+
+  .radio-group { display: flex; gap: 10px; flex-wrap: wrap; }
+  .radio-opt {
+    display: flex; align-items: center; gap: 6px; cursor: pointer; padding: 6px 12px;
+    border: 1px solid var(--border); border-radius: 8px; transition: all .15s;
+  }
+  .radio-opt:hover { border-color: var(--accent); }
+  .radio-opt input { accent-color: var(--accent); }
+  .radio-opt span { font-size: 12px; color: var(--text2); }
+  .radio-opt.selected { border-color: var(--accent); background: var(--accent-soft); }
+  .radio-opt.selected span { color: var(--accent2); }
+
+  /* Firma */
+  .firma-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border);
+  }
+  .firma-block {
+    background: var(--surface); padding: 20px 24px; text-align: center;
+  }
+  .firma-line {
+    width: 70%; height: 1px; background: var(--border); margin: 16px auto 8px;
+  }
+  .firma-title { font-size: 11px; color: var(--text3); }
+
+  /* Leyenda */
+  .leyenda-block { background: var(--surface2); padding: 14px 20px; }
+  .leyenda-title { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+  .leyenda-items { display: flex; flex-wrap: wrap; gap: 10px; }
+  .leyenda-item { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--text3); }
+  .leyenda-item strong { color: var(--text2); }
+
+  /* Acción bar */
+  .action-bar {
+    padding: 12px 20px; background: var(--surface2); border-top: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .btn {
+    padding: 7px 16px; border-radius: 8px; font-size: 12px; font-weight: 600;
+    cursor: pointer; border: none; transition: all .2s; font-family: inherit;
+  }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: var(--accent2); }
+  .btn-ghost { background: transparent; color: var(--text2); border: 1px solid var(--border); }
+  .btn-ghost:hover { background: var(--surface2); color: var(--text); }
+  .btn-danger { background: rgba(239,68,68,.1); color: var(--red); border: 1px solid rgba(239,68,68,.2); }
+  .btn-danger:hover { background: rgba(239,68,68,.2); }
+  .save-indicator { font-size: 11px; color: var(--green); opacity: 0; transition: opacity .3s; }
+  .save-indicator.show { opacity: 1; }
+
+  /* MODALES */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.7); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center; z-index: 100;
+    opacity: 0; pointer-events: none; transition: opacity .2s;
+  }
+  .modal-overlay.show { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 28px; width: 420px; max-width: 90vw; transform: scale(.96);
+    transition: transform .2s; box-shadow: var(--shadow);
+  }
+  .modal-overlay.show .modal { transform: scale(1); }
+  .modal h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .modal p { font-size: 12px; color: var(--text3); margin-bottom: 20px; line-height: 1.5; }
+  .form-group { margin-bottom: 14px; }
+  .form-group label { display: block; font-size: 11px; color: var(--text3); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .5px; }
+  .form-group input, .form-group select {
+    width: 100%; padding: 9px 12px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 8px; color: var(--text);
+    font-size: 13px; font-family: inherit; outline: none; transition: border .2s;
+  }
+  .form-group input:focus, .form-group select:focus { border-color: var(--accent); }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
+
+  /* ASIGNATURAS PANEL */
+  .asign-panel {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    max-width: 800px; margin: 0 auto;
+  }
+  .asign-header { padding: 20px 24px; border-bottom: 1px solid var(--border); }
+  .asign-header h2 { font-size: 16px; font-weight: 700; }
+  .asign-header p { font-size: 12px; color: var(--text3); margin-top: 4px; }
+  .asign-list { padding: 12px; }
+  .asign-item {
+    display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+    border-radius: 8px; border: 1px solid var(--border); margin-bottom: 6px;
+    transition: border-color .15s; background: var(--surface2);
+  }
+  .asign-item:hover { border-color: var(--accent); }
+  .asign-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .asign-name { flex: 1; font-size: 13px; font-weight: 500; }
+  .asign-del { color: var(--text3); cursor: pointer; padding: 4px; border-radius: 4px; transition: color .15s; }
+  .asign-del:hover { color: var(--red); }
+
+  /* Scroll */
+  #boletin-view::-webkit-scrollbar { width: 5px; }
+
+  /* Competencias header groups */
+  .comp-group { background: rgba(99,102,241,.06); }
+  .period-cell { min-width: 32px; }
+
+  /* Tabs modal Primaria/Secundaria */
+  .modal-tabs { display: flex; gap: 4px; background: var(--surface2); border-radius: 8px; padding: 4px; margin-bottom: 4px; }
+  .modal-tab { flex: 1; padding: 7px 10px; text-align: center; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--text3); transition: all .15s; user-select: none; }
+  .modal-tab.active { background: var(--accent); color: white; }
+  .grade-btn-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; }
+  .grade-btn { padding: 9px 6px; text-align: center; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 700; color: var(--text2); transition: all .15s; }
+  .grade-btn:hover { border-color: var(--accent); color: var(--accent2); background: var(--accent-soft); }
+  .grade-btn.selected { background: var(--accent-soft); border-color: var(--accent); color: var(--accent2); }
+  .nivel-badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 20px; font-weight: 600; margin-right: 4px; }
+  .nivel-p { background: rgba(34,197,94,.15); color: var(--green); }
+  .nivel-s { background: rgba(99,102,241,.15); color: var(--accent2); }
+
+  /* Asistencia compacta */
+  .asistencia-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); }
+  .asist-period { background: var(--surface); padding: 8px 14px; }
+  .asist-period h4 { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
+  .asist-row { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+  .asist-row label { font-size: 10px; color: var(--text2); width: 68px; }
+  .asist-row input { flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; padding: 3px 7px; color: var(--text); font-size: 11px; font-family: inherit; outline: none; transition: border .2s; }
+  .asist-row input:focus { border-color: var(--accent); }
+
+  /* Sidebar año escolar */
+  .year-section { margin-bottom: 6px; }
+  .year-header { display: flex; align-items: center; gap: 6px; padding: 5px 8px; cursor: pointer; user-select: none; border-radius: 6px; transition: background .15s; }
+  .year-header:hover { background: var(--surface2); }
+  .year-chevron { font-size: 9px; color: var(--text3); transition: transform .2s; }
+  .year-chevron.open { transform: rotate(90deg); }
+  .year-label { font-size: 11px; font-weight: 700; color: var(--text3); letter-spacing: .3px; text-transform: uppercase; }
+  .year-grades { padding-left: 6px; }
+
+  /* Sidebar mode nav */
+  .sidebar-nav { display: flex; gap: 4px; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  .sidebar-nav-btn { flex: 1; padding: 6px 8px; text-align: center; border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: 600; color: var(--text3); transition: all .15s; user-select: none; background: transparent; border: none; font-family: inherit; }
+  .sidebar-nav-btn.active { background: var(--accent); color: white; }
+  #boletin-section { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+  #registros-section { display: none; flex-direction: column; flex: 1; overflow: hidden; }
+  #registros-section.show { display: flex; }
+
+  /* Registro sidebar */
+  #registros-list { flex: 1; overflow-y: auto; padding: 0 8px 8px; }
+  .registro-item { display: flex; align-items: center; gap: 8px; padding: 8px 10px; cursor: pointer; border-radius: var(--radius); transition: background .15s; margin-bottom: 2px; }
+  .registro-item:hover { background: var(--surface2); }
+  .registro-item.active { background: var(--accent-soft); }
+  .registro-label { flex: 1; font-weight: 600; font-size: 12px; color: var(--text); }
+  .registro-sub { font-size: 10px; color: var(--text3); margin-top: 1px; }
+  .registro-del { color: var(--text3); opacity: 0; cursor: pointer; font-size: 14px; transition: opacity .15s, color .15s; }
+  .registro-item:hover .registro-del { opacity: 1; }
+  .registro-del:hover { color: var(--red); }
+
+  /* Registro main view */
+  #registro-view { flex: 1; overflow-y: auto; padding: 28px; display: none; }
+  #registro-view::-webkit-scrollbar { width: 6px; }
+  #registro-view::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .registro-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; max-width: 1400px; margin: 0 auto; }
+  .registro-header { background: linear-gradient(135deg, #1e1b4b 0%, #1e1e2e 100%); padding: 20px 28px; border-bottom: 1px solid var(--border); }
+  .registro-info-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border-bottom: 1px solid var(--border); }
+  .registro-table-wrap { overflow-x: auto; }
+  .registro-table { width: 100%; border-collapse: collapse; font-size: 10px; }
+  .registro-table th { padding: 6px 4px; text-align: center; background: var(--surface2); color: var(--text3); font-weight: 600; border: 1px solid var(--border); font-size: 9px; white-space: nowrap; position: sticky; top: 0; z-index: 2; }
+  .registro-table th.reg-num-header { min-width: 36px; }
+  .registro-table th.reg-name-header { text-align: left; padding-left: 8px; min-width: 150px; }
+  .registro-table td { border: 1px solid var(--border); padding: 0; }
+  .registro-table tr:nth-child(even) td { background: rgba(255,255,255,.01); }
+  .registro-table tr:hover td { background: rgba(99,102,241,.05); }
+  .reg-num-cell { text-align: center; padding: 6px 4px; color: var(--text3); font-size: 10px; }
+  .reg-name-input { width: 100%; border: none; background: transparent; color: var(--text); font-size: 11px; padding: 7px 6px; font-family: inherit; outline: none; }
+  .reg-name-input:focus { background: rgba(99,102,241,.1); }
+  .reg-grade-input { width: 100%; border: none; background: transparent; text-align: center; color: var(--text); font-size: 11px; padding: 7px 2px; font-family: inherit; outline: none; cursor: pointer; min-width: 28px; }
+  .reg-grade-input:focus { background: rgba(99,102,241,.15); color: var(--accent2); }
+  .reg-grade-input.highlight { color: var(--green); font-weight: 700; }
+  .reg-grade-input.low { color: var(--red); font-weight: 700; }
+  .reg-grade-input.avg { color: var(--yellow); font-weight: 700; }
+  .reg-pc-input { width: 100%; border: none; text-align: center; color: var(--text); font-size: 11px; padding: 7px 2px; font-family: inherit; outline: none; cursor: default; background: rgba(99,102,241,.05); min-width: 34px; }
+  .reg-pc-input.highlight { color: var(--green); font-weight: 700; }
+  .reg-pc-input.low { color: var(--red); font-weight: 700; }
+  .reg-pc-input.avg { color: var(--yellow); font-weight: 700; }
+  .reg-final-input { width: 100%; border: none; text-align: center; color: var(--text); font-size: 11px; padding: 7px 2px; font-family: inherit; outline: none; cursor: default; background: rgba(34,197,94,.05); font-weight: 700; min-width: 40px; }
+  .reg-final-input.highlight { color: var(--green); }
+  .reg-final-input.low { color: var(--red); }
+  .reg-final-input.avg { color: var(--yellow); }
+
+  /* Print */
+  @media print {
+    @page { size: letter landscape; margin: 0.4in; }
+    body { background: white !important; color: black !important; display: block !important; height: auto !important; overflow: auto !important; font-size: 8pt !important; }
+    #sidebar, .topbar, .action-bar, .modal-overlay, .section-title svg { display: none !important; }
+    #main { display: block !important; overflow: visible !important; }
+    #welcome { display: none !important; }
+    /* Default: hide both views; body class shows the right one */
+    #boletin-view, #registro-view { display: none !important; }
+    body.print-boletin #boletin-view { display: block !important; padding: 0 !important; overflow: visible !important; }
+    body.print-registro #registro-view { display: block !important; padding: 0 !important; overflow: visible !important; }
+    /* Fallback: if no class (legacy), show boletin-view */
+    body:not(.print-registro) #boletin-view { display: block !important; padding: 0 !important; overflow: visible !important; }
+
+    /* --- BOLETIN print styles --- */
+    .boletin-card { border: 1px solid #ccc !important; border-radius: 0 !important; max-width: 100% !important; box-shadow: none !important; page-break-inside: avoid; }
+    .boletin-top { background: #f0f0f8 !important; padding: 10px 14px !important; }
+    .school-badge { display: none; }
+    .school-name { color: black !important; font-size: 12pt !important; }
+    .school-sub { color: #555 !important; }
+    .boletin-title-badge { color: #333 !important; background: #e8e8f0 !important; border: 1px solid #bbb !important; }
+    .student-info-grid { display: grid !important; }
+    .info-field { background: white !important; padding: 6px 10px !important; }
+    .info-field label { color: #666 !important; }
+    .info-field input { color: black !important; font-size: 9pt !important; }
+    .section-title { background: #eef !important; color: #333 !important; padding: 4px 10px !important; font-size: 7pt !important; border-bottom: 1px solid #ccc !important; }
+    .grades-table { width: 100% !important; border-collapse: collapse !important; font-size: 7pt !important; }
+    .grades-table th { background: #e8e8f0 !important; color: #333 !important; padding: 3px 4px !important; border: 1px solid #aaa !important; font-size: 7pt !important; white-space: normal !important; position: static !important; }
+    .grades-table td { border: 1px solid #aaa !important; padding: 0 !important; }
+    .grade-input { font-size: 7pt !important; padding: 2px 1px !important; color: black !important; background: transparent !important; width: 100% !important; }
+    .grade-input.highlight { color: #166534 !important; }
+    .grade-input.low { color: #991b1b !important; }
+    .grade-input.avg { color: #854d0e !important; }
+    .th-group { background: #ebe8f8 !important; color: #3730a3 !important; }
+    .th-final { background: #e8f5e8 !important; color: #166534 !important; }
+    .subject-name { font-size: 7pt !important; padding: 3px 6px !important; }
+    .asistencia-grid { display: grid !important; grid-template-columns: repeat(4,1fr) !important; }
+    .asist-period { background: white !important; padding: 6px 10px !important; }
+    .asist-period h4 { font-size: 7pt !important; color: #555 !important; }
+    .asist-row label { font-size: 7pt !important; color: #444 !important; }
+    .asist-row input { background: white !important; border: 1px solid #ccc !important; color: black !important; font-size: 7pt !important; padding: 2px 4px !important; }
+    .situacion-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; }
+    .situacion-block { background: white !important; padding: 8px 12px !important; }
+    .situacion-block h4 { color: #555 !important; font-size: 7pt !important; }
+    .radio-opt { border: 1px solid #ccc !important; padding: 3px 8px !important; }
+    .radio-opt span { font-size: 7pt !important; color: black !important; }
+    .firma-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; }
+    .firma-block { background: white !important; padding: 14px 20px !important; }
+    .firma-title { color: #555 !important; font-size: 7pt !important; }
+    .leyenda-block { background: #f5f5f5 !important; padding: 6px 12px !important; }
+    .leyenda-title { color: #555 !important; font-size: 7pt !important; }
+    .leyenda-item { color: #555 !important; font-size: 6pt !important; }
+    .leyenda-item strong { color: #333 !important; }
+
+    /* --- REGISTRO print styles --- */
+    .registro-card { border: 1px solid #ccc !important; border-radius: 0 !important; max-width: 100% !important; box-shadow: none !important; }
+    .registro-header { background: #f0f0f8 !important; padding: 8px 14px !important; }
+    .registro-info-grid { display: grid !important; grid-template-columns: repeat(4,1fr) !important; background: #ccc !important; }
+    .registro-table-wrap { overflow: visible !important; }
+    .registro-table { width: 100% !important; border-collapse: collapse !important; font-size: 6.5pt !important; }
+    .registro-table th { background: #e8e8f0 !important; color: #333 !important; padding: 2px 3px !important; border: 1px solid #aaa !important; font-size: 6.5pt !important; position: static !important; white-space: normal !important; }
+    .registro-table td { border: 1px solid #aaa !important; padding: 0 !important; }
+    .reg-grade-input { font-size: 6.5pt !important; padding: 1px !important; color: black !important; background: transparent !important; width: 100% !important; }
+    .reg-pc-input { font-size: 6.5pt !important; padding: 1px !important; color: black !important; background: #f0f0f8 !important; width: 100% !important; }
+    .reg-final-input { font-size: 6.5pt !important; padding: 1px !important; color: black !important; background: #e8f5e8 !important; width: 100% !important; font-weight: 700 !important; }
+    .reg-name-input { font-size: 6.5pt !important; padding: 2px 3px !important; color: black !important; background: transparent !important; width: 100% !important; }
+    .reg-grade-input.highlight, .reg-pc-input.highlight, .reg-final-input.highlight { color: #166534 !important; }
+    .reg-grade-input.low, .reg-pc-input.low, .reg-final-input.low { color: #991b1b !important; }
+    .reg-grade-input.avg, .reg-pc-input.avg, .reg-final-input.avg { color: #854d0e !important; }
+    .reg-num-cell { font-size: 6.5pt !important; padding: 2px !important; color: #555 !important; }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">
+      <div class="logo-icon" style="font-size:11px;font-weight:900;letter-spacing:-1px">EBG</div>
+      <div>
+        <div class="logo-text">Edwin Batista M.A.</div>
+        <div class="logo-sub">Sistema de Calificación</div>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-nav">
+    <button class="sidebar-nav-btn active" id="nav-boletin" onclick="switchSidebarMode('boletin')">Boletines</button>
+    <button class="sidebar-nav-btn" id="nav-registro" onclick="switchSidebarMode('registro')">Registros</button>
+  </div>
+  <!-- Sección A: Boletines por Grado -->
+  <div id="boletin-section">
+    <div style="padding:8px">
+      <button class="btn-add-grade" onclick="openAddGrade()">
+        <span>+</span> Añadir Grado
+      </button>
+    </div>
+    <div id="grades-list"></div>
+  </div>
+  <!-- Sección B: Calificaciones de Rendimiento -->
+  <div id="registros-section">
+    <div style="padding:8px">
+      <button class="btn-add-grade" onclick="openAddRegistro()">
+        <span>+</span> Nuevo Registro
+      </button>
+    </div>
+    <div id="registros-list"></div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main id="main">
+  <div class="topbar">
+    <div>
+      <div class="topbar-title" id="topbar-title">Bienvenido</div>
+      <div class="topbar-sub" id="topbar-sub">Selecciona o crea un grado para comenzar</div>
+    </div>
+    <div class="topbar-spacer"></div>
+    <button class="btn btn-ghost" onclick="showAsignaturas()" style="font-size:11px">Asignaturas</button>
+    <button class="btn btn-ghost" onclick="exportarDatos()" style="font-size:11px">Exportar</button>
+    <button class="btn btn-ghost" onclick="document.getElementById('import-input').click()" style="font-size:11px">Importar</button>
+    <input id="import-input" type="file" accept=".json" style="display:none" onchange="importarDatos(this)">
+  </div>
+
+  <!-- Welcome -->
+  <div id="welcome">
+    <div class="welcome-icon" style="font-size:48px;opacity:.15;font-weight:900;letter-spacing:-4px;color:var(--accent2)">EBG</div>
+    <div class="welcome-title">Sistema de Boletines Escolares</div>
+    <div class="welcome-desc">Crea grados, agrega estudiantes y gestiona sus calificaciones de rendimiento academico de forma organizada.</div>
+    <button class="btn btn-primary" onclick="openAddGrade()" style="margin-top:8px">Crear primer grado →</button>
+  </div>
+
+  <!-- Boletín View -->
+  <div id="boletin-view"></div>
+
+  <!-- Registro View -->
+  <div id="registro-view"></div>
+</main>
+
+<!-- MODAL: Añadir Grado -->
+<div class="modal-overlay" id="modal-grade">
+  <div class="modal">
+    <h3>Nuevo Grado</h3>
+    <p>Selecciona el nivel educativo y el grado. Luego podrás agregar hasta 35 estudiantes.</p>
+    <div class="form-group">
+      <label>Nivel Educativo</label>
+      <div class="modal-tabs">
+        <div class="modal-tab active" id="tab-primaria" onclick="selectNivel('Primaria')">Primaria</div>
+        <div class="modal-tab" id="tab-secundaria" onclick="selectNivel('Secundaria')">Secundaria</div>
+      </div>
+      <input type="hidden" id="input-nivel" value="Primaria">
+    </div>
+    <div class="form-group">
+      <label>Grado</label>
+      <div class="grade-btn-grid" id="grade-btn-grid">
+        <div class="grade-btn selected" onclick="selectGradeBtn(this,'1ro')">1ro</div>
+        <div class="grade-btn" onclick="selectGradeBtn(this,'2do')">2do</div>
+        <div class="grade-btn" onclick="selectGradeBtn(this,'3ro')">3ro</div>
+        <div class="grade-btn" onclick="selectGradeBtn(this,'4to')">4to</div>
+        <div class="grade-btn" onclick="selectGradeBtn(this,'5to')">5to</div>
+        <div class="grade-btn" onclick="selectGradeBtn(this,'6to')">6to</div>
+      </div>
+      <input type="hidden" id="input-grado" value="1ro">
+    </div>
+    <div class="form-group">
+      <label>Sección</label>
+      <input id="input-seccion" type="text" placeholder="Ej: A, B, C..." maxlength="5" value="A">
+    </div>
+    <div class="form-group">
+      <label>Nombre del Centro Educativo</label>
+      <input id="input-centro" type="text" placeholder="Ej: Escuela Primaria Nacional...">
+    </div>
+    <div class="form-group">
+      <label>Año escolar</label>
+      <input id="input-anio" type="text" placeholder="2025-2026" value="2025-2026">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-grade')">Cancelar</button>
+      <button class="btn btn-primary" onclick="addGrade()">Crear Grado</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Añadir Estudiante -->
+<div class="modal-overlay" id="modal-student">
+  <div class="modal">
+    <h3>Añadir Estudiante</h3>
+    <p>Ingresa los datos del estudiante. Puedes completar el boletin despues.</p>
+    <div class="form-group">
+      <label>No. de Lista</label>
+      <input id="input-numero" type="number" min="1" max="35" placeholder="Ej: 1, 2, 3...">
+    </div>
+    <div class="form-group">
+      <label>Nombres</label>
+      <input id="input-nombres" type="text" placeholder="Nombre(s) del estudiante">
+    </div>
+    <div class="form-group">
+      <label>Apellidos</label>
+      <input id="input-apellidos" type="text" placeholder="Apellido(s)">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-student')">Cancelar</button>
+      <button class="btn btn-primary" onclick="addStudent()">Agregar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Nuevo Registro de Calificaciones -->
+<div class="modal-overlay" id="modal-registro">
+  <div class="modal">
+    <h3>Nuevo Registro</h3>
+    <p>Crea un registro de Calificaciones de Rendimiento para una asignatura.</p>
+    <div class="form-group">
+      <label>Año Escolar</label>
+      <input id="reg-input-anio" type="text" placeholder="2025-2026" value="2025-2026">
+    </div>
+    <div class="form-group">
+      <label>Grado</label>
+      <input id="reg-input-grado" type="text" placeholder="Ej: 5to">
+    </div>
+    <div class="form-group">
+      <label>Asignatura</label>
+      <select id="reg-input-asignatura" style="width:100%;padding:9px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;font-family:inherit;outline:none"></select>
+    </div>
+    <div class="form-group">
+      <label>Nombre del Docente</label>
+      <input id="reg-input-docente" type="text" placeholder="Nombre completo del docente">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-registro')">Cancelar</button>
+      <button class="btn btn-primary" onclick="addRegistro()">Crear Registro</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Asignaturas -->
+<div class="modal-overlay" id="modal-asign">
+  <div class="modal" style="width:520px">
+    <h3>Gestionar Asignaturas</h3>
+    <p>Estas asignaturas aparecen en todos los boletines. Puedes añadir o eliminar según el currículo.</p>
+    <div id="asign-list-modal" style="max-height:300px;overflow-y:auto;margin-bottom:14px"></div>
+    <div style="display:flex;gap:8px">
+      <input id="input-new-asign" type="text" placeholder="Nueva asignatura..." style="flex:1;padding:8px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:inherit;font-size:13px;outline:none">
+      <button class="btn btn-primary" onclick="addAsignatura()">Añadir</button>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-asign')">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// STATE
+// ============================================================
+let state = {
+  grades: [],       // { id, grado, nivel, centro, seccion, anio, students: [] }
+  registers: [],    // { id, anio, grado, asignatura, docente, rows: [] }
+  asignaturas: [
+    'Lengua Española',
+    'Lenguas Extranjeras (Inglés)',
+    'Lenguas Extranjeras (Francés)',
+    'Matemática',
+    'Ciencias Sociales',
+    'Ciencias de la Naturaleza',
+    'Educación Artística',
+    'Educación Física',
+    'Formación Integral Humana y Religiosa'
+  ],
+  // student: { id, numero, nombres, apellidos, boletin: {} }
+  activeGrade: null,
+  activeStudent: null,
+  activeRegister: null,
+  sidebarMode: 'boletin',  // 'boletin' | 'registro'
+  expandedYears: {},
+};
+
+const COMP_GROUPS = [
+  { key: 'c1',  label: 'Comunicativa' },
+  { key: 'c23', label: 'Pens. Lógico/Creativo/Crítico + Científica y Tecnológica' },
+  { key: 'c45', label: 'Resolución de Problemas + Ambiental y de la Salud' },
+  { key: 'c67', label: 'Ética, Estética y Espiritual + Desarrollo Personal' },
+];
+
+const PERIODS = ['P1','P2','P3','P4'];
+
+const WELCOME_BOLETIN_HTML = `
+    <div class="welcome-icon" style="font-size:48px;opacity:.15;font-weight:900;letter-spacing:-4px;color:var(--accent2)">EBG</div>
+    <div class="welcome-title">Sistema de Boletines Escolares</div>
+    <div class="welcome-desc">Crea grados, agrega estudiantes y gestiona sus calificaciones de rendimiento academico de forma organizada.</div>
+    <button class="btn btn-primary" onclick="openAddGrade()" style="margin-top:8px">Crear primer grado →</button>`;
+
+const WELCOME_REGISTRO_HTML = `
+    <div class="welcome-icon" style="font-size:48px;opacity:.15;font-weight:900;letter-spacing:-4px;color:var(--accent2)">EBG</div>
+    <div class="welcome-title">Sistema de Rendimiento Escolar</div>
+    <div class="welcome-desc">Crea un Registro de Rendimiento, agrega estudiantes y gestiona sus calificaciones de rendimiento academico de forma organizada.</div>
+    <button class="btn btn-primary" onclick="openAddRegistro()" style="margin-top:8px">+ Nuevo Registro de Rendimiento</button>`;
+
+function uid() { return Math.random().toString(36).slice(2); }
+
+function save() {
+  localStorage.setItem('calificaciones_state', JSON.stringify(state));
+}
+
+function exportarDatos() {
+  const json = JSON.stringify(state, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const fecha = new Date().toISOString().slice(0, 10);
+  a.href = url;
+  a.download = `calificaciones-respaldo-${fecha}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importarDatos(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data.grades) throw new Error('Archivo inválido');
+      if (!confirm('¿Restaurar datos desde el archivo? Esto reemplazará todo lo actual.')) return;
+      Object.assign(state, data);
+      save();
+      renderSidebar();
+      renderRegistrosSidebar();
+      if (state.sidebarMode === 'registro') switchSidebarMode('registro');
+      else showWelcomeOrBoletin();
+      alert('Datos restaurados correctamente.');
+    } catch(err) {
+      alert('No se pudo leer el archivo. Asegúrate de que sea un respaldo válido.');
+    }
+  };
+  reader.readAsText(file);
+  input.value = '';
+}
+
+function load() {
+  const raw = localStorage.getItem('calificaciones_state');
+  if (raw) {
+    try { Object.assign(state, JSON.parse(raw)); } catch(e) {}
+  }
+}
+
+// ============================================================
+// RENDER SIDEBAR — agrupado por año escolar
+// ============================================================
+function renderSidebar() {
+  const list = document.getElementById('grades-list');
+  if (!state.grades.length) {
+    list.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text3);font-size:12px">Sin grados creados</div>';
+    return;
+  }
+
+  // Agrupar por año escolar, preservando orden de inserción
+  const yearMap = {};
+  const yearOrder = [];
+  state.grades.forEach(g => {
+    if (!yearMap[g.anio]) { yearMap[g.anio] = []; yearOrder.push(g.anio); }
+    yearMap[g.anio].push(g);
+  });
+
+  list.innerHTML = yearOrder.map(anio => {
+    const grades = yearMap[anio];
+    const isYearOpen = state.expandedYears[anio] !== false; // abierto por defecto
+    const gradesHTML = grades.map(g => {
+      const isOpen = g.id === state.activeGrade;
+      return `
+      <div class="grade-item" id="grade-${g.id}">
+        <div class="grade-header ${isOpen ? 'active' : ''}" onclick="toggleGrade('${g.id}')">
+          <span class="grade-chevron ${isOpen ? 'open' : ''}">▶</span>
+          <span class="grade-label">${g.nivel ? `<span class='nivel-badge ${g.nivel==='Primaria'?'nivel-p':'nivel-s'}'>${g.nivel[0]}</span>` : ''}${g.grado} · ${g.seccion}</span>
+          <span class="grade-count">${g.students.length}/35</span>
+          <span class="grade-delete" title="Descargar todos los boletines" onclick="descargarBoletinesGrado(event,'${g.id}')" style="font-size:13px">⬇</span>
+          <span class="grade-delete" onclick="deleteGrade(event,'${g.id}')">✕</span>
+        </div>
+        ${isOpen ? `
+        <div class="students-list" id="students-${g.id}">
+          ${g.students.map(s => `
+            <div class="student-item ${s.id === state.activeStudent ? 'active' : ''}" onclick="selectStudent('${g.id}','${s.id}')">
+              <span class="student-num">${s.numero || ''}</span>
+              <span class="student-name-label">${s.nombres ? s.nombres + ' ' + s.apellidos : 'Estudiante sin nombre'}</span>
+              <span class="student-status ${getSituacionClass(s)}"></span>
+            </div>
+          `).join('')}
+          ${g.students.length < 35 ? `
+          <div class="btn-add-student" onclick="openAddStudent('${g.id}')">
+            <span>+</span> <span>Añadir estudiante</span>
+            <span style="font-size:10px;color:var(--text3);margin-left:auto">${35 - g.students.length} disp.</span>
+          </div>` : ''}
+        </div>` : ''}
+      </div>`;
+    }).join('');
+
+    return `
+    <div class="year-section">
+      <div class="year-header" onclick="toggleYear('${anio}')">
+        <span class="year-chevron ${isYearOpen ? 'open' : ''}">▶</span>
+        <span class="year-label">${anio}</span>
+        <span style="font-size:10px;color:var(--text3);margin-left:auto">${grades.length} grado${grades.length!==1?'s':''}</span>
+      </div>
+      ${isYearOpen ? `<div class="year-grades">${gradesHTML}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function toggleYear(anio) {
+  state.expandedYears[anio] = state.expandedYears[anio] === false ? true : false;
+  save();
+  renderSidebar();
+}
+
+function getSituacionClass(s) {
+  const sit = s.boletin?.situacion || '';
+  if (sit === 'promovido') return 'status-a';
+  if (sit === 'repitente') return 'status-r';
+  return 'status-p';
+}
+
+// ============================================================
+// GRADE ACTIONS
+// ============================================================
+let _addStudentGradeId = null;
+
+function openAddGrade() {
+  selectNivel('Primaria');
+  document.getElementById('input-seccion').value = 'A';
+  document.getElementById('input-anio').value = '2025-2026';
+  document.getElementById('input-centro').value = '';
+  openModal('modal-grade');
+}
+
+function addGrade() {
+  const grado = document.getElementById('input-grado').value;
+  const nivel = document.getElementById('input-nivel').value;
+  const seccion = document.getElementById('input-seccion').value.trim() || 'A';
+  const anio = document.getElementById('input-anio').value.trim() || '2025-2026';
+  const centro = document.getElementById('input-centro').value.trim();
+  const g = { id: uid(), grado, nivel, centro, seccion, anio, students: [] };
+  if (state.expandedYears[anio] === undefined) state.expandedYears[anio] = true;
+  state.grades.push(g);
+  state.activeGrade = g.id;
+  state.activeStudent = null;
+  save();
+  closeModal('modal-grade');
+  renderSidebar();
+  showWelcomeOrBoletin();
+}
+
+function toggleGrade(id) {
+  if (state.activeGrade === id) {
+    state.activeGrade = null;
+    state.activeStudent = null;
+  } else {
+    state.activeGrade = id;
+    state.activeStudent = null;
+  }
+  save();
+  renderSidebar();
+  showWelcomeOrBoletin();
+}
+
+function deleteGrade(e, id) {
+  e.stopPropagation();
+  if (!confirm('¿Eliminar este grado y todos sus estudiantes?')) return;
+  state.grades = state.grades.filter(g => g.id !== id);
+  if (state.activeGrade === id) { state.activeGrade = null; state.activeStudent = null; }
+  save(); renderSidebar(); showWelcomeOrBoletin();
+}
+
+// ============================================================
+// STUDENT ACTIONS
+// ============================================================
+function openAddStudent(gradeId) {
+  _addStudentGradeId = gradeId;
+  document.getElementById('input-numero').value = '';
+  document.getElementById('input-nombres').value = '';
+  document.getElementById('input-apellidos').value = '';
+  // Sugerir el siguiente número libre
+  const g = state.grades.find(g => g.id === gradeId);
+  if (g) {
+    const usados = new Set(g.students.map(s => parseInt(s.numero)).filter(n => !isNaN(n)));
+    let next = 1;
+    while (usados.has(next)) next++;
+    if (next <= 35) document.getElementById('input-numero').value = next;
+  }
+  openModal('modal-student');
+}
+
+function addStudent() {
+  const numero = document.getElementById('input-numero').value.trim();
+  const nombres = document.getElementById('input-nombres').value.trim();
+  const apellidos = document.getElementById('input-apellidos').value.trim();
+  const g = state.grades.find(g => g.id === _addStudentGradeId);
+  if (!g || g.students.length >= 35) return;
+  const s = { id: uid(), numero, nombres, apellidos, boletin: {} };
+  g.students.push(s);
+  state.activeGrade = g.id;
+  state.activeStudent = s.id;
+  save();
+  closeModal('modal-student');
+  renderSidebar();
+  renderBoletin(g, s);
+}
+
+function selectStudent(gradeId, studentId) {
+  state.activeGrade = gradeId;
+  state.activeStudent = studentId;
+  const g = state.grades.find(g => g.id === gradeId);
+  const s = g?.students.find(s => s.id === studentId);
+  renderSidebar();
+  if (g && s) renderBoletin(g, s);
+}
+
+// ============================================================
+// BOLETIN RENDER
+// ============================================================
+function showWelcomeOrBoletin() {
+  const g = state.grades.find(g => g.id === state.activeGrade);
+  const s = g?.students.find(s => s.id === state.activeStudent);
+  document.getElementById('topbar-title').textContent = g ? `${g.grado} — Sección ${g.seccion}` : 'Bienvenido';
+  document.getElementById('topbar-sub').textContent = g ? `${g.anio} · ${g.students.length} estudiante${g.students.length !== 1 ? 's' : ''}` : 'Selecciona o crea un grado para comenzar';
+  if (g && s) {
+    document.getElementById('welcome').style.display = 'none';
+    document.getElementById('boletin-view').style.display = 'block';
+    renderBoletin(g, s);
+  } else {
+    document.getElementById('welcome').innerHTML = WELCOME_BOLETIN_HTML;
+    document.getElementById('welcome').style.display = 'flex';
+    document.getElementById('boletin-view').style.display = 'none';
+  }
+}
+
+function renderBoletin(g, s) {
+  document.getElementById('welcome').style.display = 'none';
+  const bv = document.getElementById('boletin-view');
+  bv.style.display = 'block';
+  bv.innerHTML = buildBoletinHTML(g, s);
+  attachBoletinListeners(s.id);
+}
+
+function buildBoletinHTML(g, s) {
+  const b = s.boletin || {};
+  const fullName = [s.nombres, s.apellidos].filter(Boolean).join(' ') || '';
+  const nivelLabel = g.nivel ? `${g.nivel} · ` : '';
+  const centroNombre = g.centro || 'Centro Educativo';
+
+  // Header row 1: group headers + PC1-PC4 + C.F. + SIT (all rowspan=2)
+  const compHeaders = COMP_GROUPS.map(grp =>
+    `<th colspan="4" class="th-group" style="font-size:9px;white-space:normal;max-width:120px">${grp.label}</th>`
+  ).join('');
+  const pcHeaders = COMP_GROUPS.map((_,i) =>
+    `<th rowspan="2" class="th-group" style="min-width:38px;font-size:9px">PC${i+1}<br><span style="font-size:8px;font-weight:400;opacity:.7">Prom.</span></th>`
+  ).join('');
+
+  // Header row 2: P1-P4 per group
+  const periodHeaders = COMP_GROUPS.map(() =>
+    PERIODS.map(p => `<th class="period-cell" style="font-size:9px">${p}</th>`).join('')
+  ).join('');
+
+  // Build rows
+  const rows = state.asignaturas.map(asig => {
+    const asigKey = asig.replace(/\s+/g,'_').replace(/[^a-z0-9_]/gi,'').toLowerCase();
+
+    const cells = COMP_GROUPS.map(grp =>
+      PERIODS.map(per => {
+        const key = `${asigKey}_${grp.key}_${per.toLowerCase()}`;
+        const val = b[key] || '';
+        const cls = val ? (parseFloat(val) >= 70 ? 'highlight' : parseFloat(val) >= 60 ? 'avg' : 'low') : '';
+        return `<td><input class="grade-input ${cls}" data-key="${key}" data-asig="${asigKey}" data-sid="${s.id}" value="${val}" type="text" maxlength="3" inputmode="numeric" oninput="liveUpdate(this,'${s.id}')" onchange="updateBoletin(this,'${s.id}')"></td>`;
+      }).join('')
+    ).join('');
+
+    // PC1-PC4 — readonly, auto-calculated
+    const pcCells = COMP_GROUPS.map((_,i) => {
+      const pcVal = b[`${asigKey}_pc${i+1}`] || '';
+      const cls = pcVal ? (parseFloat(pcVal)>=70?'highlight':parseFloat(pcVal)>=60?'avg':'low') : '';
+      return `<td><input class="grade-input th-group ${cls}" id="pc_${asigKey}_${i+1}" value="${pcVal}" readonly tabindex="-1" style="cursor:default;opacity:.85"></td>`;
+    }).join('');
+
+    const cfVal = b[`${asigKey}_cf`] || '';
+    const cfCls = cfVal ? (parseFloat(cfVal)>=70?'highlight':parseFloat(cfVal)>=60?'avg':'low') : '';
+    const sitVal = b[`${asigKey}_sit`] || '';
+    const sitColor = sitVal==='A' ? 'var(--green)' : sitVal==='R' ? 'var(--red)' : 'var(--text3)';
+
+    return `<tr>
+      <td><div class="subject-name">${asig}</div></td>
+      ${cells}
+      ${pcCells}
+      <td><input class="grade-input th-final ${cfCls}" id="cf_${asigKey}" value="${cfVal}" readonly tabindex="-1" style="cursor:default;font-weight:700"></td>
+      <td><div id="sit_${asigKey}" style="text-align:center;padding:8px 2px;font-size:12px;font-weight:800;color:${sitColor}">${sitVal||'–'}</div></td>
+    </tr>`;
+  }).join('');
+
+  // Asistencia
+  const asistHtml = PERIODS.map(per => {
+    const perL = per.toLowerCase();
+    const asisKey = `asist_${perL}`;
+    const ausKey = `ausen_${perL}`;
+    return `<div class="asist-period">
+      <h4>Período ${per}</h4>
+      <div class="asist-row"><label>Asistencias</label><input type="number" min="0" data-key="${asisKey}" value="${b[asisKey]||''}" placeholder="0" onchange="updateBoletin(this,'${s.id}')"></div>
+      <div class="asist-row"><label>Ausencias</label><input type="number" min="0" data-key="${ausKey}" value="${b[ausKey]||''}" placeholder="0" onchange="updateBoletin(this,'${s.id}')"></div>
+    </div>`;
+  }).join('');
+
+  const sitFinal = b.situacion || '';
+  const condFinal = b.condicion || '';
+
+  return `
+  <div class="boletin-card">
+    <!-- Header -->
+    <div class="boletin-top">
+      <div class="school-info">
+        <div class="school-name">${centroNombre}</div>
+        <div class="school-sub">Año Escolar ${g.anio} · ${nivelLabel}${g.grado} · Sección ${g.seccion}</div>
+      </div>
+      <div class="boletin-title-badge">BOLETIN DE CALIFICACIONES</div>
+    </div>
+
+    <!-- Info del estudiante -->
+    <div class="student-info-grid" style="grid-template-columns:60px 1fr 1fr 1fr">
+      <div class="info-field">
+        <label>No.</label>
+        <input type="text" value="${s.numero||''}" placeholder="—" readonly style="opacity:.7;text-align:center">
+      </div>
+      <div class="info-field">
+        <label>Nombre(s) y Apellido(s)</label>
+        <input type="text" data-key="fullname" value="${fullName}" placeholder="Nombre completo" onchange="updateStudentName(this,'${s.id}','${g.id}')">
+      </div>
+      <div class="info-field">
+        <label>Grado</label>
+        <input type="text" value="${nivelLabel}${g.grado} — Sec. ${g.seccion}" readonly style="opacity:.6">
+      </div>
+      <div class="info-field">
+        <label>Año Escolar</label>
+        <input type="text" value="${g.anio}" readonly style="opacity:.6">
+      </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="section-title">Calificaciones de Rendimiento — Competencias Fundamentales</div>
+    <div class="grades-table-wrap">
+      <table class="grades-table">
+        <thead>
+          <tr>
+            <th class="subject-header" rowspan="2">ASIGNATURA</th>
+            ${compHeaders}
+            ${pcHeaders}
+            <th rowspan="2" class="th-final" style="min-width:48px;font-size:9px">C.F.<br><span style="font-size:8px;font-weight:400">Área</span></th>
+            <th rowspan="2" class="th-situation" style="min-width:36px;font-size:9px">SIT.</th>
+          </tr>
+          <tr>${periodHeaders}</tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+
+    <!-- Asistencia -->
+    <div class="section-title">Resumen de Asistencia</div>
+    <div class="asistencia-grid">${asistHtml}</div>
+
+    <!-- Situación final -->
+    <div class="section-title">Situacion Final del Estudiante</div>
+    <div class="situacion-grid">
+      <div class="situacion-block">
+        <h4>Situacion</h4>
+        <div class="radio-group">
+          <label class="radio-opt ${sitFinal==='promovido'?'selected':''}">
+            <input type="radio" name="sit_${s.id}" value="promovido" ${sitFinal==='promovido'?'checked':''} onchange="updateSituacion(this,'${s.id}')">
+            <span>Promovido/a</span>
+          </label>
+          <label class="radio-opt ${sitFinal==='repitente'?'selected':''}">
+            <input type="radio" name="sit_${s.id}" value="repitente" ${sitFinal==='repitente'?'checked':''} onchange="updateSituacion(this,'${s.id}')">
+            <span>Repitente</span>
+          </label>
+        </div>
+      </div>
+      <div class="situacion-block">
+        <h4>Condicion Final</h4>
+        <input type="text" data-key="condicion" value="${condFinal}" placeholder="Descripcion de condicion..."
+          style="width:100%;padding:8px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:inherit;font-size:13px;outline:none"
+          onchange="updateBoletin(this,'${s.id}')">
+      </div>
+    </div>
+
+    <!-- Firmas -->
+    <div class="section-title">Firmas</div>
+    <div class="firma-grid">
+      <div class="firma-block">
+        <div style="font-size:11px;color:var(--text3)">_________________________________</div>
+        <div class="firma-title">Maestro(a) encargado(a) del grado</div>
+      </div>
+      <div class="firma-block">
+        <div style="font-size:11px;color:var(--text3)">_________________________________</div>
+        <div class="firma-title">Director(a) del Centro Educativo</div>
+      </div>
+    </div>
+
+    <!-- Leyenda -->
+    <div class="leyenda-block">
+      <div class="leyenda-title">Leyenda</div>
+      <div class="leyenda-items">
+        <div class="leyenda-item"><strong>P1–P4</strong> Períodos</div>
+        <div class="leyenda-item"><strong>PC1</strong> Prom. Comunicativa</div>
+        <div class="leyenda-item"><strong>PC2</strong> Prom. Pens. Lógico + Científica</div>
+        <div class="leyenda-item"><strong>PC3</strong> Prom. Resol. Problemas + Ambiental</div>
+        <div class="leyenda-item"><strong>PC4</strong> Prom. Ética + Desarrollo Personal</div>
+        <div class="leyenda-item"><strong>C.F.</strong> (PC1+PC2+PC3+PC4)÷4</div>
+        <div class="leyenda-item"><strong>A</strong> Aprobado (&gt;70) &nbsp;|&nbsp; <strong>R</strong> Reprobado (&le;70)</div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="action-bar">
+      <button class="btn btn-ghost" onclick="printBoletin()">Imprimir</button>
+      <button class="btn btn-danger" onclick="deleteStudent('${g.id}','${s.id}')">Eliminar Estudiante</button>
+      <span class="save-indicator" id="save-indicator">Guardado</span>
+    </div>
+  </div>`;
+}
+
+// ============================================================
+// MODAL GRADE HELPERS
+// ============================================================
+function selectNivel(nivel) {
+  document.getElementById('input-nivel').value = nivel;
+  document.getElementById('tab-primaria').classList.toggle('active', nivel === 'Primaria');
+  document.getElementById('tab-secundaria').classList.toggle('active', nivel === 'Secundaria');
+  // Reset grade selection to 1ro
+  document.querySelectorAll('.grade-btn').forEach((btn, i) => btn.classList.toggle('selected', i === 0));
+  document.getElementById('input-grado').value = '1ro';
+}
+
+function selectGradeBtn(el, value) {
+  document.querySelectorAll('.grade-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('input-grado').value = value;
+}
+
+// ============================================================
+// BOLETIN LOGIC
+// ============================================================
+function attachBoletinListeners(studentId) {
+  document.querySelectorAll('.grade-input[type=text]').forEach(colorInput);
+  document.querySelectorAll('.radio-opt input').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.radio-opt').forEach(opt => opt.classList.remove('selected'));
+      if (radio.checked) radio.closest('.radio-opt').classList.add('selected');
+    });
+  });
+}
+
+// Live recalculation on every keystroke
+function liveUpdate(el, studentId) {
+  const student = findStudent(studentId);
+  if (!student) return;
+  if (!student.boletin) student.boletin = {};
+  student.boletin[el.dataset.key] = el.value;
+  colorInput(el);
+
+  const asigKey = el.dataset.asig;
+  if (!asigKey) return;
+  const b = student.boletin;
+  recalcRow(asigKey, b);
+
+  // Update PC1-PC4 in DOM
+  COMP_GROUPS.forEach((_, i) => {
+    const pcEl = document.getElementById(`pc_${asigKey}_${i+1}`);
+    if (pcEl) { pcEl.value = b[`${asigKey}_pc${i+1}`] || ''; colorInput(pcEl); }
+  });
+  // Update C.F.
+  const cfEl = document.getElementById(`cf_${asigKey}`);
+  if (cfEl) { cfEl.value = b[`${asigKey}_cf`] || ''; colorInput(cfEl); }
+  // Update SIT
+  const sitEl = document.getElementById(`sit_${asigKey}`);
+  if (sitEl) {
+    const sit = b[`${asigKey}_sit`] || '';
+    sitEl.textContent = sit || '–';
+    sitEl.style.color = sit==='A' ? 'var(--green)' : sit==='R' ? 'var(--red)' : 'var(--text3)';
+  }
+
+  save();
+  showSaveIndicator();
+}
+
+// Recalculate PC1-PC4 and C.F. for one subject row
+function recalcRow(asigKey, b) {
+  const pcs = COMP_GROUPS.map((grp, i) => {
+    const vals = PERIODS
+      .map(p => parseFloat(b[`${asigKey}_${grp.key}_${p.toLowerCase()}`]))
+      .filter(v => !isNaN(v));
+    if (!vals.length) { b[`${asigKey}_pc${i+1}`] = ''; return null; }
+    const pc = vals.reduce((a, v) => a + v, 0) / vals.length;
+    b[`${asigKey}_pc${i+1}`] = pc.toFixed(2);
+    return pc;
+  });
+
+  const validPcs = pcs.filter(v => v !== null);
+  if (validPcs.length) {
+    const final = validPcs.reduce((a, v) => a + v, 0) / validPcs.length;
+    b[`${asigKey}_cf`] = final.toFixed(2);
+    b[`${asigKey}_sit`] = final > 70 ? 'A' : 'R';
+  } else {
+    b[`${asigKey}_cf`] = '';
+    b[`${asigKey}_sit`] = '';
+  }
+}
+
+function colorInput(input) {
+  const val = parseFloat(input.value);
+  input.classList.remove('highlight','avg','low');
+  if (!isNaN(val)) {
+    if (val >= 70) input.classList.add('highlight');
+    else if (val >= 60) input.classList.add('avg');
+    else input.classList.add('low');
+  }
+}
+
+function updateBoletin(el, studentId) {
+  const student = findStudent(studentId);
+  if (!student) return;
+  if (!student.boletin) student.boletin = {};
+  student.boletin[el.dataset.key] = el.value;
+  save();
+  showSaveIndicator();
+}
+
+function updateStudentName(el, studentId, gradeId) {
+  const student = findStudent(studentId);
+  if (!student) return;
+  const parts = el.value.trim().split(' ');
+  student.nombres = parts.slice(0, Math.ceil(parts.length/2)).join(' ');
+  student.apellidos = parts.slice(Math.ceil(parts.length/2)).join(' ');
+  save(); renderSidebar(); showSaveIndicator();
+}
+
+function updateSituacion(radio, studentId) {
+  const student = findStudent(studentId);
+  if (!student) return;
+  if (!student.boletin) student.boletin = {};
+  student.boletin.situacion = radio.value;
+  // Update visual
+  document.querySelectorAll('.radio-opt').forEach(opt => opt.classList.remove('selected'));
+  radio.closest('.radio-opt').classList.add('selected');
+  save(); renderSidebar(); showSaveIndicator();
+}
+
+function showSaveIndicator() {
+  const el = document.getElementById('save-indicator');
+  if (!el) return;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2000);
+}
+
+function autoCalc(studentId, gradeId) {
+  const student = findStudent(studentId);
+  const g = state.grades.find(g => g.id === gradeId);
+  if (!student || !student.boletin) return;
+  const b = student.boletin;
+  state.asignaturas.forEach(asig => {
+    const asigKey = asig.replace(/\s+/g,'_').replace(/[^a-z0-9_]/gi,'').toLowerCase();
+    recalcRow(asigKey, b);
+  });
+  save();
+  renderBoletin(g, student);
+}
+
+function printBoletin() {
+  document.body.classList.add('print-boletin');
+  window.print();
+  document.body.classList.remove('print-boletin');
+}
+
+let _printCSSCache = null;
+function getPrintCSS() {
+  if (_printCSSCache !== null) return _printCSSCache;
+  const css = document.querySelector('style').textContent;
+  const startIdx = css.indexOf('@media print');
+  if (startIdx === -1) { _printCSSCache = ''; return _printCSSCache; }
+  const braceStart = css.indexOf('{', startIdx);
+  let depth = 1, i = braceStart + 1;
+  while (depth > 0 && i < css.length) {
+    if (css[i] === '{') depth++;
+    else if (css[i] === '}') depth--;
+    i++;
+  }
+  _printCSSCache = css.slice(braceStart + 1, i - 1);
+  return _printCSSCache;
+}
+
+function getPdfRenderZone() {
+  let zone = document.getElementById('pdf-render-zone');
+  if (!zone) {
+    zone = document.createElement('div');
+    zone.id = 'pdf-render-zone';
+    zone.style.cssText = 'position:fixed;left:-10000px;top:0;width:1100px;background:#fff';
+    document.body.appendChild(zone);
+  }
+  return zone;
+}
+
+/* Refuerza fondo blanco en elementos que el CSS de impresión no cubre
+   (usan variables del tema oscuro y html2canvas sí las renderiza, a
+   diferencia del navegador al imprimir) */
+const PDF_WHITEOUT_CSS = `
+  #pdf-render-zone .boletin-card { background:#fff !important; }
+  #pdf-render-zone .student-info-grid { background:#ddd !important; }
+  #pdf-render-zone .firma-grid { background:#ddd !important; }
+  #pdf-render-zone .grades-table tr:nth-child(even) td,
+  #pdf-render-zone .grades-table tr:hover td { background:#fff !important; }
+  #pdf-render-zone .radio-opt.selected { background:#eef !important; }
+  /* Casillas de calificaciones y asignaturas: sin relleno, solo blanco */
+  #pdf-render-zone .grade-input,
+  #pdf-render-zone .th-group,
+  #pdf-render-zone .th-final,
+  #pdf-render-zone .subject-name,
+  #pdf-render-zone .grades-table th.subject-header { background:#fff !important; }
+`;
+
+async function boletinToPdfBlob(g, s) {
+  const zone = getPdfRenderZone();
+  const inner = buildBoletinHTML(g, s).replace(/\s(onchange|oninput)="[^"]*"/g, '');
+  zone.innerHTML = `<style>${getPrintCSS()}${PDF_WHITEOUT_CSS}</style><div style="background:#fff">${inner}</div>`;
+  const card = zone.querySelector('.boletin-card');
+  const opt = {
+    margin: 0.3,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, backgroundColor: '#ffffff' },
+    jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+  };
+  const blob = await html2pdf().set(opt).from(card).outputPdf('blob');
+  zone.innerHTML = '';
+  return blob;
+}
+
+async function descargarBoletinesGrado(event, gradeId) {
+  if (event) event.stopPropagation();
+  const g = state.grades.find(x => x.id === gradeId);
+  if (!g) return;
+  if (!g.students.length) { alert('Este grado no tiene estudiantes.'); return; }
+  const btn = event ? event.currentTarget : null;
+  const prevText = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = '…'; btn.style.pointerEvents = 'none'; }
+  try {
+    const zip = new JSZip();
+    const folderName = `${g.anio}_${g.grado}-${g.seccion}`.replace(/[\\/:*?"<>|]/g, '-');
+    const folder = zip.folder(folderName);
+    for (const s of g.students) {
+      const fullName = [s.nombres, s.apellidos].filter(Boolean).join(' ').trim() || `Estudiante_${s.numero || ''}`;
+      const safeName = fullName.replace(/[\\/:*?"<>|]/g, '-');
+      const pdfBlob = await boletinToPdfBlob(g, s);
+      folder.file(`${safeName}.pdf`, pdfBlob);
+    }
+    const zipBlob = await zip.generateAsync({ type: 'blob' });
+    const url = URL.createObjectURL(zipBlob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${folderName}.zip`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  } finally {
+    if (btn) { btn.textContent = prevText; btn.style.pointerEvents = ''; }
+  }
+}
+
+function deleteStudent(gradeId, studentId) {
+  if (!confirm('¿Eliminar este estudiante?')) return;
+  const g = state.grades.find(g => g.id === gradeId);
+  if (!g) return;
+  g.students = g.students.filter(s => s.id !== studentId);
+  state.activeStudent = null;
+  save(); renderSidebar(); showWelcomeOrBoletin();
+}
+
+function findStudent(studentId) {
+  for (const g of state.grades) {
+    const s = g.students.find(s => s.id === studentId);
+    if (s) return s;
+  }
+  return null;
+}
+
+// ============================================================
+// ASIGNATURAS
+// ============================================================
+function showAsignaturas() {
+  renderAsignModal();
+  openModal('modal-asign');
+}
+
+function renderAsignModal() {
+  document.getElementById('asign-list-modal').innerHTML = state.asignaturas.map((a, i) => `
+    <div class="asign-item">
+      <div class="asign-dot"></div>
+      <div class="asign-name">${a}</div>
+      <div class="asign-del" onclick="deleteAsign(${i})">✕</div>
+    </div>
+  `).join('');
+}
+
+function addAsignatura() {
+  const input = document.getElementById('input-new-asign');
+  const val = input.value.trim();
+  if (!val) return;
+  if (state.asignaturas.includes(val)) { alert('Esta asignatura ya existe.'); return; }
+  state.asignaturas.push(val);
+  input.value = '';
+  save(); renderAsignModal();
+}
+
+function deleteAsign(i) {
+  if (!confirm('¿Eliminar esta asignatura?')) return;
+  state.asignaturas.splice(i, 1);
+  save(); renderAsignModal();
+}
+
+// ============================================================
+// CALIFICACIONES DE RENDIMIENTO — REGISTROS
+// ============================================================
+const REG_GROUPS = [
+  { key: 'c1',  code: 'CE-LE1',   label: 'Comunicativa' },
+  { key: 'c23', code: 'CE-LE2-3', label: 'Pens. Lógico/Creativo + Científica' },
+  { key: 'c45', code: 'CE-LE4-5', label: 'Resolución + Ambiental y Salud' },
+  { key: 'c67', code: 'CE-LE6-7', label: 'Ética, Estética + Desarrollo Personal' },
+];
+const REG_ROWS = 40;
+
+function switchSidebarMode(mode) {
+  state.sidebarMode = mode;
+  document.getElementById('nav-boletin').classList.toggle('active', mode === 'boletin');
+  document.getElementById('nav-registro').classList.toggle('active', mode === 'registro');
+  const bs = document.getElementById('boletin-section');
+  const rs = document.getElementById('registros-section');
+  bs.style.display = mode === 'boletin' ? 'flex' : 'none';
+  rs.style.display = mode === 'registro' ? 'flex' : 'none';
+  if (mode === 'registro') {
+    document.getElementById('welcome').style.display = 'none';
+    document.getElementById('boletin-view').style.display = 'none';
+    document.getElementById('registro-view').style.display = 'none';
+    renderRegistrosSidebar();
+    if (state.activeRegister) {
+      const reg = state.registers.find(r => r.id === state.activeRegister);
+      if (reg) renderRegistroView(reg); else showRegistroWelcome();
+    } else {
+      showRegistroWelcome();
+    }
+  } else {
+    document.getElementById('registro-view').style.display = 'none';
+    showWelcomeOrBoletin();
+  }
+  save();
+}
+
+function showRegistroWelcome() {
+  document.getElementById('registro-view').style.display = 'none';
+  document.getElementById('welcome').innerHTML = WELCOME_REGISTRO_HTML;
+  document.getElementById('welcome').style.display = 'flex';
+  document.getElementById('topbar-title').textContent = 'Calificaciones de Rendimiento';
+  document.getElementById('topbar-sub').textContent = 'Crea o selecciona un registro de asignatura';
+}
+
+function renderRegistrosSidebar() {
+  const list = document.getElementById('registros-list');
+  if (!list) return;
+  if (!state.registers || !state.registers.length) {
+    list.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text3);font-size:12px">Sin registros creados</div>';
+    return;
+  }
+  list.innerHTML = state.registers.map(r => `
+    <div class="registro-item ${r.id === state.activeRegister ? 'active' : ''}" onclick="selectRegistro('${r.id}')">
+      <div style="flex:1;min-width:0">
+        <div class="registro-label" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(r.asignatura)}</div>
+        <div class="registro-sub">${escHtml(r.grado)} &middot; ${escHtml(r.anio)}</div>
+      </div>
+      <span class="registro-del" onclick="deleteRegistro(event,'${r.id}')">&#x2715;</span>
+    </div>
+  `).join('');
+}
+
+function openAddRegistro() {
+  const sel = document.getElementById('reg-input-asignatura');
+  sel.innerHTML = state.asignaturas.map(a => `<option value="${escHtml(a)}">${escHtml(a)}</option>`).join('');
+  document.getElementById('reg-input-anio').value = '2025-2026';
+  document.getElementById('reg-input-grado').value = '';
+  document.getElementById('reg-input-docente').value = '';
+  openModal('modal-registro');
+}
+
+function addRegistro() {
+  const anio = document.getElementById('reg-input-anio').value.trim() || '2025-2026';
+  const grado = document.getElementById('reg-input-grado').value.trim();
+  const asignatura = document.getElementById('reg-input-asignatura').value;
+  const docente = document.getElementById('reg-input-docente').value.trim();
+  if (!grado) { alert('Ingresa el grado.'); return; }
+  const rows = Array.from({length: REG_ROWS}, (_, i) => makeEmptyRegRow(i + 1));
+  const reg = { id: uid(), anio, grado, asignatura, docente, rows };
+  state.registers.push(reg);
+  state.activeRegister = reg.id;
+  save();
+  closeModal('modal-registro');
+  switchSidebarMode('registro');
+}
+
+function makeEmptyRegRow(numero) {
+  const row = { numero, nombre: '' };
+  REG_GROUPS.forEach(grp => {
+    PERIODS.forEach(p => { row[`${grp.key}_${p.toLowerCase()}`] = ''; });
+    row[`pc_${grp.key}`] = '';
+  });
+  row.final = '';
+  return row;
+}
+
+function selectRegistro(id) {
+  state.activeRegister = id;
+  save();
+  renderRegistrosSidebar();
+  const reg = state.registers.find(r => r.id === id);
+  if (reg) renderRegistroView(reg);
+}
+
+function deleteRegistro(e, id) {
+  e.stopPropagation();
+  if (!confirm('¿Eliminar este registro y todos sus datos?')) return;
+  state.registers = state.registers.filter(r => r.id !== id);
+  if (state.activeRegister === id) {
+    state.activeRegister = null;
+    showRegistroWelcome();
+  }
+  save();
+  renderRegistrosSidebar();
+}
+
+function renderRegistroView(reg) {
+  document.getElementById('welcome').style.display = 'none';
+  document.getElementById('boletin-view').style.display = 'none';
+  document.getElementById('topbar-title').textContent = reg.asignatura;
+  document.getElementById('topbar-sub').textContent = `${reg.grado} · ${reg.anio}${reg.docente ? ' · ' + reg.docente : ''}`;
+  const rv = document.getElementById('registro-view');
+  rv.style.display = 'block';
+  rv.innerHTML = buildRegistroHTML(reg);
+  rv.querySelectorAll('.reg-grade-input').forEach(colorRegInput);
+  rv.querySelectorAll('.reg-pc-input').forEach(colorRegInput);
+  rv.querySelectorAll('.reg-final-input').forEach(colorRegInput);
+}
+
+function escHtml(str) {
+  return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function buildRegistroHTML(reg) {
+  const groupHeaders = REG_GROUPS.map(grp =>
+    `<th colspan="4" class="th-group" style="font-size:8px;white-space:normal;max-width:110px">${escHtml(grp.code)}<br><span style="font-size:7px;font-weight:400;opacity:.7">${escHtml(grp.label)}</span></th>`
+  ).join('');
+  const pcHeaders = REG_GROUPS.map((_, i) =>
+    `<th class="th-group" style="min-width:36px;font-size:8px">PC${i+1}</th>`
+  ).join('');
+  const periodHeaders = REG_GROUPS.map(() =>
+    PERIODS.map(p => `<th style="font-size:8px;min-width:28px">${p}</th>`).join('')
+  ).join('');
+
+  const rowsHTML = reg.rows.map((row, idx) => {
+    const periodCells = REG_GROUPS.map(grp =>
+      PERIODS.map(p => {
+        const key = `${grp.key}_${p.toLowerCase()}`;
+        const val = row[key] || '';
+        const cls = val ? (parseFloat(val) >= 70 ? 'highlight' : parseFloat(val) >= 60 ? 'avg' : 'low') : '';
+        return `<td><input class="reg-grade-input ${cls}" data-reg="${reg.id}" data-row="${idx}" data-key="${key}" value="${escHtml(val)}" type="text" maxlength="3" inputmode="numeric" oninput="liveUpdateReg(this)"></td>`;
+      }).join('')
+    ).join('');
+
+    const pcCells = REG_GROUPS.map((grp, i) => {
+      const val = row[`pc_${grp.key}`] || '';
+      const cls = val ? (parseFloat(val) >= 70 ? 'highlight' : parseFloat(val) >= 60 ? 'avg' : 'low') : '';
+      return `<td><input class="reg-pc-input ${cls}" id="regpc_${reg.id}_${idx}_${i}" value="${escHtml(val)}" readonly tabindex="-1"></td>`;
+    }).join('');
+
+    const finalVal = row.final || '';
+    const finalCls = finalVal ? (parseFloat(finalVal) >= 70 ? 'highlight' : parseFloat(finalVal) >= 60 ? 'avg' : 'low') : '';
+
+    return `<tr>
+      <td><div class="reg-num-cell">${row.numero}</div></td>
+      <td><input class="reg-name-input" data-reg="${reg.id}" data-row="${idx}" value="${escHtml(row.nombre||'')}" placeholder="Nombre del estudiante" oninput="liveUpdateRegName(this)"></td>
+      ${periodCells}
+      ${pcCells}
+      <td><input class="reg-final-input ${finalCls}" id="regfin_${reg.id}_${idx}" value="${escHtml(finalVal)}" readonly tabindex="-1"></td>
+    </tr>`;
+  }).join('');
+
+  return `
+  <div class="registro-card">
+    <div class="registro-header">
+      <div class="school-name">${escHtml(reg.asignatura)}</div>
+      <div class="school-sub">Registro de Calificaciones de Rendimiento</div>
+    </div>
+    <div class="registro-info-grid">
+      <div class="info-field"><label>Año Escolar</label><input type="text" value="${escHtml(reg.anio)}" readonly style="background:transparent;border:none;outline:none;color:var(--text);font-size:13px;font-weight:600;width:100%;font-family:inherit;opacity:.7"></div>
+      <div class="info-field"><label>Grado</label><input type="text" value="${escHtml(reg.grado)}" readonly style="background:transparent;border:none;outline:none;color:var(--text);font-size:13px;font-weight:600;width:100%;font-family:inherit;opacity:.7"></div>
+      <div class="info-field"><label>Asignatura</label><input type="text" value="${escHtml(reg.asignatura)}" readonly style="background:transparent;border:none;outline:none;color:var(--text);font-size:13px;font-weight:600;width:100%;font-family:inherit;opacity:.7"></div>
+      <div class="info-field"><label>Docente</label><input type="text" value="${escHtml(reg.docente||'')}" placeholder="Nombre del docente" data-reg="${reg.id}" oninput="updateRegDocente(this)" style="background:transparent;border:none;outline:none;color:var(--text);font-size:13px;font-weight:600;width:100%;font-family:inherit"></div>
+    </div>
+    <div class="section-title">Tabla de Calificaciones — ${escHtml(reg.asignatura)} · ${escHtml(reg.grado)} · ${escHtml(reg.anio)}</div>
+    <div class="registro-table-wrap">
+      <table class="registro-table">
+        <thead>
+          <tr>
+            <th class="reg-num-header" rowspan="2">N°</th>
+            <th class="reg-name-header" rowspan="2">Estudiante</th>
+            ${groupHeaders}
+            ${pcHeaders}
+            <th rowspan="2" class="th-final" style="min-width:46px;font-size:8px">FINAL</th>
+          </tr>
+          <tr>${periodHeaders}</tr>
+        </thead>
+        <tbody>${rowsHTML}</tbody>
+      </table>
+    </div>
+    <div class="action-bar">
+      <button class="btn btn-ghost" onclick="printRegistro()">Imprimir</button>
+      <button class="btn btn-danger" onclick="deleteRegistro(event,'${reg.id}')">Eliminar Registro</button>
+      <span class="save-indicator" id="save-indicator">Guardado</span>
+    </div>
+  </div>`;
+}
+
+function liveUpdateReg(el) {
+  const reg = state.registers.find(r => r.id === el.dataset.reg);
+  if (!reg) return;
+  const idx = parseInt(el.dataset.row);
+  const row = reg.rows[idx];
+  if (!row) return;
+  row[el.dataset.key] = el.value;
+  colorRegInput(el);
+  recalcRegRow(reg, idx);
+  REG_GROUPS.forEach((grp, i) => {
+    const pcEl = document.getElementById(`regpc_${reg.id}_${idx}_${i}`);
+    if (pcEl) { pcEl.value = row[`pc_${grp.key}`] || ''; colorRegInput(pcEl); }
+  });
+  const finEl = document.getElementById(`regfin_${reg.id}_${idx}`);
+  if (finEl) { finEl.value = row.final || ''; colorRegInput(finEl); }
+  save();
+  showSaveIndicator();
+}
+
+function liveUpdateRegName(el) {
+  const reg = state.registers.find(r => r.id === el.dataset.reg);
+  if (!reg) return;
+  reg.rows[parseInt(el.dataset.row)].nombre = el.value;
+  save();
+}
+
+function updateRegDocente(el) {
+  const reg = state.registers.find(r => r.id === el.dataset.reg);
+  if (reg) { reg.docente = el.value; save(); }
+}
+
+function recalcRegRow(reg, idx) {
+  const row = reg.rows[idx];
+  const pcs = REG_GROUPS.map(grp => {
+    const vals = PERIODS.map(p => parseFloat(row[`${grp.key}_${p.toLowerCase()}`])).filter(v => !isNaN(v));
+    if (!vals.length) { row[`pc_${grp.key}`] = ''; return null; }
+    const pc = vals.reduce((a, v) => a + v, 0) / vals.length;
+    row[`pc_${grp.key}`] = pc.toFixed(2);
+    return pc;
+  });
+  const validPcs = pcs.filter(v => v !== null);
+  row.final = validPcs.length ? (validPcs.reduce((a, v) => a + v, 0) / validPcs.length).toFixed(2) : '';
+}
+
+function colorRegInput(input) {
+  const val = parseFloat(input.value);
+  input.classList.remove('highlight', 'avg', 'low');
+  if (!isNaN(val)) {
+    if (val >= 70) input.classList.add('highlight');
+    else if (val >= 60) input.classList.add('avg');
+    else input.classList.add('low');
+  }
+}
+
+function printRegistro() {
+  document.body.classList.add('print-registro');
+  window.print();
+  document.body.classList.remove('print-registro');
+}
+
+// ============================================================
+// MODALES
+// ============================================================
+function openModal(id) {
+  document.getElementById(id).classList.add('show');
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('show');
+}
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) overlay.classList.remove('show');
+  });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay').forEach(o => o.classList.remove('show'));
+});
+
+// ============================================================
+// INIT
+// ============================================================
+load();
+if (!state.registers) state.registers = [];
+if (!state.sidebarMode) state.sidebarMode = 'boletin';
+renderSidebar();
+renderRegistrosSidebar();
+if (state.sidebarMode === 'registro') {
+  switchSidebarMode('registro');
+} else {
+  showWelcomeOrBoletin();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,2352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Registro de Instrumentos — 6.° Grado · Lengua Española 2025-2026</title>
+<style>
+
+:root{--primary:#303848;--secondary:#BF9268;--accent:#F2F2F2;--accent2:#EDE7DE;--border:#D9D9D9;--text:#404040;--muted:#595959;--white:#fff;--green:#1e8449;--radius:8px;--shadow:0 2px 8px rgba(48,56,72,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;font-size:13px;color:var(--text);background:#F2F2F2;line-height:1.5}
+.page{max-width:1100px;margin:0 auto;background:var(--white);box-shadow:var(--shadow);padding:0 0 2.5rem}
+.page-header{background:var(--primary);color:#fff;padding:1.2rem 2rem}
+.page-header h1{font-size:1rem;font-weight:400;opacity:.85;letter-spacing:.04em}
+.page-header h2{font-size:1.45rem;font-weight:700;margin:.2rem 0}
+.page-header .meta{font-size:.79rem;opacity:.72;margin-top:.3rem}
+.toc-bar{background:var(--accent2);border-bottom:2px solid var(--secondary);padding:.5rem 1.5rem;display:flex;flex-wrap:wrap;gap:.35rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 4px rgba(0,0,0,.1);align-items:center}
+.tl{color:var(--muted);font-size:.75rem;margin-right:.3rem;font-weight:600}
+.toc-bar a{color:var(--secondary);text-decoration:none;padding:.18rem .5rem;border-radius:3px;font-size:.75rem;font-weight:600;border:1px solid var(--border)}
+.toc-bar a:hover{background:var(--secondary);color:#fff}
+.unit-section{border-top:4px solid var(--primary);margin-top:2rem;scroll-margin-top:52px}
+.unit-hd{background:var(--primary);color:#fff;padding:.7rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.unit-hd h2{font-size:1.05rem;font-weight:700;flex:1}
+.badge{background:rgba(255,255,255,.18);padding:.13rem .5rem;border-radius:3px;font-size:.76rem;white-space:nowrap}
+.sum-wrap{padding:.85rem 2rem .5rem}
+.sum-label{font-size:.79rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.45rem;border-left:3px solid var(--secondary);padding-left:.5rem}
+.sum-table{width:100%;border-collapse:collapse;font-size:.81rem;margin-bottom:.9rem}
+.sum-table th{background:var(--secondary);color:#fff;padding:.35rem .7rem;text-align:left;border:1px solid var(--border)}
+.sum-table th:nth-child(n+2){text-align:center}
+.sum-table td{border:1px solid var(--border);padding:.32rem .7rem;vertical-align:top}
+.sum-table .ce-cell{font-weight:700;white-space:nowrap;font-size:.83rem}
+.sum-table td:nth-child(2){text-align:center;font-size:.77rem}
+.sum-table td:nth-child(3){text-align:center;font-weight:600}
+.sum-table td:nth-child(4){text-align:center;font-weight:700;color:var(--primary)}
+.cls{font-size:.72rem;color:var(--muted)}
+.row-lc{background:#f0fff4}
+.row-ru{background:#fafeff}
+.clase-block{border-left:4px solid var(--secondary);margin:.7rem 2rem .4rem;border-radius:0 var(--radius) var(--radius) 0;box-shadow:0 1px 3px rgba(26,82,118,.07)}
+.clase-hd{background:var(--secondary);color:#fff;padding:.4rem 1rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.clase-hd h3{font-size:.86rem;font-weight:700;flex:1}
+.clase-meta{font-size:.74rem;opacity:.85;white-space:nowrap}
+.clase-body{background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:.6rem 1rem}
+.ib{margin-bottom:.7rem;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.ib:last-child{margin-bottom:0}
+.ib-hd{background:var(--accent2);padding:.32rem .8rem;display:flex;gap:.7rem;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.tbadge{color:#fff;padding:.1rem .5rem;border-radius:3px;font-size:.72rem;font-weight:700;white-space:nowrap}
+.tbadge.lc{background:var(--green)}
+.tbadge.ru{background:var(--primary)}
+.iname{font-weight:600;font-size:.82rem;color:var(--primary);flex:1}
+.escala{font-size:.72rem;color:var(--muted);white-space:nowrap}
+.ib-body{padding:.5rem .8rem}
+.ci-row{display:flex;flex-wrap:wrap;gap:.32rem;align-items:center;padding:.25rem 0;border-bottom:1px dashed #dde8f0}
+.ci-row:last-of-type{border-bottom:none}
+.ci-chips{display:flex;gap:.2rem;flex-wrap:wrap}
+.chip-ci{background:var(--accent);border:1px solid var(--border);border-radius:3px;padding:.08rem .4rem;font-size:.76rem;font-weight:700;color:var(--primary)}
+.arr{color:#90a4b7;font-size:.88rem}
+.chip-ce{color:#fff;border-radius:3px;padding:.08rem .48rem;font-size:.76rem;font-weight:700}
+.pts{font-weight:700;font-size:.81rem;color:var(--primary)}
+.acum{font-size:.75rem;color:var(--muted)}
+.ci-descs{margin-top:.4rem;padding-top:.3rem;border-top:1px solid #eef3f8}
+.ci-d{display:flex;gap:.5rem;padding:.12rem 0;font-size:.77rem}
+.ci-d .ln{font-weight:700;color:var(--secondary);min-width:32px;white-space:nowrap}
+.ci-d .lt{color:#4a5568}
+@media print{body{background:#fff}.page{box-shadow:none;max-width:100%}.toc-bar{display:none}.clase-block{break-inside:avoid}}
+
+@media print{
+  .unit-section{break-before:page;page-break-before:always}
+}
+</style>
+
+<style id="print-override">
+/* ── CONFIGURACIÓN DE IMPRESIÓN ── */
+@page {
+  size: letter;
+  margin: 0.45cm 0.5cm;
+}
+@media print {
+  /* Fuente base 10pt */
+  body {
+    font-size: 10pt !important;
+    background: #fff !important;
+  }
+  .page {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  /* Ocultar navegación */
+  .toc-bar,
+  .nav-bar,
+  .clase-nav {
+    display: none !important;
+  }
+  /* Cada clase en página nueva */
+  .clase-section {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+  /* Tablas completas — sin cortar en medio */
+  table,
+  .id-table,
+  .comp-table,
+  .tri-table,
+  .ev-small,
+  .rubric-table,
+  .students-table {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  /* Secciones de la clase también agrupadas */
+  .section-title + .section-body,
+  .section-body {
+    page-break-before: avoid !important;
+    break-before: avoid !important;
+  }
+  /* Mantener colores al imprimir */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  /* Cabecera del plan no se corta */
+  .plan-header {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  /* Instrumento de evaluación agrupado */
+  .rubric-table,
+  .rubric-score,
+  .ce-le-score {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  /* Tabla de estudiantes puede dividirse si es muy larga, pero su encabezado acompaña */
+  .students-table {
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+  .students-table thead {
+    display: table-header-group !important;
+  }
+  /* Evitar huérfanos en encabezados de sección */
+  .section-title {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+  .class-header {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+  .anx-hdr,
+  .anx-cls {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="page-header">
+  <h1>Cuadernos del Maestro — Registro de Instrumentos de Evaluación</h1>
+  <h2>Registro de Instrumentos — 6.° Grado · Lengua Española 2025-2026</h2>
+  <div class="meta">Edwin Rafael Batista García M.A. · Francisco Antonio Castillo Salcedo · Año 2025-2026</div>
+</div>
+<div class="toc-bar"><span class="tl">Unidades:</span>
+<a href="#unit-1">El Reportaje</a><a href="#unit-2">Informe de Investigación</a><a href="#unit-3">Taller de Monólogo de Humor</a><a href="#unit-4">Poesía Social</a>
+</div>
+<section class="unit-section" id="unit-1">
+<div class="unit-hd"><h2>El Reportaje · 6.° Grado</h2>
+<span class="badge">16 clases</span>
+<span class="badge">El_Reportaje_6to.html</span></div>
+<div class="sum-wrap"><div class="sum-label">Tabla Resumen — Distribución de Criterios de Indicadores por CE-LE</div>
+<table class="sum-table"><thead><tr>
+<th>CE-LE#</th><th>Instrumento</th><th>Total CI-# en 16 clases</th>
+<th>Valor / criterio (100 ÷ total)</th><th>Clases donde aparece</th>
+</tr></thead><tbody>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#1a5276">CE-LE1</td>
+<td>L. Cotejo</td>
+<td>20</td>
+<td>5.0 pts</td>
+<td><span class="cls">C01, C03, C05, C07, C09, C11, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#1a5276">CE-LE1</td>
+<td>Rúbrica</td>
+<td>20</td>
+<td>5.0 pts</td>
+<td><span class="cls">C02, C04, C06, C08, C10, C12, C16</span></td>
+</tr>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#2471a3">CE-LE2-3</td>
+<td>L. Cotejo</td>
+<td>8</td>
+<td>12.5 pts</td>
+<td><span class="cls">C05, C11, C13, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#2471a3">CE-LE2-3</td>
+<td>Rúbrica</td>
+<td>8</td>
+<td>12.5 pts</td>
+<td><span class="cls">C06, C12, C14, C16</span></td>
+</tr>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#1e6823">CE-LE4-5</td>
+<td>L. Cotejo</td>
+<td>10</td>
+<td>10.0 pts</td>
+<td><span class="cls">C03, C05, C07, C09, C13, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#1e6823">CE-LE4-5</td>
+<td>Rúbrica</td>
+<td>10</td>
+<td>10.0 pts</td>
+<td><span class="cls">C04, C06, C08, C10, C14, C16</span></td>
+</tr>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#7d5a0a">CE-LE6-7</td>
+<td>L. Cotejo</td>
+<td>2</td>
+<td>50.0 pts</td>
+<td><span class="cls">C07, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#7d5a0a">CE-LE6-7</td>
+<td>Rúbrica</td>
+<td>2</td>
+<td>50.0 pts</td>
+<td><span class="cls">C08, C16</span></td>
+</tr>
+</tbody></table></div>
+<div class="clase-block" id="clase-01">
+<div class="clase-hd"><h3>Clase 01 — Aproximación al reportaje: comparación con la noticia · 6.° Grado · Sema…</h3>
+<span class="clase-meta">Semana 1 · Actividad 1</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Aproximación al reportaje: comparación con la noticia · Semana 1, Actividad 1</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-2</span><span class="chip-ci">CI-3</span><span class="chip-ci">CI-4</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 12.50 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Reconoce textos periodísticos apropiados para distintas situaciones comunicativas al examinar títulos reales del Listín Diario y Diario…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Discrimina, en trabajo en parejas, qué textos funcionan como noticias y cuáles corresponden a reportajes a partir de sus característica…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Distingue el reportaje como tipo de texto apropiado para comunicarse en profundidad sobre temas de interés público al construir colecti…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Selecciona y organiza los textos pertinentes para cada situación comunicativa al completar el cuadro comparativo entre noticias y repor…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-02">
+<div class="clase-hd"><h3>Clase 02 — Lectura y análisis del reportaje sobre cibercrimen · 6.° Grado · Semana …</h3>
+<span class="clase-meta">Semana 1 · Actividad 1</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Lectura y análisis del reportaje sobre cibercrimen · Semana 1, Actividad 1</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-2</span><span class="chip-ci">CI-3</span><span class="chip-ci">CI-4</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 12.50 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-03">
+<div class="clase-hd"><h3>Clase 03 — Fuentes del reportaje · Formas impersonales del verbo · 6.° Grado · Sema…</h3>
+<span class="clase-meta">Semana 1 · Actividad 2</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Fuentes del reportaje · Formas impersonales del verbo · Semana 1, Actividad 2</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-3</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 7.50 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 10 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Aplica su conocimiento de textos funcionales al completar la ficha de fuentes del reportaje sobre cibercrimen, clasificando cada fuente…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Lleva a cabo un proceso de indagación crítica sobre el uso de las fuentes al analizar la ausencia de testimonios de víctimas en el repo…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Examina nuevas relaciones socioculturales entre el poder institucional y la ciudadanía al analizar el efecto de las formas verbales imp…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Recurre a textos funcionales para consolidar sus conocimientos comunicativos al redactar el epígrafe de un gráfico o infografía selecci…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-04">
+<div class="clase-hd"><h3>Clase 04 — Lectura del reportaje «Pombeba» · Comparación de fuentes · 6.° Grado · S…</h3>
+<span class="clase-meta">Semana 1 · Actividad 2</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Lectura del reportaje «Pombeba» · Comparación de fuentes · Semana 1, Actividad 2</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-3</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 7.50 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 10 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-05">
+<div class="clase-hd"><h3>Clase 05 — Secuencias narrativa/descriptiva/expositiva · Adjetivos · Subordinadas ·…</h3>
+<span class="clase-meta">Semana 2 · Actividad 3</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Secuencias narrativa/descriptiva/expositiva · Adjetivos · Subordinadas · Semana 2, Actividad 3</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 12.50 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Refuerza sus conocimientos sobre tipologías textuales al analizar tres fragmentos seleccionados del reportaje «Pombeba», identificando …</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Presenta sus hallazgos sobre el lenguaje valorativo del reportaje mediante el análisis de los adjetivos calificativos en «Pombeba», con…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Recurre a las tipologías textuales para resolver el problema de la ambigüedad referencial al distinguir entre oraciones subordinadas es…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Demuestra el dominio integrado de las secuencias textuales y los recursos gramaticales trabajados al redactar el fragmento de escritura…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-06">
+<div class="clase-hd"><h3>Clase 06 — Lista de cotejo colectiva para evaluar reportajes · 6.° Grado · Semana 2…</h3>
+<span class="clase-meta">Semana 2 · Actividad 3</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Lista de cotejo colectiva para evaluar reportajes · Semana 2, Actividad 3</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 12.50 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-07">
+<div class="clase-hd"><h3>Clase 07 — Planificación del reportaje · 6.° Grado · Semana 2 · Actividad 4</h3>
+<span class="clase-meta">Semana 2 · Actividad 4</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Planificación del reportaje · Semana 2, Actividad 4</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 10 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Aplica los textos funcionales trabajados en la unidad para fortalecer su proceso de escritura al seleccionar el tema de su reportaje y …</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Recurre a diversas fuentes textuales para resolver el problema de la organización investigativa al completar la división de tareas dent…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Fortalece su sentido de responsabilidad ciudadana frente al manejo de la información al completar la ficha de planificación individual …</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Consolida su planificación como texto funcional operativo al precisar, con orientación del docente, las fuentes confirmadas para su rep…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-08">
+<div class="clase-hd"><h3>Clase 08 — Escritura, revisión y versión final del reportaje · 6.° Grado · Semana 2…</h3>
+<span class="clase-meta">Semana 2 · Actividad 4</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Escritura, revisión y versión final del reportaje · Semana 2, Actividad 4</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 10 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-09">
+<div class="clase-hd"><h3>Clase 09 — Secuencias textuales en «Pombeba» · Adjetivos valorativos · 6.° Grado · …</h3>
+<span class="clase-meta">Semana 3 · Actividad 5</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Secuencias textuales en «Pombeba» · Adjetivos valorativos · Semana 3, Actividad 5</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-3</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 7.50 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 10 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Expresa de manera efectiva y crítica su comprensión de las secuencias textuales al analizar en parejas tres fragmentos seleccionados de…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Presenta sus hallazgos sobre el lenguaje del reportaje al buscar y clasificar los adjetivos en los fragmentos de «Pombeba», construyend…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Reflexiona sobre los valores éticos del periodismo al analizar por qué el autor de «Pombeba» emplea más adjetivos valorativos que descr…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Se comunica críticamente sobre el lenguaje periodístico al elaborar la lista de tres ideas clave sobre las secuencias textuales y los a…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-10">
+<div class="clase-hd"><h3>Clase 10 — Oraciones subordinadas especificativas y explicativas · Producción propi…</h3>
+<span class="clase-meta">Semana 3 · Actividad 5</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Oraciones subordinadas especificativas y explicativas · Producción propia · Semana 3, Actividad 5</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-3</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 7.50 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 10 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-11">
+<div class="clase-hd"><h3>Clase 11 — Construcción colectiva de la lista de cotejo · Criterios por ejes · 6.° …</h3>
+<span class="clase-meta">Semana 3 · Actividad 6</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Construcción colectiva de la lista de cotejo · Criterios por ejes · Semana 3, Actividad 6</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-3</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 7.50 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 12.50 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Pone en práctica su conocimiento de textos funcionales al proponer un criterio propio para evaluar reportajes durante el intercambio or…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Aplica sus saberes sobre el género periodístico para proponer soluciones al problema de la evaluación textual al participar en la organ…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Emplea textos funcionales para fortalecer sus habilidades de escritura evaluativa al redactar, en grupo de cuatro estudiantes, los crit…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Usa sus conocimientos sobre el reportaje para consolidar soluciones evaluativas concretas al participar en la puesta en común donde el …</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-12">
+<div class="clase-hd"><h3>Clase 12 — Revisión de la lista de cotejo · Práctica con reportaje ejemplo · Versió…</h3>
+<span class="clase-meta">Semana 3 · Actividad 6</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Revisión de la lista de cotejo · Práctica con reportaje ejemplo · Versión final · Semana 3, Actividad 6</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-3</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 7.50 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 12.50 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-13">
+<div class="clase-hd"><h3>Clase 13 — Elección del tema · Grupos de investigación · Búsqueda inicial de fuente…</h3>
+<span class="clase-meta">Semana 4 · Actividad 7</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Elección del tema · Grupos de investigación · Búsqueda inicial de fuentes · Semana 4, Actividad 7</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-3</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 18.75 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 10 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Construye los primeros textos con conclusiones preliminares de su investigación al elegir el tema del reportaje grupal entre las opcion…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Fortalece sus prácticas ciudadanas de trabajo colaborativo al distribuir las tareas de investigación dentro del grupo, asignando los ro…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Valora la investigación rigurosa al registrar en sus cuadernos los cinco criterios de confiabilidad de las fuentes —autoría reconocida,…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Produce el primer texto de síntesis investigativa al elaborar la lista de las tres fuentes iniciales identificadas por el grupo —medios…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-14">
+<div class="clase-hd"><h3>Clase 14 — Fichas de planificación · Intercambio de enfoques · Validación con la li…</h3>
+<span class="clase-meta">Semana 4 · Actividad 7</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Fichas de planificación · Intercambio de enfoques · Validación con la lista de cotejo · Semana 4, Actividad 7</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-3</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 18.75 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 10 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-15">
+<div class="clase-hd"><h3>Clase 15 — Escritura del borrador: introducción y primer subtítulo · Paratextos · 6…</h3>
+<span class="clase-meta">Semana 4 · Actividad 8</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Escritura del borrador: introducción y primer subtítulo · Paratextos · Semana 4, Actividad 8</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Se expresa de manera efectiva y crítica en la escritura periodística al revisar y mejorar el inicio de su reportaje, asegurando que pre…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Produce un bloque textual con hallazgos documentados al redactar el primer subtítulo de su reportaje, incorporando al menos dos fuentes…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Valora los recursos de la investigación visual al seleccionar uno o dos paratextos —imágenes, gráficos o fotografías— relacionados con …</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Desarrolla el intercambio formativo sobre su borrador al verificar con la lista de cotejo si el inicio cumple los criterios de contenid…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-16">
+<div class="clase-hd"><h3>Clase 16 — Revisión entre pares · Versión final · Publicación · Metacognición final…</h3>
+<span class="clase-meta">Semana 4 · Actividad 8</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Revisión entre pares · Versión final · Publicación · Metacognición final · Semana 4, Actividad 8</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+</section>
+<section class="unit-section" id="unit-2">
+<div class="unit-hd"><h2>Informe de Investigación · 6.° Grado</h2>
+<span class="badge">16 clases</span>
+<span class="badge">Informe_de_Investigacion_6to.html</span></div>
+<div class="sum-wrap"><div class="sum-label">Tabla Resumen — Distribución de Criterios de Indicadores por CE-LE</div>
+<table class="sum-table"><thead><tr>
+<th>CE-LE#</th><th>Instrumento</th><th>Total CI-# en 16 clases</th>
+<th>Valor / criterio (100 ÷ total)</th><th>Clases donde aparece</th>
+</tr></thead><tbody>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#1a5276">CE-LE1</td>
+<td>L. Cotejo</td>
+<td>17</td>
+<td>5.88 pts</td>
+<td><span class="cls">C01, C03, C05, C07, C09, C11, C13, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#1a5276">CE-LE1</td>
+<td>Rúbrica</td>
+<td>17</td>
+<td>5.88 pts</td>
+<td><span class="cls">C02, C04, C06, C08, C10, C12, C14, C16</span></td>
+</tr>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#2471a3">CE-LE2-3</td>
+<td>L. Cotejo</td>
+<td>13</td>
+<td>7.69 pts</td>
+<td><span class="cls">C01, C03, C05, C07, C09, C11, C13, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#2471a3">CE-LE2-3</td>
+<td>Rúbrica</td>
+<td>13</td>
+<td>7.69 pts</td>
+<td><span class="cls">C02, C04, C06, C08, C10, C12, C14, C16</span></td>
+</tr>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#1e6823">CE-LE4-5</td>
+<td>L. Cotejo</td>
+<td>7</td>
+<td>14.29 pts</td>
+<td><span class="cls">C01, C03, C05, C07, C09, C13, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#1e6823">CE-LE4-5</td>
+<td>Rúbrica</td>
+<td>7</td>
+<td>14.29 pts</td>
+<td><span class="cls">C02, C04, C06, C08, C10, C14, C16</span></td>
+</tr>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#7d5a0a">CE-LE6-7</td>
+<td>L. Cotejo</td>
+<td>3</td>
+<td>33.33 pts</td>
+<td><span class="cls">C01, C03, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#7d5a0a">CE-LE6-7</td>
+<td>Rúbrica</td>
+<td>3</td>
+<td>33.33 pts</td>
+<td><span class="cls">C02, C04, C16</span></td>
+</tr>
+</tbody></table></div>
+<div class="clase-block" id="clase-01">
+<div class="clase-hd"><h3>Clase 01 — Comparación obra humana vs. obra generada por IA · Primeras hipótesis · …</h3>
+<span class="clase-meta">Semana 1 · Actividad 1</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Comparación obra humana vs. obra generada por IA · Primeras hipótesis · Semana 1, Actividad 1</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 3.85 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 7.14 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 16.67 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Reconoce y selecciona textos pertinentes para comunicarse en el intercambio grupal sobre si una obra creada por IA puede considerarse a…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Demuestra competencias de producción y comprensión en secuencias argumentativas al registrar sus hipótesis iniciales en la sección «Pri…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Aplica textos y debates para examinar relaciones socioculturales emergentes durante la puesta en común grupal, analizando qué pierden l…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Despliega procesos de indagación sistemática con apoyo en herramientas digitales al confeccionar una lista de tres ideas clave sobre la…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-02">
+<div class="clase-hd"><h3>Clase 02 — Lectura de dos notas periodísticas sobre IA y arte · 6.° Grado · Semana …</h3>
+<span class="clase-meta">Semana 1 · Actividad 1</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Lectura de dos notas periodísticas sobre IA y arte · Semana 1, Actividad 1</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 3.85 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 7.14 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 16.67 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-03">
+<div class="clase-hd"><h3>Clase 03 — Artículo de divulgación científica: Ortiz Arroba · 6.° Grado · Semana 1 …</h3>
+<span class="clase-meta">Semana 1 · Actividad 2</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Artículo de divulgación científica: Ortiz Arroba · Semana 1, Actividad 2</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 3.85 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 7.14 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 16.67 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Emplea el artículo de divulgación «La inteligencia artificial y la transformación de las expresiones artísticas» (Ortiz Arroba, URU núm…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Construye conocimientos nuevos a partir del análisis del artículo al distinguir el tono objetivo de Ortiz Arroba respecto de las notas …</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Examina relaciones socioculturales al descomponer las secuencias argumentativas del artículo de Ortiz Arroba, explicando en el análisis…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Usa el texto expositivo-explicativo de Ortiz Arroba para presentar hallazgos propios al actualizar el Cuaderno del investigador con nue…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-04">
+<div class="clase-hd"><h3>Clase 04 — Artículo de opinión y texto académico-jurídico · 6.° Grado · Semana 1 · …</h3>
+<span class="clase-meta">Semana 1 · Actividad 2</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Artículo de opinión y texto académico-jurídico · Semana 1, Actividad 2</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 3.85 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 7.14 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 16.67 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-05">
+<div class="clase-hd"><h3>Clase 05 — Lectura del informe (Parte 1): Resumen, Introducción, Objetivo, Metodolo…</h3>
+<span class="clase-meta">Semana 2 · Actividad 3</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Lectura del informe (Parte 1): Resumen, Introducción, Objetivo, Metodología · Semana 2, Actividad 3</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 7.69 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 7.14 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Emplea el informe académico «Retos de la IA en la era del streaming musical» (Arenal et al., 2024) — secciones Resumen, Introducción, O…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Presenta informaciones analíticas con respeto a las opiniones ajenas en torno a Lectura del informe (análisis de cada sección)</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Usa sus conocimientos para explicar soluciones posibles en el contexto de Lectura del informe (identificar el registro académico)</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Refuerza prácticas de ciudadanía investigativa al actualizar el Cuaderno del investigador comparando la pregunta de investigación de Ar…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-06">
+<div class="clase-hd"><h3>Clase 06 — Lectura del informe (Parte 2): Resultados y Conclusiones · 6.° Grado · S…</h3>
+<span class="clase-meta">Semana 2 · Actividad 3</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Lectura del informe (Parte 2): Resultados y Conclusiones · Semana 2, Actividad 3</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 7.69 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 7.14 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-07">
+<div class="clase-hd"><h3>Clase 07 — Síntesis del informe modelo · Cuadro de estructura · Comparación con el …</h3>
+<span class="clase-meta">Semana 2 · Actividad 4</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Síntesis del informe modelo · Cuadro de estructura · Comparación con el artículo de divulgación · Semana 2, Actividad 4</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 7.69 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 7.14 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Usa el informe modelo de Arenal et al. como texto funcional para fortalecer sus saberes comunicativos al completar el cuadro de estruct…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Presenta informaciones analíticas con respeto a las opiniones ajenas en torno a Síntesis del informe modelo · Cuadro de estructura · Co…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Elabora textos expositivo-explicativos para presentar sus hallazgos al completar el cuadro resumen de cierre con tres elementos clave s…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Refuerza prácticas ciudadanas de rigor textual al abrir en el Cuaderno del investigador la sección «Estructura del informe que voy a es…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-08">
+<div class="clase-hd"><h3>Clase 08 — Elección del tema · Preguntas de investigación · Hipótesis · Cuaderno de…</h3>
+<span class="clase-meta">Semana 2 · Actividad 4</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Elección del tema · Preguntas de investigación · Hipótesis · Cuaderno del investigador · Semana 2, Actividad 4</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 7.69 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 7.14 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-09">
+<div class="clase-hd"><h3>Clase 09 — Búsqueda y selección de fuentes · Fichas de fuente · Notas en el Cuadern…</h3>
+<span class="clase-meta">Semana 3 · Actividad 5</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Búsqueda y selección de fuentes · Fichas de fuente · Notas en el Cuaderno · Semana 3, Actividad 5</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 7.69 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 7.14 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Aplica criterios de confiabilidad de fuentes — autoría reconocida, institución o medio de referencia, fecha reciente, verificabilidad, …</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Produce conocimiento nuevo a partir de textos variados al evaluar las 3-4 fuentes sobre IA y arte presentadas por el docente, clasificá…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Usa la tipología de fichas de fuente para abordar el problema de documentar la información al completar para cada fuente seleccionada l…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Elabora textos expositivo-explicativos al registrar en la sección «Mis fuentes y lo que dicen» del Cuaderno del investigador dos o tres…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-10">
+<div class="clase-hd"><h3>Clase 10 — Análisis crítico de fuentes · Comparación · Detección de sesgos · 6.° Gr…</h3>
+<span class="clase-meta">Semana 3 · Actividad 5</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Análisis crítico de fuentes · Comparación · Detección de sesgos · Semana 3, Actividad 5</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 7.69 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 7.14 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-11">
+<div class="clase-hd"><h3>Clase 11 — Organización de la información · Esquema del informe · Identificación de…</h3>
+<span class="clase-meta">Semana 3 · Actividad 6</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Organización de la información · Esquema del informe · Identificación de vacíos · Semana 3, Actividad 6</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-3</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 8.82 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 7.69 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Aplica la estructura del informe académico — Resumen, Introducción, Objetivo, Metodología, Resultados, Conclusiones, Referencias — como…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Presenta informaciones analíticas con respeto a las opiniones ajenas en torno a Organización de la información · Esquema del informe · …</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Usa tipologías textuales del informe para resolver el problema de los vacíos de información al identificar qué sección carece de datos …</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Consolida sus competencias de escritura funcional al registrar en la nueva sección «Plan de mi informe» del Cuaderno del investigador e…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-12">
+<div class="clase-hd"><h3>Clase 12 — Práctica de escritura: Resumen e Introducción · Revisión con par · 6.° G…</h3>
+<span class="clase-meta">Semana 3 · Actividad 6</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Práctica de escritura: Resumen e Introducción · Revisión con par · Semana 3, Actividad 6</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-3</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 8.82 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 7.69 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-13">
+<div class="clase-hd"><h3>Clase 13 — Planificación del informe de investigación · 6.° Grado · Semana 4 · Acti…</h3>
+<span class="clase-meta">Semana 4 · Actividad 7</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Planificación del informe de investigación · Semana 4, Actividad 7</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 7.69 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 7.14 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Emplea géneros textuales funcionales — preguntas de investigación, esquemas de secciones y notas del Cuaderno del investigador — para f…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Usa las tipologías textuales del informe para planificar una solución al problema de estructurar su investigación, describiendo la func…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Despliega un proceso de planificación investigativa con apoyo en recursos digitales y bibliográficos al asignar a cada sección del info…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Consolida su conocimiento sobre el género informe al elaborar una lista de tres ideas clave sobre la planificación, demostrando que com…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-14">
+<div class="clase-hd"><h3>Clase 14 — Escritura del borrador del informe · 6.° Grado · Semana 4 · Actividad 7</h3>
+<span class="clase-meta">Semana 4 · Actividad 7</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Escritura del borrador del informe · Semana 4, Actividad 7</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 7.69 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 7.14 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-15">
+<div class="clase-hd"><h3>Clase 15 — Revisión con guía de autoevaluación · 6.° Grado · Semana 4 · Actividad 8</h3>
+<span class="clase-meta">Semana 4 · Actividad 8</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Revisión con guía de autoevaluación · Semana 4, Actividad 8</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 3.85 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 7.14 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 16.67 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Se expresa de manera reflexiva y crítica mediante el texto escrito al completar la guía de autoevaluación con cada criterio valorado co…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Construye un texto de revisión con conclusiones y recomendaciones al completar la guía de autoevaluación del informe del compañero en p…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Aplica textos expositivo-explicativos para avanzar en su investigación al integrar las mejoras señaladas en la guía de autoevaluación, …</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Fortalece prácticas ciudadanas de retroalimentación colaborativa al participar en la devolución oral con el par, comunicando una fortal…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-16">
+<div class="clase-hd"><h3>Clase 16 — Versión final del informe · Metacognición y cierre · 6.° Grado · Semana …</h3>
+<span class="clase-meta">Semana 4 · Actividad 8</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Versión final del informe · Metacognición y cierre · Semana 4, Actividad 8</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 3.85 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 7.14 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 16.67 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+</section>
+<section class="unit-section" id="unit-3">
+<div class="unit-hd"><h2>Taller de Monólogo de Humor · 6.° Grado</h2>
+<span class="badge">16 clases</span>
+<span class="badge">Taller_de_Monologo_de_Humor_6to.html</span></div>
+<div class="sum-wrap"><div class="sum-label">Tabla Resumen — Distribución de Criterios de Indicadores por CE-LE</div>
+<table class="sum-table"><thead><tr>
+<th>CE-LE#</th><th>Instrumento</th><th>Total CI-# en 16 clases</th>
+<th>Valor / criterio (100 ÷ total)</th><th>Clases donde aparece</th>
+</tr></thead><tbody>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#1a5276">CE-LE1</td>
+<td>L. Cotejo</td>
+<td>17</td>
+<td>5.88 pts</td>
+<td><span class="cls">C01, C03, C05, C07, C09, C11, C13, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#1a5276">CE-LE1</td>
+<td>Rúbrica</td>
+<td>17</td>
+<td>5.88 pts</td>
+<td><span class="cls">C02, C04, C06, C08, C10, C12, C14, C16</span></td>
+</tr>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#2471a3">CE-LE2-3</td>
+<td>L. Cotejo</td>
+<td>11</td>
+<td>9.09 pts</td>
+<td><span class="cls">C01, C07, C09, C11, C13, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#2471a3">CE-LE2-3</td>
+<td>Rúbrica</td>
+<td>11</td>
+<td>9.09 pts</td>
+<td><span class="cls">C02, C08, C10, C12, C14, C16</span></td>
+</tr>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#1e6823">CE-LE4-5</td>
+<td>L. Cotejo</td>
+<td>3</td>
+<td>33.33 pts</td>
+<td><span class="cls">C05, C07</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#1e6823">CE-LE4-5</td>
+<td>Rúbrica</td>
+<td>3</td>
+<td>33.33 pts</td>
+<td><span class="cls">C06, C08</span></td>
+</tr>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#7d5a0a">CE-LE6-7</td>
+<td>L. Cotejo</td>
+<td>9</td>
+<td>11.11 pts</td>
+<td><span class="cls">C01, C03, C05, C07, C09, C11, C13, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#7d5a0a">CE-LE6-7</td>
+<td>Rúbrica</td>
+<td>9</td>
+<td>11.11 pts</td>
+<td><span class="cls">C02, C04, C06, C08, C10, C12, C14, C16</span></td>
+</tr>
+</tbody></table></div>
+<div class="clase-block" id="clase-01">
+<div class="clase-hd"><h3>Clase 01 — Reflexión personal sobre la risa (Partes 1 y 2) · 6.° Grado · Semana 1 ·…</h3>
+<span class="clase-meta">Semana 1 · Actividad 1</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Reflexión personal sobre la risa (Partes 1 y 2) · Semana 1, Actividad 1</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 9.09 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 5.56 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Reconoce y selecciona textos adecuados para distintas situaciones comunicativas al responder en el cuaderno las preguntas de la Parte 1…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Demuestra capacidades de producción y comprensión en secuencias argumentativas durante la Parte 2 (lectura y reflexión compartida): a p…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Aprecia y difunde textos vinculados a las emociones, los sentimientos y la dignidad humana al elaborar, en el cierre, una lista de tres…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Distingue y emplea textos apropiados para distintos contextos comunicativos al reflexionar sobre la pregunta de cierre metacognitivo: ¿…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-02">
+<div class="clase-hd"><h3>Clase 02 — Discusión grupal · Reflexión escrita individual (Partes 3 y 4) · 6.° Gra…</h3>
+<span class="clase-meta">Semana 1 · Actividad 1</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Discusión grupal · Reflexión escrita individual (Partes 3 y 4) · Semana 1, Actividad 1</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 9.09 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 5.56 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-03">
+<div class="clase-hd"><h3>Clase 03 — Características del humor: Dinámica de láminas (Parte 5) · 6.° Grado · S…</h3>
+<span class="clase-meta">Semana 1 · Actividad 2</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Características del humor: Dinámica de láminas (Parte 5) · Semana 1, Actividad 2</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-3</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 8.82 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 11.11 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Reconoce y selecciona textos adecuados para comunicarse en situaciones variadas al acercarse a la lámina que representa una característ…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Aprecia y difunde textos relacionados con emociones y dignidad humana al completar en el cuaderno el cuadro personal de la dinámica de …</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Distingue y emplea textos apropiados para situaciones comunicativas al actuar como representante del grupo en la puesta en común (5 min…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Valora y promueve textos vinculados a los sentimientos y la dignidad humana al elaborar la lista de tres ideas clave de la síntesis de …</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-04">
+<div class="clase-hd"><h3>Clase 04 — Definición del stand-up · Cuadro comparativo stand-up vs. soliloquio (Pa…</h3>
+<span class="clase-meta">Semana 1 · Actividad 2</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Definición del stand-up · Cuadro comparativo stand-up vs. soliloquio (Partes 1 y 2) · Semana 1, Actividad 2</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-3</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 8.82 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 11.11 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-05">
+<div class="clase-hd"><h3>Clase 05 — Lectura del fragmento «Miedos» · Trabajo con cuadros (Parte 3) · 6.° Gra…</h3>
+<span class="clase-meta">Semana 2 · Actividad 3</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Lectura del fragmento «Miedos» · Trabajo con cuadros (Parte 3) · Semana 2, Actividad 3</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 33.33 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 5.56 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Aplica textos funcionales y literarios para fortalecer sus conocimientos comunicativos al participar en la lectura expresiva del fragme…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Aprecia y promueve textos ligados a las emociones y la dignidad humana al completar, en la síntesis de cierre, el cuadro resumen con tr…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Usa textos literarios y funcionales para enriquecer sus competencias comunicativas al responder la metacognición de cierre: ¿cómo cambi…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-06">
+<div class="clase-hd"><h3>Clase 06 — Visionado y análisis completo de «Miedos» (Partes 4 y 5) · 6.° Grado · S…</h3>
+<span class="clase-meta">Semana 2 · Actividad 3</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Visionado y análisis completo de «Miedos» (Partes 4 y 5) · Semana 2, Actividad 3</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 33.33 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 5.56 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-07">
+<div class="clase-hd"><h3>Clase 07 — Los 4 consejos de comediantes profesionales · Toma de decisiones creativ…</h3>
+<span class="clase-meta">Semana 2 · Actividad 4</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Los 4 consejos de comediantes profesionales · Toma de decisiones creativas (Act. 3) · Semana 2, Actividad 4</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 4.55 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 16.67 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 5.56 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Aplica textos funcionales para fortalecer sus conocimientos comunicativos al analizar y registrar en el cuaderno los cuatro consejos de…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Reconoce y analiza nuevas relaciones socioculturales mediante textos al participar en la puesta en común del cuadro de decisiones creat…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Promueve la comprensión de sí mismo y de los demás a través de textos al completar el cuadro resumen de cierre con tres elementos clave…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-08">
+<div class="clase-hd"><h3>Clase 08 — Afiches de referencia: RECORDAMOS / DECIMOS / ACTUAMOS (Act. 4) · 6.° Gr…</h3>
+<span class="clase-meta">Semana 2 · Actividad 4</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Afiches de referencia: RECORDAMOS / DECIMOS / ACTUAMOS (Act. 4) · Semana 2, Actividad 4</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 4.55 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 16.67 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 5.56 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-09">
+<div class="clase-hd"><h3>Clase 09 — Elección del tema · Ideas humorísticas · Punto de vista (Act. 5) · 6.° G…</h3>
+<span class="clase-meta">Semana 3 · Actividad 5</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Elección del tema · Ideas humorísticas · Punto de vista (Act. 5) · Semana 3, Actividad 5</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 9.09 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 5.56 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Se expresa de manera efectiva y crítica mediante textos en situaciones diversas al completar el PASO 1 (elegir mi tema) del Act. 5: esc…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Elabora conocimientos innovadores a partir de textos variados al desarrollar el PASO 2 (ideas humorísticas): genera tres ideas sobre el…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Promueve la comprensión de sí mismo y de los demás mediante textos al explorar el PASO 3 (punto de vista) del Act. 5: analiza los seis …</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Comunica de manera efectiva y crítica en situaciones diversas al participar en la síntesis metacognitiva de cierre: elabora la lista de…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-10">
+<div class="clase-hd"><h3>Clase 10 — Los cuatro recursos del humor (Act. 6) · 6.° Grado · Semana 3 · Activida…</h3>
+<span class="clase-meta">Semana 3 · Actividad 5</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Los cuatro recursos del humor (Act. 6) · Semana 3, Actividad 5</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 9.09 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 5.56 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-11">
+<div class="clase-hd"><h3>Clase 11 — Recursos corporales del comediante · 6.° Grado · Semana 3 · Actividad 6</h3>
+<span class="clase-meta">Semana 3 · Actividad 6</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Recursos corporales del comediante · Semana 3, Actividad 6</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 9.09 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 5.56 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Se comunica de manera efectiva y crítica a través de textos en situaciones diversas al analizar los cinco recursos corporales del comed…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Presenta informaciones analíticas con respeto a las opiniones ajenas al participar en la retroalimentación entre pares: tras la práctic…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Aprecia y promueve textos ligados a las emociones y la dignidad humana al participar en la práctica en parejas: experimenta con tres re…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Se expresa de manera crítica y efectiva en situaciones diversas al completar el cuadro resumen de cierre con tres elementos clave sobre…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-12">
+<div class="clase-hd"><h3>Clase 12 — Borrador completo del monólogo · 6.° Grado · Semana 3 · Actividad 6</h3>
+<span class="clase-meta">Semana 3 · Actividad 6</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Borrador completo del monólogo · Semana 3, Actividad 6</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 9.09 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 5.56 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-13">
+<div class="clase-hd"><h3>Clase 13 — Ensayo en grupos reducidos · Retroalimentación (Act. 7) · 6.° Grado · Se…</h3>
+<span class="clase-meta">Semana 4 · Actividad 7</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Ensayo en grupos reducidos · Retroalimentación (Act. 7) · Semana 4, Actividad 7</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 9.09 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 5.56 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Se comunica de manera efectiva y crítica en situaciones diversas al presentar su monólogo de 1-2 minutos ante el grupo de cuatro en el …</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Ofrece informaciones analíticas con respeto a las opiniones ajenas al participar en la retroalimentación grupal del Act. 7: redacta par…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Aprecia y promueve textos ligados a los sentimientos y la dignidad humana al escuchar de manera activa las sugerencias recibidas en la …</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Se comunica de manera crítica en situaciones diversas al elaborar la lista de tres ideas clave de la síntesis de cierre, comparando su …</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-14">
+<div class="clase-hd"><h3>Clase 14 — Retroalimentación general · Ajustes finales del texto · 6.° Grado · Sema…</h3>
+<span class="clase-meta">Semana 4 · Actividad 7</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Retroalimentación general · Ajustes finales del texto · Semana 4, Actividad 7</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 9.09 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 5.56 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-15">
+<div class="clase-hd"><h3>Clase 15 — Preparación técnica para la grabación · 6.° Grado · Semana 4 · Actividad…</h3>
+<span class="clase-meta">Semana 4 · Actividad 8</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Preparación técnica para la grabación · Semana 4, Actividad 8</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 9.09 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 5.56 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Se comunica de manera efectiva y crítica en situaciones diversas al participar en las dos rondas del ensayo general (30 min): en la pri…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Promueve la comprensión de sí mismo y de los demás mediante textos al elaborar la lista de tres ideas clave de la síntesis de cierre, r…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Se expresa de manera efectiva y crítica en situaciones diversas al responder la pregunta metacognitiva de cierre sobre la preparación t…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-16">
+<div class="clase-hd"><h3>Clase 16 — Grabación final · Metacognición y cierre de la secuencia · 6.° Grado · S…</h3>
+<span class="clase-meta">Semana 4 · Actividad 8</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Grabación final · Metacognición y cierre de la secuencia · Semana 4, Actividad 8</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 5.88 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 9.09 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 5.56 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+</section>
+<section class="unit-section" id="unit-4">
+<div class="unit-hd"><h2>Poesía Social · 6.° Grado</h2>
+<span class="badge">16 clases</span>
+<span class="badge">Poesia_Social_6to.html</span></div>
+<div class="sum-wrap"><div class="sum-label">Tabla Resumen — Distribución de Criterios de Indicadores por CE-LE</div>
+<table class="sum-table"><thead><tr>
+<th>CE-LE#</th><th>Instrumento</th><th>Total CI-# en 16 clases</th>
+<th>Valor / criterio (100 ÷ total)</th><th>Clases donde aparece</th>
+</tr></thead><tbody>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#1a5276">CE-LE1</td>
+<td>L. Cotejo</td>
+<td>16</td>
+<td>6.25 pts</td>
+<td><span class="cls">C01, C03, C05, C07, C09, C11, C13, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#1a5276">CE-LE1</td>
+<td>Rúbrica</td>
+<td>16</td>
+<td>6.25 pts</td>
+<td><span class="cls">C02, C04, C06, C08, C10, C12, C14, C16</span></td>
+</tr>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#2471a3">CE-LE2-3</td>
+<td>L. Cotejo</td>
+<td>10</td>
+<td>10.0 pts</td>
+<td><span class="cls">C01, C03, C05, C07, C09, C11, C13, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#2471a3">CE-LE2-3</td>
+<td>Rúbrica</td>
+<td>10</td>
+<td>10.0 pts</td>
+<td><span class="cls">C02, C04, C06, C08, C10, C12, C14, C16</span></td>
+</tr>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#1e6823">CE-LE4-5</td>
+<td>L. Cotejo</td>
+<td>6</td>
+<td>16.67 pts</td>
+<td><span class="cls">C03, C05, C07, C09, C11, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#1e6823">CE-LE4-5</td>
+<td>Rúbrica</td>
+<td>6</td>
+<td>16.67 pts</td>
+<td><span class="cls">C04, C06, C08, C10, C12, C16</span></td>
+</tr>
+<tr class="row-lc">
+<td class="ce-cell" style="color:#7d5a0a">CE-LE6-7</td>
+<td>L. Cotejo</td>
+<td>8</td>
+<td>12.5 pts</td>
+<td><span class="cls">C01, C03, C05, C07, C09, C11, C13, C15</span></td>
+</tr>
+<tr class="row-ru">
+<td class="ce-cell" style="color:#7d5a0a">CE-LE6-7</td>
+<td>Rúbrica</td>
+<td>8</td>
+<td>12.5 pts</td>
+<td><span class="cls">C02, C04, C06, C08, C10, C12, C14, C16</span></td>
+</tr>
+</tbody></table></div>
+<div class="clase-block" id="clase-01">
+<div class="clase-hd"><h3>Clase 01 — «Ni un paso atrás»: Anticipación y primera escucha · 6.° Grado · Semana …</h3>
+<span class="clase-meta">Semana 1 · Actividad 1</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">«Ni un paso atrás»: Anticipación y primera escucha · Semana 1, Actividad 1</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 10 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Reconoce textos poéticos adecuados para la comunicación colectiva en distintas situaciones de su entorno, distinguiendo durante la lect…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Demuestra capacidad de producción y comprensión en secuencias argumentativas al realizar la lectura individual silenciosa (M2), subraya…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Aprecia y difunde textos vinculados a las emociones, los sentimientos y la dignidad de los pueblos al participar en el intercambio oral…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Selecciona con criterio textos pertinentes para comunicarse en situaciones de síntesis y reflexión, redactando en la actividad de cierr…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-02">
+<div class="clase-hd"><h3>Clase 02 — Contexto histórico · Pedro Mir · Cuadro de metáforas · 6.° Grado · Seman…</h3>
+<span class="clase-meta">Semana 1 · Actividad 1</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Contexto histórico · Pedro Mir · Cuadro de metáforas · Semana 1, Actividad 1</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 10 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-03">
+<div class="clase-hd"><h3>Clase 03 — Campo semántico · Paráfrasis · Anticipación: «Poema de la madre Tierra» …</h3>
+<span class="clase-meta">Semana 1 · Actividad 2</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Campo semántico · Paráfrasis · Anticipación: «Poema de la madre Tierra» · Semana 1, Actividad 2</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 8.33 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Emplea textos literarios y funcionales para ampliar sus conocimientos comunicativos al trabajar el campo semántico (M1) de la poesía so…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Expone información analítica con actitud de respeto hacia las opiniones de sus pares al redactar en el cuaderno la paráfrasis oral y es…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Consolida prácticas ciudadanas y valores universales a través del texto al explorar el nuevo poema (M3), registrando anticipaciones sob…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Lleva a cabo actividades de intercomunicación que promueven comportamientos positivos al elaborar el mapa de ideas del cierre con los c…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-04">
+<div class="clase-hd"><h3>Clase 04 — «Poema de la madre Tierra»: Recursos expresivos · Cuestionario de anális…</h3>
+<span class="clase-meta">Semana 1 · Actividad 2</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">«Poema de la madre Tierra»: Recursos expresivos · Cuestionario de análisis · Semana 1, Actividad 2</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 8.33 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-05">
+<div class="clase-hd"><h3>Clase 05 — «Mi lengua»: Verso libre · Tabla de emociones · 6.° Grado · Semana 2 · A…</h3>
+<span class="clase-meta">Semana 2 · Actividad 3</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">«Mi lengua»: Verso libre · Tabla de emociones · Semana 2, Actividad 3</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 8.33 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Se expresa con eficacia y sentido crítico mediante el texto literario al trabajar la lectura expresiva y el concepto de verso libre (M1…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Ofrece información analítica con respeto a las opiniones ajenas al participar en el intercambio oral sobre las emociones transmitidas p…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Consolida prácticas ciudadanas y valores de identidad mediante el texto al completar en parejas la tabla de emociones (M3), relacionand…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Usa textos para favorecer la comprensión de sí mismo y de los demás al completar el cuadro resumen del cierre con tres elementos clave …</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-06">
+<div class="clase-hd"><h3>Clase 06 — Contextualización · Declamación · Función y estructura · 6.° Grado · Sem…</h3>
+<span class="clase-meta">Semana 2 · Actividad 3</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Contextualización · Declamación · Función y estructura · Semana 2, Actividad 3</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 8.33 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-07">
+<div class="clase-hd"><h3>Clase 07 — Escritura creativa + Análisis de finales de poemas · 6.° Grado · Semana …</h3>
+<span class="clase-meta">Semana 2 · Actividad 4</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Escritura creativa + Análisis de finales de poemas · Semana 2, Actividad 4</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 8.33 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Se expresa de manera efectiva y crítica mediante la escritura al desarrollar en parejas las propuestas creativas (M1), eligiendo comple…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Presenta su proceso de escritura con apertura hacia las sugerencias del entorno al redactar durante el tiempo de escritura individual (…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Consolida prácticas ciudadanas y valores universales al participar en la ronda de lectura (M3), compartiendo su texto ante el grupo, co…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Aprecia y difunde textos vinculados a emociones, sentimientos y dignidad humana al redactar en el cierre la lista de tres ideas clave s…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-08">
+<div class="clase-hd"><h3>Clase 08 — «Vamos juntos» (Benedetti): Rima consonante · Declamación coral · 6.° Gr…</h3>
+<span class="clase-meta">Semana 2 · Actividad 4</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">«Vamos juntos» (Benedetti): Rima consonante · Declamación coral · Semana 2, Actividad 4</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 8.33 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-09">
+<div class="clase-hd"><h3>Clase 09 — «Pedro el albañil»: Presentación · Recursos estilísticos · 6.° Grado · S…</h3>
+<span class="clase-meta">Semana 3 · Actividad 5</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">«Pedro el albañil»: Presentación · Recursos estilísticos · Semana 3, Actividad 5</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 8.33 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Se comunica de manera efectiva y crítica mediante el texto poético al realizar la lectura y marcado (M1) de «Pedro el albañil», subraya…</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Expone análisis fundados con apertura a distintas interpretaciones al completar en parejas el cuadro de recursos estilísticos (M2), des…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Aplica sus saberes para proponer interpretaciones posibles ante problemáticas reales al estudiar el contexto (M3) del poemario Gotán (1…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Consolida prácticas ciudadanas mediante el texto al completar el cuadro resumen del cierre con tres elementos clave trabajados en la cl…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-10">
+<div class="clase-hd"><h3>Clase 10 — Análisis del sentido · Escritura colectiva · Versos sobre trabajadores ·…</h3>
+<span class="clase-meta">Semana 3 · Actividad 5</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Análisis del sentido · Escritura colectiva · Versos sobre trabajadores · Semana 3, Actividad 5</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 8.33 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-11">
+<div class="clase-hd"><h3>Clase 11 — Ejercicios 2 y 3 · Lectura de producciones · Ficha de Gabriela Mistral ·…</h3>
+<span class="clase-meta">Semana 3 · Actividad 6</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Ejercicios 2 y 3 · Lectura de producciones · Ficha de Gabriela Mistral · Semana 3, Actividad 6</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 8.33 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Hace uso de textos literarios para enriquecer sus competencias comunicativas al desarrollar los Ejercicios 2 y 3 (M1), redactando tres …</span></div>
+<div class="ci-d"><span class="ln">CI-3.</span><span class="lt">Ofrece información analítica con apertura hacia las producciones ajenas al observar con la lista de cotejo (M2) las lecturas de cinco o…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Aplica textos para reconocer y examinar nuevas relaciones socioculturales al estudiar la ficha de Gabriela Mistral (M3), registrando su…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Aprecia y promueve textos vinculados a emociones y dignidad humana al elaborar en el cierre la lista de tres ideas clave sobre los ejer…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-12">
+<div class="clase-hd"><h3>Clase 12 — «Manos de obreros»: Análisis estrofa por estrofa · Cuadro comparativo · …</h3>
+<span class="clase-meta">Semana 3 · Actividad 6</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">«Manos de obreros»: Análisis estrofa por estrofa · Cuadro comparativo · Semana 3, Actividad 6</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 8.33 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-13">
+<div class="clase-hd"><h3>Clase 13 — Eduardo Galeano · Prosa poética · Transformación narrativa → poesía · 6.…</h3>
+<span class="clase-meta">Semana 4 · Actividad 7</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Eduardo Galeano · Prosa poética · Transformación narrativa → poesía · Semana 4, Actividad 7</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 10 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Se comunica con eficacia crítica mediante textos de géneros distintos al leer los fragmentos de Galeano (M1) —«El mundo» (los fueguitos…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Aprecia textos vinculados a emociones y dignidad humana al iniciar la escritura individual (M3) de su versión transformada del fragment…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Expresa y comparte de forma efectiva y crítica los aprendizajes del proceso al redactar en el cierre la lista de tres ideas clave sobre…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-14">
+<div class="clase-hd"><h3>Clase 14 — Lectura de transformaciones · Planificación del poema final · 6.° Grado …</h3>
+<span class="clase-meta">Semana 4 · Actividad 7</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Lectura de transformaciones · Planificación del poema final · Semana 4, Actividad 7</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 10 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-15">
+<div class="clase-hd"><h3>Clase 15 — Escritura del borrador · Revisión en parejas · 6.° Grado · Semana 4 · Ac…</h3>
+<span class="clase-meta">Semana 4 · Actividad 8</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge lc">Lista de Cotejo</span>
+<span class="iname">Escritura del borrador · Revisión en parejas · Semana 4, Actividad 8</span>
+<span class="escala">Escala: Sí · No · En proceso</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 8.33 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+<div class="ci-descs">
+<div class="ci-d"><span class="ln">CI-1.</span><span class="lt">Participa activamente y con responsabilidad en las actividades propuestas durante la clase</span></div>
+<div class="ci-d"><span class="ln">CI-2.</span><span class="lt">Se expresa de manera efectiva y crítica mediante la escritura al redactar el borrador del poema social (M1), incorporando la problemáti…</span></div>
+<div class="ci-d"><span class="ln">CI-4.</span><span class="lt">Refuerza valores ciudadanos y universales mediante el proceso de escritura al revisar el propio borrador a la luz de las sugerencias de…</span></div>
+<div class="ci-d"><span class="ln">CI-5.</span><span class="lt">Aprecia y difunde textos relacionados con emociones y dignidad humana al elaborar en el cierre la lista de tres ideas clave sobre el pr…</span></div>
+</div>
+</div></div>
+</div></div>
+<div class="clase-block" id="clase-16">
+<div class="clase-hd"><h3>Clase 16 — Versión final · Recital de poesía social · Metacognición · 6.° Grado · S…</h3>
+<span class="clase-meta">Semana 4 · Actividad 8</span></div>
+<div class="clase-body">
+<div class="ib"><div class="ib-hd">
+<span class="tbadge ru">Rúbrica</span>
+<span class="iname">Versión final · Recital de poesía social · Metacognición · Semana 4, Actividad 8</span>
+<span class="escala">Escala: Excelente (4) · Bueno (3) · En proceso (2) · Insuficiente (1)</span></div>
+<div class="ib-body">
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-1</span><span class="chip-ci">CI-5</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1a5276">CE-LE1</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE1: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-2</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#2471a3">CE-LE2-3</span>
+<span class="pts">: 5 pts</span>
+<span class="acum"> · Acumulado CE-LE2-3: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-3</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#1e6823">CE-LE4-5</span>
+<span class="pts">: 8.33 pts</span>
+<span class="acum"> · Acumulado CE-LE4-5: ___/100</span></div>
+<div class="ci-row"><div class="ci-chips"><span class="chip-ci">CI-4</span></div>
+<span class="arr">→</span>
+<span class="chip-ce" style="background:#7d5a0a">CE-LE6-7</span>
+<span class="pts">: 6.25 pts</span>
+<span class="acum"> · Acumulado CE-LE6-7: ___/100</span></div>
+</div></div>
+</div></div>
+</section>
+</div>
+</body>
+</html>
