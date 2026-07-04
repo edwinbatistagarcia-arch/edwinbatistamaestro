@@ -26,10 +26,9 @@ la República Dominicana). Se incluyen aquí únicamente con fines educativos y
 de documentación del trabajo docente.
 
 > Nota: la pestaña "Recursos" de `index.html` enlaza a los Libros Abiertos de
-> Lengua Española (MINERD) de 5to y 6to, que **no** están incluidos en este
-> repositorio por su tamaño (>100 MB cada uno, por encima del límite de
-> GitHub). Esos enlaces no funcionarán hasta que se alojen esos PDF aparte
-> (por ejemplo, en GitHub Releases o un enlace externo).
+> Lengua Española (MINERD) de 5to y 6to. Por su tamaño (>100 MB cada uno,
+> por encima del límite de Git), no están en el repositorio: se alojan como
+> assets del [Release "libros-abiertos-v1"](https://github.com/edwinbatistagarcia-arch/edwinbatistamaestro/releases/tag/libros-abiertos-v1).
 
 ## Licencia
 
