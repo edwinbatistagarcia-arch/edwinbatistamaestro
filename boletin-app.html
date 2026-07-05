@@ -2,8 +2,17 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
 <title>Sistema de Calificaciones</title>
+<meta name="theme-color" content="#0f0f11">
+<meta name="color-scheme" content="dark">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Boletines EBG">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
 <style>
   :root {
     --bg: #0f0f11;
@@ -383,6 +392,44 @@
   .reg-final-input.low { color: var(--red); }
   .reg-final-input.avg { color: var(--yellow); }
 
+  /* Overlay para el drawer del sidebar en móvil */
+  #sidebar-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 40;
+  }
+  #sidebar-overlay.show { display: block; }
+  .hamburger-btn { display: none; }
+
+  /* MOBILE APP MODE */
+  @media (max-width: 860px) {
+    body { font-size: 14px; }
+    .hamburger-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; border-radius: 8px; background: var(--surface2);
+      border: 1px solid var(--border); color: var(--text); cursor: pointer; font-size: 16px; flex-shrink: 0;
+    }
+    #sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0; z-index: 50; width: 82vw; max-width: 300px;
+      transform: translateX(-100%); transition: transform .25s ease;
+      box-shadow: 0 0 0 1px var(--border);
+      padding-top: env(safe-area-inset-top);
+    }
+    #sidebar.open { transform: translateX(0); }
+    .topbar { padding: 12px 14px; padding-top: calc(12px + env(safe-area-inset-top)); flex-wrap: wrap; gap: 8px; }
+    .topbar-title { font-size: 14px; }
+    .topbar-sub { font-size: 11px; }
+    .topbar .btn-ghost { font-size: 10px !important; padding: 6px 10px; }
+    #boletin-view, #registro-view { padding: 12px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
+    .boletin-top { flex-direction: column; padding: 16px; }
+    .student-info-grid { grid-template-columns: 1fr 1fr !important; }
+    .situacion-grid, .firma-grid { grid-template-columns: 1fr !important; }
+    .asistencia-grid { grid-template-columns: 1fr 1fr !important; }
+    .grades-table-wrap, .registro-table-wrap { -webkit-overflow-scrolling: touch; }
+    .modal { width: 92vw; padding: 20px; }
+    .action-bar { flex-wrap: wrap; padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
+    .btn { padding: 9px 16px; }
+    .grade-input, .reg-grade-input, .reg-name-input, .reg-pc-input, .reg-final-input { font-size: 13px; padding: 11px 4px; }
+  }
+
   /* Print */
   @media print {
     @page { size: letter landscape; margin: 0.4in; }
@@ -495,9 +542,12 @@
   </div>
 </aside>
 
+<div id="sidebar-overlay" onclick="closeSidebarDrawer()"></div>
+
 <!-- MAIN -->
 <main id="main">
   <div class="topbar">
+    <button class="hamburger-btn" onclick="toggleSidebarDrawer()" aria-label="Menú">☰</button>
     <div>
       <div class="topbar-title" id="topbar-title">Bienvenido</div>
       <div class="topbar-sub" id="topbar-sub">Selecciona o crea un grado para comenzar</div>
@@ -684,6 +734,23 @@ const WELCOME_REGISTRO_HTML = `
     <button class="btn btn-primary" onclick="openAddRegistro()" style="margin-top:8px">+ Nuevo Registro de Rendimiento</button>`;
 
 function uid() { return Math.random().toString(36).slice(2); }
+
+// ============================================================
+// MOBILE APP: drawer del sidebar + Service Worker (PWA)
+// ============================================================
+function toggleSidebarDrawer() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebar-overlay').classList.toggle('show');
+}
+function closeSidebarDrawer() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('show');
+}
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
 
 function save() {
   localStorage.setItem('calificaciones_state', JSON.stringify(state));
@@ -900,6 +967,7 @@ function selectStudent(gradeId, studentId) {
   const s = g?.students.find(s => s.id === studentId);
   renderSidebar();
   if (g && s) renderBoletin(g, s);
+  closeSidebarDrawer();
 }
 
 // ============================================================
@@ -1510,6 +1578,7 @@ function selectRegistro(id) {
   renderRegistrosSidebar();
   const reg = state.registers.find(r => r.id === id);
   if (reg) renderRegistroView(reg);
+  closeSidebarDrawer();
 }
 
 function deleteRegistro(e, id) {

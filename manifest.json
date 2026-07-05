@@ -1,0 +1,14 @@
+{
+  "name": "Sistema de Boletines Escolares - Edwin Batista",
+  "short_name": "Boletines EBG",
+  "description": "Aplicación de calificaciones y boletines escolares",
+  "start_url": "./boletin-app.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0f0f11",
+  "theme_color": "#0f0f11",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
