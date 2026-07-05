@@ -535,7 +535,7 @@
   <div id="registros-section">
     <div style="padding:8px">
       <button class="btn-add-grade" onclick="openAddRegistro()">
-        <span>+</span> Nuevo Registro
+        <span>+</span> Añadir Registro
       </button>
     </div>
     <div id="registros-list"></div>
@@ -549,7 +549,7 @@
   <div class="topbar">
     <button class="hamburger-btn" onclick="toggleSidebarDrawer()" aria-label="Menú">☰</button>
     <div>
-      <div class="topbar-title" id="topbar-title">Bienvenido</div>
+      <div class="topbar-title" id="topbar-title">Boletines</div>
       <div class="topbar-sub" id="topbar-sub">Selecciona o crea un grado para comenzar</div>
     </div>
     <div class="topbar-spacer"></div>
@@ -564,7 +564,7 @@
     <div class="welcome-icon" style="font-size:48px;opacity:.15;font-weight:900;letter-spacing:-4px;color:var(--accent2)">EBG</div>
     <div class="welcome-title">Sistema de Boletines Escolares</div>
     <div class="welcome-desc">Crea grados, agrega estudiantes y gestiona sus calificaciones de rendimiento academico de forma organizada.</div>
-    <button class="btn btn-primary" onclick="openAddGrade()" style="margin-top:8px">Crear primer grado →</button>
+    <button class="btn btn-primary" onclick="openAddGrade()" style="margin-top:8px">Nuevo Grado →</button>
   </div>
 
   <!-- Boletín View -->
@@ -725,7 +725,7 @@ const WELCOME_BOLETIN_HTML = `
     <div class="welcome-icon" style="font-size:48px;opacity:.15;font-weight:900;letter-spacing:-4px;color:var(--accent2)">EBG</div>
     <div class="welcome-title">Sistema de Boletines Escolares</div>
     <div class="welcome-desc">Crea grados, agrega estudiantes y gestiona sus calificaciones de rendimiento academico de forma organizada.</div>
-    <button class="btn btn-primary" onclick="openAddGrade()" style="margin-top:8px">Crear primer grado →</button>`;
+    <button class="btn btn-primary" onclick="openAddGrade()" style="margin-top:8px">Nuevo Grado →</button>`;
 
 const WELCOME_REGISTRO_HTML = `
     <div class="welcome-icon" style="font-size:48px;opacity:.15;font-weight:900;letter-spacing:-4px;color:var(--accent2)">EBG</div>
@@ -976,7 +976,7 @@ function selectStudent(gradeId, studentId) {
 function showWelcomeOrBoletin() {
   const g = state.grades.find(g => g.id === state.activeGrade);
   const s = g?.students.find(s => s.id === state.activeStudent);
-  document.getElementById('topbar-title').textContent = g ? `${g.grado} — Sección ${g.seccion}` : 'Bienvenido';
+  document.getElementById('topbar-title').textContent = g ? `${g.grado} — Sección ${g.seccion}` : 'Boletines';
   document.getElementById('topbar-sub').textContent = g ? `${g.anio} · ${g.students.length} estudiante${g.students.length !== 1 ? 's' : ''}` : 'Selecciona o crea un grado para comenzar';
   if (g && s) {
     document.getElementById('welcome').style.display = 'none';
